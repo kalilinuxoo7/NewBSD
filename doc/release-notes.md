@@ -1,29 +1,29 @@
-﻿Machinecoin Core version 0.16.x is now available from:
+﻿Bitsend Core version 0.16.x is now available from:
 
-  <https://machinecoin.io/bin/machinecoin-core-0.16.x/>
+  <https://bitsend.io/bin/bitsend-core-0.16.x/>
 
 This is a new major version release, including new features, various bugfixes
 and performance improvements, as well as updated translations.
 
 Please report bugs using the issue tracker at GitHub:
 
-  <https://github.com/machinecoin/machinecoin/issues>
+  <https://github.com/bitsend/bitsend/issues>
 
 To receive security and update notifications, please subscribe to:
 
-  <https://machinecoin.io/en/list/announcements/join/>
+  <https://bitsend.io/en/list/announcements/join/>
 
 How to Upgrade
 ==============
 
 If you are running an older version, shut it down. Wait until it has completely
 shut down (which might take a few minutes for older versions), then run the
-installer (on Windows) or just copy over `/Applications/Machinecoin-Qt` (on Mac)
-or `machinecoind`/`machinecoin-qt` (on Linux).
+installer (on Windows) or just copy over `/Applications/Bitsend-Qt` (on Mac)
+or `bitsendd`/`bitsend-qt` (on Linux).
 
 The first time you run version 0.15.0 or newer, your chainstate database will be converted to a
 new format, which will take anywhere from a few minutes to half an hour,
-depending on the speed of your machine.
+depending on the speed of your bitsend.
 
 Note that the block database format also changed in version 0.8.0 and there is no
 automatic upgrade code from before version 0.8 to version 0.15.0 or higher. Upgrading
@@ -40,10 +40,10 @@ wallets that were created with older versions are not affected by this.
 Compatibility
 ==============
 
-Machinecoin Core is extensively tested on multiple operating systems using
+Bitsend Core is extensively tested on multiple operating systems using
 the Linux kernel, macOS 10.8+, and Windows Vista and later. Windows XP is not supported.
 
-Machinecoin Core should also work on most other Unix-like systems but is not
+Bitsend Core should also work on most other Unix-like systems but is not
 frequently tested on them.
 
 Notable changes
@@ -66,4 +66,4 @@ Thanks to everyone who directly contributed to this release:
 
 (to be filled in at release time)
 
-As well as everyone that helped translating on [Transifex](https://www.transifex.com/projects/p/machinecoin/).
+As well as everyone that helped translating on [Transifex](https://www.transifex.com/projects/p/bitsend/).

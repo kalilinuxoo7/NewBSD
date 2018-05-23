@@ -1,9 +1,9 @@
-﻿// Copyright (c) 2015-2017 The Machinecoin Core developers
+﻿// Copyright (c) 2015-2017 The Bitsend Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef MACHINECOIN_BENCH_BENCH_H
-#define MACHINECOIN_BENCH_BENCH_H
+#ifndef BITSEND_BENCH_BENCH_H
+#define BITSEND_BENCH_BENCH_H
 
 #include <functional>
 #include <limits>
@@ -139,4 +139,4 @@ private:
 #define BENCHMARK(n, num_iters_for_one_second) \
     benchmark::BenchRunner BOOST_PP_CAT(bench_, BOOST_PP_CAT(__LINE__, n))(BOOST_PP_STRINGIZE(n), n, (num_iters_for_one_second));
 
-#endif // MACHINECOIN_BENCH_BENCH_H
+#endif // BITSEND_BENCH_BENCH_H

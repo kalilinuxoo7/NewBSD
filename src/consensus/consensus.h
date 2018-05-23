@@ -1,10 +1,10 @@
 ﻿// Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2009-2018 The Machinecoin Core developers
+// Copyright (c) 2009-2018 The Bitsend Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef MACHINECOIN_CONSENSUS_CONSENSUS_H
-#define MACHINECOIN_CONSENSUS_CONSENSUS_H
+#ifndef BITSEND_CONSENSUS_CONSENSUS_H
+#define BITSEND_CONSENSUS_CONSENSUS_H
 
 #include <stdlib.h>
 #include <stdint.h>
@@ -29,4 +29,4 @@ static constexpr unsigned int LOCKTIME_VERIFY_SEQUENCE = (1 << 0);
 /** Use GetMedianTimePast() instead of nTime for end point timestamp. */
 static constexpr unsigned int LOCKTIME_MEDIAN_TIME_PAST = (1 << 1);
 
-#endif // MACHINECOIN_CONSENSUS_CONSENSUS_H
+#endif // BITSEND_CONSENSUS_CONSENSUS_H

@@ -1,5 +1,5 @@
 ﻿// Copyright (c) 2010 Satoshi Nakamoto
-// Copyright (c) 2009-2018 The Machinecoin Core developers
+// Copyright (c) 2009-2018 The Bitsend Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -164,7 +164,7 @@ UniValue generatetoaddress(const JSONRPCRequest& request)
             "\nMine blocks immediately to a specified address (before the RPC call returns)\n"
             "\nArguments:\n"
             "1. nblocks      (numeric, required) How many blocks are generated immediately.\n"
-            "2. address      (string, required) The address to send the newly generated machinecoin to.\n"
+            "2. address      (string, required) The address to send the newly generated bitsend to.\n"
             "3. maxtries     (numeric, optional) How many iterations to try (default = 1000000).\n"
             "\nResult:\n"
             "[ blockhashes ]     (array) hashes of blocks generated\n"
@@ -206,7 +206,7 @@ UniValue getmininginfo(const JSONRPCRequest& request)
             "  \"pooledtx\": n              (numeric) The size of the mempool\n"
             "  \"chain\": \"xxxx\",           (string) current network name as defined in BIP70 (main, test, regtest)\n"
             "  \"warnings\": \"...\"          (string) any network and blockchain warnings\n"
-            "  \"errors\": \"...\"            (string) DEPRECATED. Same as warnings. Only shown when machinecoind is started with -deprecatedrpc=getmininginfo\n"
+            "  \"errors\": \"...\"            (string) DEPRECATED. Same as warnings. Only shown when bitsendd is started with -deprecatedrpc=getmininginfo\n"
             "}\n"
             "\nExamples:\n"
             + HelpExampleCli("getmininginfo", "")
@@ -233,7 +233,7 @@ UniValue getmininginfo(const JSONRPCRequest& request)
 }
 
 
-// NOTE: Unlike wallet RPC (which use MAC values), mining RPCs follow GBT (BIP 22) in using satoshi amounts
+// NOTE: Unlike wallet RPC (which use BSD values), mining RPCs follow GBT (BIP 22) in using satoshi amounts
 UniValue prioritisetransaction(const JSONRPCRequest& request)
 {
     if (request.fHelp || request.params.size() != 3)
@@ -304,10 +304,10 @@ UniValue getblocktemplate(const JSONRPCRequest& request)
             "\nIf the request parameters include a 'mode' key, that is used to explicitly select between the default 'template' request or a 'proposal'.\n"
             "It returns data needed to construct a block to work on.\n"
             "For full specification, see BIPs 22, 23, 9, and 145:\n"
-            "    https://github.com/machinecoin/bips/blob/master/bip-0022.mediawiki\n"
-            "    https://github.com/machinecoin/bips/blob/master/bip-0023.mediawiki\n"
-            "    https://github.com/machinecoin/bips/blob/master/bip-0009.mediawiki#getblocktemplate_changes\n"
-            "    https://github.com/machinecoin/bips/blob/master/bip-0145.mediawiki\n"
+            "    https://github.com/bitsend/bips/blob/master/bip-0022.mediawiki\n"
+            "    https://github.com/bitsend/bips/blob/master/bip-0023.mediawiki\n"
+            "    https://github.com/bitsend/bips/blob/master/bip-0009.mediawiki#getblocktemplate_changes\n"
+            "    https://github.com/bitsend/bips/blob/master/bip-0145.mediawiki\n"
 
             "\nArguments:\n"
             "1. template_request         (json object, optional) A json object in the following spec\n"
@@ -464,21 +464,21 @@ UniValue getblocktemplate(const JSONRPCRequest& request)
         throw JSONRPCError(RPC_CLIENT_P2P_DISABLED, "Error: Peer-to-peer functionality missing or disabled");
 
     if (g_connman->GetNodeCount(CConnman::CONNECTIONS_ALL) == 0)
-        throw JSONRPCError(RPC_CLIENT_NOT_CONNECTED, "Machinecoin is not connected!");
+        throw JSONRPCError(RPC_CLIENT_NOT_CONNECTED, "Bitsend is not connected!");
 
     if (IsInitialBlockDownload())
-        throw JSONRPCError(RPC_CLIENT_IN_INITIAL_DOWNLOAD, "Machinecoin is downloading blocks...");
+        throw JSONRPCError(RPC_CLIENT_IN_INITIAL_DOWNLOAD, "Bitsend is downloading blocks...");
   
     // when enforcement is on we need information about a masternode payee or otherwise our block is going to be orphaned by the network
     CScript payee;
     if (!masternodeSync.IsWinnersListSynced()
         && !mnpayments.GetBlockPayee(chainActive.Height() + 1, payee))
-            throw JSONRPCError(RPC_CLIENT_IN_INITIAL_DOWNLOAD, "Machinecoin is downloading masternode winners...");
+            throw JSONRPCError(RPC_CLIENT_IN_INITIAL_DOWNLOAD, "Bitsend is downloading masternode winners...");
 
     // next bock is a superblock and we need governance info to correctly construct it
     if (!masternodeSync.IsSynced()
         && CSuperblock::IsValidBlockHeight(chainActive.Height() + 1))
-            throw JSONRPCError(RPC_CLIENT_IN_INITIAL_DOWNLOAD, "Machinecoin is syncing with network...");
+            throw JSONRPCError(RPC_CLIENT_IN_INITIAL_DOWNLOAD, "Bitsend is syncing with network...");
 
     static unsigned int nTransactionsUpdatedLast;
 
@@ -771,7 +771,7 @@ UniValue submitblock(const JSONRPCRequest& request)
         throw std::runtime_error(
             "submitblock \"hexdata\"  ( \"dummy\" )\n"
             "\nAttempts to submit new block to network.\n"
-            "See https://en.machinecoin.it/wiki/BIP_0022 for full specification.\n"
+            "See https://en.bitsend.it/wiki/BIP_0022 for full specification.\n"
 
             "\nArguments\n"
             "1. \"hexdata\"        (string, required) the hex-encoded block data to submit\n"
@@ -859,7 +859,7 @@ UniValue estimatefee(const JSONRPCRequest& request)
 
     if (!IsDeprecatedRPCEnabled("estimatefee")) {
         throw JSONRPCError(RPC_METHOD_DEPRECATED, "estimatefee is deprecated and will be fully removed in v0.17. "
-            "To use estimatefee in v0.16, restart machinecoind with -deprecatedrpc=estimatefee.\n"
+            "To use estimatefee in v0.16, restart bitsendd with -deprecatedrpc=estimatefee.\n"
             "Projects should transition to using estimatesmartfee before upgrading to v0.17");
     }
 

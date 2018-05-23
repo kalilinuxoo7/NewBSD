@@ -8,19 +8,19 @@ Changes:
 * Fix problem sending the last cent with sub-cent fractional change.
 * Auto-detect whether to use 128-bit 4-way SSE2 on Linux.
 Gavin Andresen:
-* Option -rpcallowip= to accept json-rpc connections from another machine.
+* Option -rpcallowip= to accept json-rpc connections from another bitsend.
 * Clean shutdown on SIGTERM on Linux.
 
 Download:
-http://sourceforge.net/projects/machinecoin/files/Machinecoin/machinecoin-0.3.13/
+http://sourceforge.net/projects/bitsend/files/Bitsend/bitsend-0.3.13/
 
 (Thanks Laszlo for the Mac OSX build!)
 
 Note:
 The SSE2 auto-detect in the Linux 64-bit version doesn't work with AMD in 64-bit mode.  Please try this instead and let me know if it gets it right:
-http://www.machinecoin.org/download/machinecoin-0.3.13.1-specialbuild-linux64.tar.gz
+http://www.bitsend.org/download/bitsend-0.3.13.1-specialbuild-linux64.tar.gz
 
 You can still control the SSE2 use manually with -4way and -4way=0.
 
 Version 0.3.13.2 (SVN rev 161) has improvements for the case where you already had 0/unconfirmed transactions that you might have already spent.  Here's a Windows build of it:
-http://www.machinecoin.org/download/machinecoin-0.3.13.2-win32-setup.exe
+http://www.bitsend.org/download/bitsend-0.3.13.2-win32-setup.exe

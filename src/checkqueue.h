@@ -1,9 +1,9 @@
-// Copyright (c) 2012-2015 The Machinecoin Core developers
+// Copyright (c) 2012-2015 The Bitsend Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef MACHINECOIN_CHECKQUEUE_H
-#define MACHINECOIN_CHECKQUEUE_H
+#ifndef BITSEND_CHECKQUEUE_H
+#define BITSEND_CHECKQUEUE_H
 
 #include <sync.h>
 
@@ -211,4 +211,4 @@ public:
     }
 };
 
-#endif // MACHINECOIN_CHECKQUEUE_H
+#endif // BITSEND_CHECKQUEUE_H

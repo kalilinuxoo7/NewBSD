@@ -1,11 +1,11 @@
-﻿// Copyright (c) 2011-2018 The Machinecoin Core developers
+﻿// Copyright (c) 2011-2018 The Bitsend Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include <qt/guiutil.h>
 
-#include <qt/machinecoinaddressvalidator.h>
-#include <qt/machinecoinunits.h>
+#include <qt/bitsendaddressvalidator.h>
+#include <qt/bitsendunits.h>
 #include <qt/qvalidatedlineedit.h>
 #include <qt/walletmodel.h>
 
@@ -64,7 +64,7 @@
 
 static fs::detail::utf8_codecvt_facet utf8;
 
-#if defined(Q_OS_MAC)
+#if defined(Q_OS_BSD)
 extern double NSAppKitVersionNumber;
 #if !defined(NSAppKitVersionNumber10_8)
 #define NSAppKitVersionNumber10_8 1187
@@ -127,11 +127,11 @@ void setupAddressWidget(QValidatedLineEdit *widget, QWidget *parent)
 #if QT_VERSION >= 0x040700
     // We don't want translators to use own addresses in translations
     // and this is the only place, where this address is supplied.
-    widget->setPlaceholderText(QObject::tr("Enter a Machinecoin address (e.g. %1)").arg(
+    widget->setPlaceholderText(QObject::tr("Enter a Bitsend address (e.g. %1)").arg(
         QString::fromStdString(DummyAddress(Params()))));
 #endif
-    widget->setValidator(new MachinecoinAddressEntryValidator(parent));
-    widget->setCheckValidator(new MachinecoinAddressCheckValidator(parent));
+    widget->setValidator(new BitsendAddressEntryValidator(parent));
+    widget->setCheckValidator(new BitsendAddressCheckValidator(parent));
 }
 
 void setupAmountWidget(QLineEdit *widget, QWidget *parent)
@@ -143,10 +143,10 @@ void setupAmountWidget(QLineEdit *widget, QWidget *parent)
     widget->setAlignment(Qt::AlignRight|Qt::AlignVCenter);
 }
 
-bool parseMachinecoinURI(const QUrl &uri, SendCoinsRecipient *out)
+bool parseBitsendURI(const QUrl &uri, SendCoinsRecipient *out)
 {
-    // return if URI is not valid or is no machinecoin: URI
-    if(!uri.isValid() || uri.scheme() != QString("machinecoin"))
+    // return if URI is not valid or is no bitsend: URI
+    if(!uri.isValid() || uri.scheme() != QString("bitsend"))
         return false;
 
     SendCoinsRecipient rv;
@@ -186,7 +186,7 @@ bool parseMachinecoinURI(const QUrl &uri, SendCoinsRecipient *out)
         {
             if(!i->second.isEmpty())
             {
-                if(!MachinecoinUnits::parse(MachinecoinUnits::MAC, i->second, &rv.amount))
+                if(!BitsendUnits::parse(BitsendUnits::BSD, i->second, &rv.amount))
                 {
                     return false;
                 }
@@ -204,28 +204,28 @@ bool parseMachinecoinURI(const QUrl &uri, SendCoinsRecipient *out)
     return true;
 }
 
-bool parseMachinecoinURI(QString uri, SendCoinsRecipient *out)
+bool parseBitsendURI(QString uri, SendCoinsRecipient *out)
 {
-    // Convert machinecoin:// to machinecoin:
+    // Convert bitsend:// to bitsend:
     //
-    //    Cannot handle this later, because machinecoin:// will cause Qt to see the part after // as host,
+    //    Cannot handle this later, because bitsend:// will cause Qt to see the part after // as host,
     //    which will lower-case it (and thus invalidate the address).
-    if(uri.startsWith("machinecoin://", Qt::CaseInsensitive))
+    if(uri.startsWith("bitsend://", Qt::CaseInsensitive))
     {
-        uri.replace(0, 14, "machinecoin:");
+        uri.replace(0, 14, "bitsend:");
     }
     QUrl uriInstance(uri);
-    return parseMachinecoinURI(uriInstance, out);
+    return parseBitsendURI(uriInstance, out);
 }
 
-QString formatMachinecoinURI(const SendCoinsRecipient &info)
+QString formatBitsendURI(const SendCoinsRecipient &info)
 {
-    QString ret = QString("machinecoin:%1").arg(info.address);
+    QString ret = QString("bitsend:%1").arg(info.address);
     int paramCount = 0;
 
     if (info.amount)
     {
-        ret += QString("?amount=%1").arg(MachinecoinUnits::format(MachinecoinUnits::MAC, info.amount, false, MachinecoinUnits::separatorNever));
+        ret += QString("?amount=%1").arg(BitsendUnits::format(BitsendUnits::BSD, info.amount, false, BitsendUnits::separatorNever));
         paramCount++;
     }
 
@@ -415,9 +415,9 @@ void openDebugLogfile()
         QDesktopServices::openUrl(QUrl::fromLocalFile(boostPathToQString(pathDebug)));
 }
 
-bool openMachinecoinConf()
+bool openBitsendConf()
 {
-    boost::filesystem::path pathConfig = GetConfigFile(MACHINECOIN_CONF_FILENAME);
+    boost::filesystem::path pathConfig = GetConfigFile(BITSEND_CONF_FILENAME);
 
     /* Create the file */
     boost::filesystem::ofstream configFile(pathConfig, std::ios_base::app);
@@ -427,13 +427,13 @@ bool openMachinecoinConf()
     
     configFile.close();
     
-    /* Open machinecoin.conf with the associated application */
+    /* Open bitsend.conf with the associated application */
     return QDesktopServices::openUrl(QUrl::fromLocalFile(boostPathToQString(pathConfig)));
 }
 
 void SubstituteFonts(const QString& language)
 {
-#if defined(Q_OS_MAC)
+#if defined(Q_OS_BSD)
 // Background:
 // OSX's default font changed in 10.9 and Qt is unable to find it with its
 // usual fallback methods when building against the 10.7 sdk or lower.
@@ -446,7 +446,7 @@ void SubstituteFonts(const QString& language)
 // Solution: If building with the 10.7 SDK or lower and the user's platform
 // is 10.9 or higher at runtime, substitute the correct font. This needs to
 // happen before the QApplication is created.
-#if defined(MAC_OS_X_VERSION_MAX_ALLOWED) && MAC_OS_X_VERSION_MAX_ALLOWED < MAC_OS_X_VERSION_10_8
+#if defined(BSD_OS_X_VERSION_MAX_ALLOWED) && BSD_OS_X_VERSION_MAX_ALLOWED < BSD_OS_X_VERSION_10_8
     if (floor(NSAppKitVersionNumber) > NSAppKitVersionNumber10_8)
     {
         if (floor(NSAppKitVersionNumber) <= NSAppKitVersionNumber10_9)
@@ -615,15 +615,15 @@ fs::path static StartupShortcutPath()
 {
     std::string chain = ChainNameFromCommandLine();
     if (chain == CBaseChainParams::MAIN)
-        return GetSpecialFolderPath(CSIDL_STARTUP) / "Machinecoin.lnk";
+        return GetSpecialFolderPath(CSIDL_STARTUP) / "Bitsend.lnk";
     if (chain == CBaseChainParams::TESTNET) // Remove this special case when CBaseChainParams::TESTNET = "testnet4"
-        return GetSpecialFolderPath(CSIDL_STARTUP) / "Machinecoin (testnet).lnk";
-    return GetSpecialFolderPath(CSIDL_STARTUP) / strprintf("Machinecoin (%s).lnk", chain);
+        return GetSpecialFolderPath(CSIDL_STARTUP) / "Bitsend (testnet).lnk";
+    return GetSpecialFolderPath(CSIDL_STARTUP) / strprintf("Bitsend (%s).lnk", chain);
 }
 
 bool GetStartOnSystemStartup()
 {
-    // check for Machinecoin*.lnk
+    // check for Bitsend*.lnk
     return fs::exists(StartupShortcutPath());
 }
 
@@ -713,8 +713,8 @@ fs::path static GetAutostartFilePath()
 {
     std::string chain = ChainNameFromCommandLine();
     if (chain == CBaseChainParams::MAIN)
-        return GetAutostartDir() / "machinecoin.desktop";
-    return GetAutostartDir() / strprintf("machinecoin-%s.lnk", chain);
+        return GetAutostartDir() / "bitsend.desktop";
+    return GetAutostartDir() / strprintf("bitsend-%s.lnk", chain);
 }
 
 bool GetStartOnSystemStartup()
@@ -754,13 +754,13 @@ bool SetStartOnSystemStartup(bool fAutoStart)
         if (!optionFile.good())
             return false;
         std::string chain = ChainNameFromCommandLine();
-        // Write a machinecoin.desktop file to the autostart directory:
+        // Write a bitsend.desktop file to the autostart directory:
         optionFile << "[Desktop Entry]\n";
         optionFile << "Type=Application\n";
         if (chain == CBaseChainParams::MAIN)
-            optionFile << "Name=Machinecoin\n";
+            optionFile << "Name=Bitsend\n";
         else
-            optionFile << strprintf("Name=Machinecoin (%s)\n", chain);
+            optionFile << strprintf("Name=Bitsend (%s)\n", chain);
         optionFile << "Exec=" << pszExePath << strprintf(" -min -testnet=%d -regtest=%d\n", gArgs.GetBoolArg("-testnet", false), gArgs.GetBoolArg("-regtest", false));
         optionFile << "Terminal=false\n";
         optionFile << "Hidden=false\n";
@@ -770,7 +770,7 @@ bool SetStartOnSystemStartup(bool fAutoStart)
 }
 
 
-#elif defined(Q_OS_MAC)
+#elif defined(Q_OS_BSD)
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wdeprecated-declarations"
 // based on: https://github.com/Mozketo/LaunchAtLoginController/blob/master/LaunchAtLoginController.m
@@ -786,16 +786,16 @@ LSSharedFileListItemRef findStartupItemInList(LSSharedFileListRef list, CFURLRef
         return nullptr;
     }
 
-    // loop through the list of startup items and try to find the machinecoin app
+    // loop through the list of startup items and try to find the bitsend app
     for(int i = 0; i < CFArrayGetCount(listSnapshot); i++) {
         LSSharedFileListItemRef item = (LSSharedFileListItemRef)CFArrayGetValueAtIndex(listSnapshot, i);
         UInt32 resolutionFlags = kLSSharedFileListNoUserInteraction | kLSSharedFileListDoNotMountVolumes;
         CFURLRef currentItemURL = nullptr;
 
-#if defined(MAC_OS_X_VERSION_MAX_ALLOWED) && MAC_OS_X_VERSION_MAX_ALLOWED >= 10100
+#if defined(BSD_OS_X_VERSION_MAX_ALLOWED) && BSD_OS_X_VERSION_MAX_ALLOWED >= 10100
         if(&LSSharedFileListItemCopyResolvedURL)
             currentItemURL = LSSharedFileListItemCopyResolvedURL(item, resolutionFlags, nullptr);
-#if defined(MAC_OS_X_VERSION_MIN_REQUIRED) && MAC_OS_X_VERSION_MIN_REQUIRED < 10100
+#if defined(BSD_OS_X_VERSION_MIN_REQUIRED) && BSD_OS_X_VERSION_MIN_REQUIRED < 10100
         else
             LSSharedFileListItemResolve(item, resolutionFlags, &currentItemURL, nullptr);
 #endif
@@ -820,38 +820,38 @@ LSSharedFileListItemRef findStartupItemInList(LSSharedFileListRef list, CFURLRef
 
 bool GetStartOnSystemStartup()
 {
-    CFURLRef machinecoinAppUrl = CFBundleCopyBundleURL(CFBundleGetMainBundle());
-    if (machinecoinAppUrl == nullptr) {
+    CFURLRef bitsendAppUrl = CFBundleCopyBundleURL(CFBundleGetMainBundle());
+    if (bitsendAppUrl == nullptr) {
         return false;
     }
     
     LSSharedFileListRef loginItems = LSSharedFileListCreate(nullptr, kLSSharedFileListSessionLoginItems, nullptr);
-    LSSharedFileListItemRef foundItem = findStartupItemInList(loginItems, machinecoinAppUrl);
+    LSSharedFileListItemRef foundItem = findStartupItemInList(loginItems, bitsendAppUrl);
 
-    CFRelease(machinecoinAppUrl);
+    CFRelease(bitsendAppUrl);
     return !!foundItem; // return boolified object
 }
 
 bool SetStartOnSystemStartup(bool fAutoStart)
 {
-    CFURLRef machinecoinAppUrl = CFBundleCopyBundleURL(CFBundleGetMainBundle());
-    if (machinecoinAppUrl == nullptr) {
+    CFURLRef bitsendAppUrl = CFBundleCopyBundleURL(CFBundleGetMainBundle());
+    if (bitsendAppUrl == nullptr) {
         return false;
     }
     
     LSSharedFileListRef loginItems = LSSharedFileListCreate(nullptr, kLSSharedFileListSessionLoginItems, nullptr);
-    LSSharedFileListItemRef foundItem = findStartupItemInList(loginItems, machinecoinAppUrl);
+    LSSharedFileListItemRef foundItem = findStartupItemInList(loginItems, bitsendAppUrl);
 
     if(fAutoStart && !foundItem) {
-        // add machinecoin app to startup item list
-        LSSharedFileListInsertItemURL(loginItems, kLSSharedFileListItemBeforeFirst, nullptr, nullptr, machinecoinAppUrl, nullptr, nullptr);
+        // add bitsend app to startup item list
+        LSSharedFileListInsertItemURL(loginItems, kLSSharedFileListItemBeforeFirst, nullptr, nullptr, bitsendAppUrl, nullptr, nullptr);
     }
     else if(!fAutoStart && foundItem) {
         // remove item
         LSSharedFileListItemRemove(loginItems, foundItem);
     }
 
-    CFRelease(machinecoinAppUrl);
+    CFRelease(bitsendAppUrl);
     return true;
 }
 #pragma GCC diagnostic pop

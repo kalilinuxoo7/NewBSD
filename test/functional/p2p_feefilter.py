@@ -1,11 +1,11 @@
 ﻿#!/usr/bin/env python3
-# Copyright (c) 2016-2017 The Machinecoin Core developers
+# Copyright (c) 2016-2017 The Bitsend Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 """Test processing of feefilter messages."""
 
 from test_framework.mininode import *
-from test_framework.test_framework import MachinecoinTestFramework
+from test_framework.test_framework import BitsendTestFramework
 from test_framework.util import *
 import time
 
@@ -36,7 +36,7 @@ class TestNode(P2PInterface):
         with mininode_lock:
             self.txinvs = []
 
-class FeeFilterTest(MachinecoinTestFramework):
+class FeeFilterTest(BitsendTestFramework):
     def set_test_params(self):
         self.num_nodes = 2
 

@@ -1,5 +1,5 @@
-#ifndef MACHINECOIN_QT_CALLBACK_H
-#define MACHINECOIN_QT_CALLBACK_H
+#ifndef BITSEND_QT_CALLBACK_H
+#define BITSEND_QT_CALLBACK_H
 
 #include <QObject>
 
@@ -27,4 +27,4 @@ FunctionCallback<F>* makeCallback(F f)
     return new FunctionCallback<F>(std::move(f));
 }
 
-#endif // MACHINECOIN_QT_CALLBACK_H
+#endif // BITSEND_QT_CALLBACK_H

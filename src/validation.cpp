@@ -1,5 +1,5 @@
 ﻿// Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2009-2018 The Machinecoin Core developers
+// Copyright (c) 2009-2018 The Bitsend Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -54,7 +54,7 @@
 #include <boost/thread.hpp>
 
 #if defined(NDEBUG)
-# error "Machinecoin cannot be compiled without assertions."
+# error "Bitsend cannot be compiled without assertions."
 #endif
 
 #define MICRO 0.000001
@@ -237,7 +237,7 @@ CTxMemPool mempool(&feeEstimator);
 /** Constant stuff for coinbase transactions we create: */
 CScript COINBASE_FLAGS;
 
-const std::string strMessageMagic = "Machinecoin Signed Message:\n";
+const std::string strMessageMagic = "Bitsend Signed Message:\n";
 
 // Internal stuff
 namespace {
@@ -987,7 +987,7 @@ static bool AcceptToMemoryPoolWorker(const CChainParams& chainparams, CTxMemPool
         // Remove conflicting transactions from the mempool
         for (const CTxMemPool::txiter it : allConflicting)
         {
-            LogPrint(MCLog::MEMPOOL, "replacing tx %s with %s for %s MAC additional fees, %d delta bytes\n",
+            LogPrint(MCLog::MEMPOOL, "replacing tx %s with %s for %s BSD additional fees, %d delta bytes\n",
                     it->GetTx().GetHash().ToString(),
                     hash.ToString(),
                     FormatMoney(nModifiedFees - nConflictingFees),
@@ -1723,7 +1723,7 @@ static bool WriteTxIndexDataForBlock(const CBlock& block, CValidationState& stat
 static CCheckQueue<CScriptCheck> scriptcheckqueue(128);
 
 void ThreadScriptCheck() {
-    RenameThread("machinecoin-scriptch");
+    RenameThread("bitsend-scriptch");
     scriptcheckqueue.Thread();
 }
 
@@ -2035,7 +2035,7 @@ bool CChainState::ConnectBlock(const CBlock& block, CValidationState& state, CBl
                                    block.vtx[0]->GetValueOut(), blockReward),
                                    REJECT_INVALID, "bad-cb-amount");
 
-    // MACHINECOIN : MODIFIED TO CHECK MASTERNODE PAYMENTS AND SUPERBLOCKS
+    // BITSEND : MODIFIED TO CHECK MASTERNODE PAYMENTS AND SUPERBLOCKS
 
     // It's possible that we simply don't have enough data and this could fail
     // (i.e. block itself could be a correct one and we need to store it),
@@ -2045,16 +2045,16 @@ bool CChainState::ConnectBlock(const CBlock& block, CValidationState& state, CBl
     // TODO: resync data (both ways?) and try to reprocess this block later.
     std::string strError = "";
     if (!IsBlockValueValid(block, pindex->nHeight, blockReward, strError)) {
-        return state.DoS(0, error("ConnectBlock(MAC): %s", strError), REJECT_INVALID, "bad-cb-amount");
+        return state.DoS(0, error("ConnectBlock(BSD): %s", strError), REJECT_INVALID, "bad-cb-amount");
     }
     
     if (pindex->nHeight > Params().GetConsensus().nMasternodePaymentsStartBlock) {
         if (!IsBlockPayeeValid(block.vtx[0], pindex->nHeight, blockReward)) {
-            return state.DoS(0, error("ConnectBlock(MAC): couldn't find masternode or superblock payments"),
+            return state.DoS(0, error("ConnectBlock(BSD): couldn't find masternode or superblock payments"),
                                     REJECT_INVALID, "bad-cb-payee");
         }
     }
-    // END MACHINECOIN
+    // END BITSEND
 
     if (!control.Wait())
         return state.DoS(100, error("%s: CheckQueue failed", __func__), REJECT_INVALID, "block-validation-failed");

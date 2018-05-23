@@ -1,9 +1,9 @@
-﻿// Copyright (c) 2011-2018 The Machinecoin Core developers
+﻿// Copyright (c) 2011-2018 The Bitsend Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #if defined(HAVE_CONFIG_H)
-#include <config/machinecoin-config.h>
+#include <config/bitsend-config.h>
 #endif
 
 #include <qt/rpcconsole.h>
@@ -767,7 +767,7 @@ void RPCConsole::clear(bool clearHistory)
             ).arg(fixedFontInfo.family(), QString("%1pt").arg(consoleFontSize))
         );
 
-#ifdef Q_OS_MAC
+#ifdef Q_OS_BSD
     QString clsKey = "(???)-L";
 #else
     QString clsKey = "Ctrl-L";

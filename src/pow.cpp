@@ -1,5 +1,5 @@
 ﻿// Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2009-2018 The Machinecoin Core developers
+// Copyright (c) 2009-2018 The Bitsend Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -12,29 +12,29 @@
 #include <util.h>
 #include <validation.h>
 
-// Machinecoin: Select retargeting
+// Bitsend: Select retargeting
 unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHeader *pblock, const Consensus::Params& params)
 {
     assert(pindexLast != nullptr);
     if (pindexLast->nHeight+1 < 76000)
     {
-        return GetNextWorkRequired_V1(pindexLast, pblock, params); // Machinecoin: Standard retargeting (V1)
+        return GetNextWorkRequired_V1(pindexLast, pblock, params); // Bitsend: Standard retargeting (V1)
     }
     else if (pindexLast->nHeight+1 < 329529)
     {
-        return GetNextWorkRequired_V2(pindexLast, pblock, params); // Machinecoin: Digishield retargeting (V2)
+        return GetNextWorkRequired_V2(pindexLast, pblock, params); // Bitsend: Digishield retargeting (V2)
     }
     else if (pindexLast->nHeight+1 < 330000)
     {
-        return UintToArith256(params.powLimit).GetCompact();       // Machinecoin: Retargeting to support the PoW change phase (V3)
+        return UintToArith256(params.powLimit).GetCompact();       // Bitsend: Retargeting to support the PoW change phase (V3)
     }
     else if (pindexLast->nHeight+1 < 468500)
     {
-        return GetNextWorkRequired_V2(pindexLast, pblock, params); // Machinecoin: Digishield retargeting (V2)
+        return GetNextWorkRequired_V2(pindexLast, pblock, params); // Bitsend: Digishield retargeting (V2)
     }
     else
     {
-        return GetNextWorkRequired_V3(pindexLast, pblock, params); // Machinecoin: Octopus retargeting (V3)
+        return GetNextWorkRequired_V3(pindexLast, pblock, params); // Bitsend: Octopus retargeting (V3)
     }
 }
 
@@ -69,7 +69,7 @@ unsigned int GetNextWorkRequired_V1(const CBlockIndex* pindexLast, const CBlockH
         return pindexLast->nBits;
     }
 
-    // Machinecoin: This fixes an issue where a 51% attack can change difficulty at will.
+    // Bitsend: This fixes an issue where a 51% attack can change difficulty at will.
     // Go back the full period unless it's the first retarget after genesis. Code courtesy of Art Forz
     int blockstogoback = params.DifficultyAdjustmentInterval()-1;
     if ((pindexLast->nHeight+1) != params.DifficultyAdjustmentInterval())
@@ -115,7 +115,7 @@ unsigned int GetNextWorkRequired_V2(const CBlockIndex* pindexLast, const CBlockH
         return pindexLast->nBits;
     }
 
-    // Machinecoin: This fixes an issue where a 51% attack can change difficulty at will.
+    // Bitsend: This fixes an issue where a 51% attack can change difficulty at will.
     // Go back the full period unless it's the first retarget after genesis. Code courtesy of Art Forz
     int blockstogoback = params.DifficultyAdjustmentIntervalV2()-1;
     if ((pindexLast->nHeight+1) != params.DifficultyAdjustmentIntervalV2())
@@ -166,28 +166,28 @@ unsigned int GetNextWorkRequired_V3(const CBlockIndex* pindexLast, const CBlockH
     else return GetNextWorkRequired_V2(pindexLast, pblock, params);
 }
 
-// Machinecoin: Select retargeting
+// Bitsend: Select retargeting
 unsigned int CalculateNextWorkRequired(const CBlockIndex* pindexLast, int64_t nFirstBlockTime, const Consensus::Params& params)
 {
-    if (pindexLast->nHeight+1 < 76000) // Machinecoin: Standard retargeting (V1)
+    if (pindexLast->nHeight+1 < 76000) // Bitsend: Standard retargeting (V1)
     {
         return CalculateNextWorkRequired_V1(pindexLast, nFirstBlockTime, params);
     }
-    else if (pindexLast->nHeight+1 < 329529) // Machinecoin: Digishield retargeting (V2)
+    else if (pindexLast->nHeight+1 < 329529) // Bitsend: Digishield retargeting (V2)
     {
         return CalculateNextWorkRequired_V2(pindexLast, nFirstBlockTime, params);
     }
-    else if (pindexLast->nHeight+1 < 330000) // Machinecoin: Retargeting to support the PoW change phase (V3)
+    else if (pindexLast->nHeight+1 < 330000) // Bitsend: Retargeting to support the PoW change phase (V3)
     {
         return UintToArith256(params.powLimit).GetCompact();
     }
-    else if (pindexLast->nHeight+1 < 468500) // Machinecoin: Digishield retargeting (V2)
+    else if (pindexLast->nHeight+1 < 468500) // Bitsend: Digishield retargeting (V2)
     {
         return CalculateNextWorkRequired_V2(pindexLast, nFirstBlockTime, params);
     }
     else
     {
-        return CalculateNextWorkRequired_V2(pindexLast, nFirstBlockTime, params); // Machinecoin: Digishield retargeting (V2)
+        return CalculateNextWorkRequired_V2(pindexLast, nFirstBlockTime, params); // Bitsend: Digishield retargeting (V2)
     }
 }
 
@@ -209,7 +209,7 @@ unsigned int CalculateNextWorkRequired_V1(const CBlockIndex* pindexLast, int64_t
 		  arith_uint256 bnOld;
     bnNew.SetCompact(pindexLast->nBits);
 		  bnOld = bnNew;
-    // Machinecoin: intermediate uint256 can overflow by 1 bit
+    // Bitsend: intermediate uint256 can overflow by 1 bit
     bool fShift = bnNew.bits() > 235;
     if (fShift)
         bnNew >>= 1;
@@ -243,7 +243,7 @@ unsigned int CalculateNextWorkRequired_V2(const CBlockIndex* pindexLast, int64_t
     const arith_uint256 bnPowLimit = UintToArith256(params.powLimit);
     arith_uint256 bnNew;
     bnNew.SetCompact(pindexLast->nBits);
-    // Machinecoin: intermediate uint256 can overflow by 1 bit
+    // Bitsend: intermediate uint256 can overflow by 1 bit
     bool fShift = bnNew.bits() > 235;
     if (fShift)
         bnNew >>= 1;

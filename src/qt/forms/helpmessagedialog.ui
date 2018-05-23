@@ -52,7 +52,7 @@
         </size>
        </property>
        <property name="pixmap">
-        <pixmap resource="../machinecoin.qrc">:/icons/machinecoin</pixmap>
+        <pixmap resource="../bitsend.qrc">:/icons/bitsend</pixmap>
        </property>
        <property name="scaledContents">
         <bool>true</bool>
@@ -150,7 +150,7 @@
   </layout>
  </widget>
  <resources>
-  <include location="../machinecoin.qrc"/>
+  <include location="../bitsend.qrc"/>
  </resources>
  <connections>
   <connection>

@@ -1,18 +1,18 @@
 ﻿#!/usr/bin/env python3
-# Copyright (c) 2017 The Machinecoin Core developers
+# Copyright (c) 2017 The Bitsend Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 """Test multiwallet.
 
-Verify that a machinecoind node can load multiple wallet files
+Verify that a bitsendd node can load multiple wallet files
 """
 import os
 import shutil
 
-from test_framework.test_framework import MachinecoinTestFramework
+from test_framework.test_framework import BitsendTestFramework
 from test_framework.util import assert_equal, assert_raises_rpc_error
 
-class MultiWalletTest(MachinecoinTestFramework):
+class MultiWalletTest(BitsendTestFramework):
     def set_test_params(self):
         self.setup_clean_chain = True
         self.num_nodes = 2

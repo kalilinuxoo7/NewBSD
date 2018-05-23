@@ -1,13 +1,13 @@
 ﻿Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
-Upstream-Name: Machinecoin
+Upstream-Name: Bitsend
 Upstream-Contact: Satoshi Nakamoto <satoshin@gmx.com>
- irc://#machinecoin@freenode.net
-Source: https://github.com/machinecoin/machinecoin
+ irc://#bitsend@freenode.net
+Source: https://github.com/bitsend/bitsend
 
 Files: *
-Copyright: 2009-2018, Machinecoin Core Developers
+Copyright: 2009-2018, Bitsend Core Developers
 License: Expat
-Comment: The Machinecoin Core Developers encompasses the current developers listed on machinecoin.org,
+Comment: The Bitsend Core Developers encompasses the current developers listed on bitsend.org,
          as well as the numerous contributors to the project.
 
 Files: debian/*
@@ -86,12 +86,12 @@ License: Expat
 Comment: Modifications of Stephan Hutchings Typicons
 
 Files: src/qt/res/icons/about.png
-       src/qt/res/icons/machinecoin.*
-       share/pixmaps/machinecoin*
-       src/qt/res/src/machinecoin.svg
+       src/qt/res/icons/bitsend.*
+       share/pixmaps/bitsend*
+       src/qt/res/src/bitsend.svg
 Copyright: Bitboy, Jonas Schnelli
 License: public-domain
-Comment: Site: https://machinecointalk.org/?topic=1756.0
+Comment: Site: https://bitsendtalk.org/?topic=1756.0
 
 
 License: Expat

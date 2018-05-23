@@ -1,6 +1,6 @@
 #include <qt/test/wallettests.h>
 
-#include <qt/machinecoinamountfield.h>
+#include <qt/bitsendamountfield.h>
 #include <qt/callback.h>
 #include <qt/optionsmodel.h>
 #include <qt/platformstyle.h>
@@ -10,7 +10,7 @@
 #include <qt/transactiontablemodel.h>
 #include <qt/transactionview.h>
 #include <qt/walletmodel.h>
-#include <test/test_machinecoin.h>
+#include <test/test_bitsend.h>
 #include <validation.h>
 #include <wallet/wallet.h>
 #include <qt/overviewpage.h>
@@ -69,7 +69,7 @@ uint256 SendCoins(CWallet& wallet, SendCoinsDialog& sendCoinsDialog, const CTxDe
     QVBoxLayout* entries = sendCoinsDialog.findChild<QVBoxLayout*>("entries");
     SendCoinsEntry* entry = qobject_cast<SendCoinsEntry*>(entries->itemAt(0)->widget());
     entry->findChild<QValidatedLineEdit*>("payTo")->setText(QString::fromStdString(EncodeDestination(address)));
-    entry->findChild<MachinecoinAmountField*>("payAmount")->setValue(amount);
+    entry->findChild<BitsendAmountField*>("payAmount")->setValue(amount);
     sendCoinsDialog.findChild<QFrame*>("frameFee")
         ->findChild<QFrame*>("frameFeeSelection")
         ->findChild<QCheckBox*>("optInRBF")
@@ -144,9 +144,9 @@ void BumpFee(TransactionView& view, const uint256& txid, bool expectDisabled, st
 //
 // This also requires overriding the default minimal Qt platform:
 //
-//     src/qt/test/test_machinecoin-qt -platform xcb      # Linux
-//     src/qt/test/test_machinecoin-qt -platform windows  # Windows
-//     src/qt/test/test_machinecoin-qt -platform cocoa    # macOS
+//     src/qt/test/test_bitsend-qt -platform xcb      # Linux
+//     src/qt/test/test_bitsend-qt -platform windows  # Windows
+//     src/qt/test/test_bitsend-qt -platform cocoa    # macOS
 void TestGUI()
 {
     g_address_type = OUTPUT_TYPE_P2SH_SEGWIT;
@@ -206,7 +206,7 @@ void TestGUI()
     QString balanceText = balanceLabel->text();
     int unit = walletModel.getOptionsModel()->getDisplayUnit();
     CAmount balance = walletModel.getBalance();
-    QString balanceComparison = MachinecoinUnits::formatWithUnit(unit, balance, false, MachinecoinUnits::separatorAlways);
+    QString balanceComparison = BitsendUnits::formatWithUnit(unit, balance, false, BitsendUnits::separatorAlways);
     QCOMPARE(balanceText, balanceComparison);
 
     // Check Request Payment button
@@ -219,7 +219,7 @@ void TestGUI()
     labelInput->setText("TEST_LABEL_1");
 
     // Amount input
-    MachinecoinAmountField* amountInput = receiveCoinsDialog.findChild<MachinecoinAmountField*>("reqAmount");
+    BitsendAmountField* amountInput = receiveCoinsDialog.findChild<BitsendAmountField*>("reqAmount");
     amountInput->setValue(1);
 
     // Message input
@@ -235,7 +235,7 @@ void TestGUI()
             QString paymentText = rlist->toPlainText();
             QStringList paymentTextList = paymentText.split('\n');
             QCOMPARE(paymentTextList.at(0), QString("Payment information"));
-            QVERIFY(paymentTextList.at(1).indexOf(QString("URI: machinecoin:")) != -1);
+            QVERIFY(paymentTextList.at(1).indexOf(QString("URI: bitsend:")) != -1);
             QVERIFY(paymentTextList.at(2).indexOf(QString("Address:")) != -1);
             QCOMPARE(paymentTextList.at(3), QString("Amount: 0.00000001 ") + QString::fromStdString(CURRENCY_UNIT));
             QCOMPARE(paymentTextList.at(4), QString("Label: TEST_LABEL_1"));

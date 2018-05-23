@@ -1,10 +1,10 @@
 ﻿
-## <summary>policy for machinecoin</summary>
+## <summary>policy for bitsend</summary>
 
 
 ########################################
 ## <summary>
-##	Transition to machinecoin.
+##	Transition to bitsend.
 ## </summary>
 ## <param name="domain">
 ## <summary>
@@ -12,19 +12,19 @@
 ## </summary>
 ## </param>
 #
-interface(`machinecoin_domtrans',`
+interface(`bitsend_domtrans',`
 	gen_require(`
-		type machinecoin_t, machinecoin_exec_t;
+		type bitsend_t, bitsend_exec_t;
 	')
 
 	corecmd_search_bin($1)
-	domtrans_pattern($1, machinecoin_exec_t, machinecoin_t)
+	domtrans_pattern($1, bitsend_exec_t, bitsend_t)
 ')
 
 
 ########################################
 ## <summary>
-##	Execute machinecoin server in the machinecoin domain.
+##	Execute bitsend server in the bitsend domain.
 ## </summary>
 ## <param name="domain">
 ##	<summary>
@@ -32,18 +32,18 @@ interface(`machinecoin_domtrans',`
 ##	</summary>
 ## </param>
 #
-interface(`machinecoin_initrc_domtrans',`
+interface(`bitsend_initrc_domtrans',`
 	gen_require(`
-		type machinecoin_initrc_exec_t;
+		type bitsend_initrc_exec_t;
 	')
 
-	init_labeled_script_domtrans($1, machinecoin_initrc_exec_t)
+	init_labeled_script_domtrans($1, bitsend_initrc_exec_t)
 ')
 
 
 ########################################
 ## <summary>
-##	Search machinecoin lib directories.
+##	Search bitsend lib directories.
 ## </summary>
 ## <param name="domain">
 ##	<summary>
@@ -51,18 +51,18 @@ interface(`machinecoin_initrc_domtrans',`
 ##	</summary>
 ## </param>
 #
-interface(`machinecoin_search_lib',`
+interface(`bitsend_search_lib',`
 	gen_require(`
-		type machinecoin_var_lib_t;
+		type bitsend_var_lib_t;
 	')
 
-	allow $1 machinecoin_var_lib_t:dir search_dir_perms;
+	allow $1 bitsend_var_lib_t:dir search_dir_perms;
 	files_search_var_lib($1)
 ')
 
 ########################################
 ## <summary>
-##	Read machinecoin lib files.
+##	Read bitsend lib files.
 ## </summary>
 ## <param name="domain">
 ##	<summary>
@@ -70,18 +70,18 @@ interface(`machinecoin_search_lib',`
 ##	</summary>
 ## </param>
 #
-interface(`machinecoin_read_lib_files',`
+interface(`bitsend_read_lib_files',`
 	gen_require(`
-		type machinecoin_var_lib_t;
+		type bitsend_var_lib_t;
 	')
 
 	files_search_var_lib($1)
-	read_files_pattern($1, machinecoin_var_lib_t, machinecoin_var_lib_t)
+	read_files_pattern($1, bitsend_var_lib_t, bitsend_var_lib_t)
 ')
 
 ########################################
 ## <summary>
-##	Manage machinecoin lib files.
+##	Manage bitsend lib files.
 ## </summary>
 ## <param name="domain">
 ##	<summary>
@@ -89,18 +89,18 @@ interface(`machinecoin_read_lib_files',`
 ##	</summary>
 ## </param>
 #
-interface(`machinecoin_manage_lib_files',`
+interface(`bitsend_manage_lib_files',`
 	gen_require(`
-		type machinecoin_var_lib_t;
+		type bitsend_var_lib_t;
 	')
 
 	files_search_var_lib($1)
-	manage_files_pattern($1, machinecoin_var_lib_t, machinecoin_var_lib_t)
+	manage_files_pattern($1, bitsend_var_lib_t, bitsend_var_lib_t)
 ')
 
 ########################################
 ## <summary>
-##	Manage machinecoin lib directories.
+##	Manage bitsend lib directories.
 ## </summary>
 ## <param name="domain">
 ##	<summary>
@@ -108,20 +108,20 @@ interface(`machinecoin_manage_lib_files',`
 ##	</summary>
 ## </param>
 #
-interface(`machinecoin_manage_lib_dirs',`
+interface(`bitsend_manage_lib_dirs',`
 	gen_require(`
-		type machinecoin_var_lib_t;
+		type bitsend_var_lib_t;
 	')
 
 	files_search_var_lib($1)
-	manage_dirs_pattern($1, machinecoin_var_lib_t, machinecoin_var_lib_t)
+	manage_dirs_pattern($1, bitsend_var_lib_t, bitsend_var_lib_t)
 ')
 
 
 ########################################
 ## <summary>
 ##	All of the rules required to administrate
-##	a machinecoin environment
+##	a bitsend environment
 ## </summary>
 ## <param name="domain">
 ##	<summary>
@@ -135,23 +135,23 @@ interface(`machinecoin_manage_lib_dirs',`
 ## </param>
 ## <rolecap/>
 #
-interface(`machinecoin_admin',`
+interface(`bitsend_admin',`
 	gen_require(`
-		type machinecoin_t;
-		type machinecoin_initrc_exec_t;
-		type machinecoin_var_lib_t;
+		type bitsend_t;
+		type bitsend_initrc_exec_t;
+		type bitsend_var_lib_t;
 	')
 
-	allow $1 machinecoin_t:process { ptrace signal_perms };
-	ps_process_pattern($1, machinecoin_t)
+	allow $1 bitsend_t:process { ptrace signal_perms };
+	ps_process_pattern($1, bitsend_t)
 
-	machinecoin_initrc_domtrans($1)
+	bitsend_initrc_domtrans($1)
 	domain_system_change_exemption($1)
-	role_transition $2 machinecoin_initrc_exec_t system_r;
+	role_transition $2 bitsend_initrc_exec_t system_r;
 	allow $2 system_r;
 
 	files_search_var_lib($1)
-	admin_pattern($1, machinecoin_var_lib_t)
+	admin_pattern($1, bitsend_var_lib_t)
 
 ')
 

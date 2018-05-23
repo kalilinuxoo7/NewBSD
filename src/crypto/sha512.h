@@ -1,9 +1,9 @@
-﻿// Copyright (c) 2014-2018 The Machinecoin Core developers
+﻿// Copyright (c) 2014-2018 The Bitsend Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef MACHINECOIN_CRYPTO_SHA512_H
-#define MACHINECOIN_CRYPTO_SHA512_H
+#ifndef BITSEND_CRYPTO_SHA512_H
+#define BITSEND_CRYPTO_SHA512_H
 
 #include <stdint.h>
 #include <stdlib.h>
@@ -25,4 +25,4 @@ public:
     CSHA512& Reset();
 };
 
-#endif // MACHINECOIN_CRYPTO_SHA512_H
+#endif // BITSEND_CRYPTO_SHA512_H

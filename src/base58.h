@@ -1,5 +1,5 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2009-2018 The Machinecoin Core developers
+// Copyright (c) 2009-2018 The Bitsend Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -11,8 +11,8 @@
  * - E-mail usually won't line-break if there's no punctuation to break at.
  * - Double-clicking selects the whole string as one word if it's all alphanumeric.
  */
-#ifndef MACHINECOIN_BASE58_H
-#define MACHINECOIN_BASE58_H
+#ifndef BITSEND_BASE58_H
+#define BITSEND_BASE58_H
 
 #include <chainparams.h>
 #include <key.h>
@@ -97,7 +97,7 @@ public:
 /**
  * A base58-encoded secret key
  */
-class CMachinecoinSecret : public CBase58Data
+class CBitsendSecret : public CBase58Data
 {
 public:
     void SetKey(const CKey& vchSecret);
@@ -106,11 +106,11 @@ public:
     bool SetString(const char* pszSecret);
     bool SetString(const std::string& strSecret);
 
-    CMachinecoinSecret(const CKey& vchSecret) { SetKey(vchSecret); }
-    CMachinecoinSecret() {}
+    CBitsendSecret(const CKey& vchSecret) { SetKey(vchSecret); }
+    CBitsendSecret() {}
 };
 
-template<typename K, int Size, CChainParams::Base58Type Type> class CMachinecoinExtKeyBase : public CBase58Data
+template<typename K, int Size, CChainParams::Base58Type Type> class CBitsendExtKeyBase : public CBase58Data
 {
 public:
     void SetKey(const K &key) {
@@ -128,23 +128,23 @@ public:
         return ret;
     }
 
-    CMachinecoinExtKeyBase(const K &key) {
+    CBitsendExtKeyBase(const K &key) {
         SetKey(key);
     }
 
-    CMachinecoinExtKeyBase(const std::string& strBase58c) {
+    CBitsendExtKeyBase(const std::string& strBase58c) {
         SetString(strBase58c.c_str(), Params().Base58Prefix(Type).size());
     }
 
-    CMachinecoinExtKeyBase() {}
+    CBitsendExtKeyBase() {}
 };
 
-typedef CMachinecoinExtKeyBase<CExtKey, BIP32_EXTKEY_SIZE, CChainParams::EXT_SECRET_KEY> CMachinecoinExtKey;
-typedef CMachinecoinExtKeyBase<CExtPubKey, BIP32_EXTKEY_SIZE, CChainParams::EXT_PUBLIC_KEY> CMachinecoinExtPubKey;
+typedef CBitsendExtKeyBase<CExtKey, BIP32_EXTKEY_SIZE, CChainParams::EXT_SECRET_KEY> CBitsendExtKey;
+typedef CBitsendExtKeyBase<CExtPubKey, BIP32_EXTKEY_SIZE, CChainParams::EXT_PUBLIC_KEY> CBitsendExtPubKey;
 
 std::string EncodeDestination(const CTxDestination& dest);
 CTxDestination DecodeDestination(const std::string& str);
 bool IsValidDestinationString(const std::string& str);
 bool IsValidDestinationString(const std::string& str, const CChainParams& params);
 
-#endif // MACHINECOIN_BASE58_H
+#endif // BITSEND_BASE58_H

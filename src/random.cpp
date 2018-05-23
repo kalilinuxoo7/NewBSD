@@ -1,5 +1,5 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2009-2018 The Machinecoin Core developers
+// Copyright (c) 2009-2018 The Bitsend Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -27,10 +27,10 @@
 #include <sys/syscall.h>
 #include <linux/random.h>
 #endif
-#if defined(HAVE_GETENTROPY) || (defined(HAVE_GETENTROPY_RAND) && defined(MAC_OSX))
+#if defined(HAVE_GETENTROPY) || (defined(HAVE_GETENTROPY_RAND) && defined(BSD_OSX))
 #include <unistd.h>
 #endif
-#if defined(HAVE_GETENTROPY_RAND) && defined(MAC_OSX)
+#if defined(HAVE_GETENTROPY_RAND) && defined(BSD_OSX)
 #include <sys/random.h>
 #endif
 #ifdef HAVE_SYSCTL_ARND
@@ -240,7 +240,7 @@ void GetOSRand(unsigned char *ent32)
     if (getentropy(ent32, NUM_OS_RANDOM_BYTES) != 0) {
         RandFailure();
     }
-#elif defined(HAVE_GETENTROPY_RAND) && defined(MAC_OSX)
+#elif defined(HAVE_GETENTROPY_RAND) && defined(BSD_OSX)
     // We need a fallback for OSX < 10.12
     if (&getentropy != nullptr) {
         if (getentropy(ent32, NUM_OS_RANDOM_BYTES) != 0) {

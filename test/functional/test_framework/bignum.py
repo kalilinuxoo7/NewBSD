@@ -4,7 +4,7 @@
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 """Big number routines.
 
-This file is copied from python-machinecoinlib.
+This file is copied from python-bitsendlib.
 """
 
 import struct
@@ -48,7 +48,7 @@ def bn2mpi(v):
             v_bin[0] |= 0x80
     return s + ext + v_bin
 
-# machinecoin-specific little endian format, with implicit size
+# bitsend-specific little endian format, with implicit size
 def mpi2vch(s):
     r = s[4:]           # strip size
     r = r[::-1]         # reverse string, converting BE->LE

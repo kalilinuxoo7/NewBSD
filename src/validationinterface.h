@@ -1,10 +1,10 @@
 ﻿// Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2009-2018 The Machinecoin Core developers
+// Copyright (c) 2009-2018 The Bitsend Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef MACHINECOIN_VALIDATIONINTERFACE_H
-#define MACHINECOIN_VALIDATIONINTERFACE_H
+#ifndef BITSEND_VALIDATIONINTERFACE_H
+#define BITSEND_VALIDATIONINTERFACE_H
 
 #include <primitives/transaction.h> // CTransaction(Ref)
 
@@ -161,4 +161,4 @@ public:
 
 CMainSignals& GetMainSignals();
 
-#endif // MACHINECOIN_VALIDATIONINTERFACE_H
+#endif // BITSEND_VALIDATIONINTERFACE_H

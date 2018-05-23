@@ -1,5 +1,5 @@
 ﻿// Copyright (c) 2014-2018 The Dash Core developers
-// Copyright (c) 2014-2018 The Machinecoin Core developers
+// Copyright (c) 2014-2018 The Bitsend Core developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -371,7 +371,7 @@ void CSuperblockManager::CreateSuperblock(CMutableTransaction& txNewRet, int nBl
             CTxDestination address1;
             ExtractDestination(payment.script, address1);
 
-            // TODO: PRINT NICE N.N MAC OUTPUT
+            // TODO: PRINT NICE N.N BSD OUTPUT
 
             LogPrintf("NEW Superblock : output %d (addr %s, amount %d)\n", i, EncodeDestination(address1), payment.nAmount);
         }
@@ -497,7 +497,7 @@ void CSuperblock::ParsePaymentSchedule(std::string& strPaymentAddresses, std::st
         CTxDestination address = DecodeDestination(vecParsed1[i]);
         if (!IsValidDestinationString(vecParsed1[i])) {
             std::ostringstream ostr;
-            ostr << "CSuperblock::ParsePaymentSchedule -- Invalid Machinecoin Address : " <<  vecParsed1[i];
+            ostr << "CSuperblock::ParsePaymentSchedule -- Invalid Bitsend Address : " <<  vecParsed1[i];
             LogPrintf("%s\n", ostr.str());
             throw std::runtime_error(ostr.str());
         }

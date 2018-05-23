@@ -1,17 +1,17 @@
-﻿// Copyright (c) 2014-2015 The Machinecoin Core developers
+﻿// Copyright (c) 2014-2015 The Bitsend Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef MACHINECOIN_CHAINPARAMSBASE_H
-#define MACHINECOIN_CHAINPARAMSBASE_H
+#ifndef BITSEND_CHAINPARAMSBASE_H
+#define BITSEND_CHAINPARAMSBASE_H
 
 #include <memory>
 #include <string>
 #include <vector>
 
 /**
- * CBaseChainParams defines the base parameters (shared between machinecoin-cli and machinecoind)
- * of a given instance of the Machinecoin system.
+ * CBaseChainParams defines the base parameters (shared between bitsend-cli and bitsendd)
+ * of a given instance of the Bitsend system.
  */
 class CBaseChainParams
 {
@@ -59,4 +59,4 @@ void SelectBaseParams(const std::string& chain);
  */
 std::string ChainNameFromCommandLine();
 
-#endif // MACHINECOIN_CHAINPARAMSBASE_H
+#endif // BITSEND_CHAINPARAMSBASE_H

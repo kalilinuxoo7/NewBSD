@@ -1,10 +1,10 @@
-// Copyright (c) 2011-2017 The Machinecoin Core developers
+// Copyright (c) 2011-2017 The Bitsend Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include <qt/walletframe.h>
 
-#include <qt/machinecoingui.h>
+#include <qt/bitsendgui.h>
 #include <qt/walletview.h>
 
 #include <cassert>
@@ -13,7 +13,7 @@
 #include <QHBoxLayout>
 #include <QLabel>
 
-WalletFrame::WalletFrame(const PlatformStyle *_platformStyle, MachinecoinGUI *_gui) :
+WalletFrame::WalletFrame(const PlatformStyle *_platformStyle, BitsendGUI *_gui) :
     QFrame(_gui),
     gui(_gui),
     platformStyle(_platformStyle)
@@ -45,7 +45,7 @@ bool WalletFrame::addWallet(const QString& name, WalletModel *walletModel)
         return false;
 
     WalletView *walletView = new WalletView(platformStyle, this);
-    walletView->setMachinecoinGUI(gui);
+    walletView->setBitsendGUI(gui);
     walletView->setClientModel(clientModel);
     walletView->setWalletModel(walletModel);
     walletView->showOutOfSyncWarning(bOutOfSync);

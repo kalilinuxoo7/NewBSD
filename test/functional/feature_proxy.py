@@ -1,14 +1,14 @@
 ﻿#!/usr/bin/env python3
-# Copyright (c) 2015-2017 The Machinecoin Core developers
+# Copyright (c) 2015-2017 The Bitsend Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
-"""Test machinecoind with different proxy configuration.
+"""Test bitsendd with different proxy configuration.
 
 Test plan:
-- Start machinecoind's with different proxy configurations
+- Start bitsendd's with different proxy configurations
 - Use addnode to initiate connections
 - Verify that proxies are connected to, and the right connection command is given
-- Proxy configurations to test on machinecoind side:
+- Proxy configurations to test on bitsendd side:
     - `-proxy` (proxy everything)
     - `-onion` (proxy just onions)
     - `-proxyrandomize` Circuit randomization
@@ -18,8 +18,8 @@ Test plan:
     - proxy on IPv6
 
 - Create various proxies (as threads)
-- Create machinecoinds that connect to them
-- Manipulate the machinecoinds using addnode (onetry) an observe effects
+- Create bitsendds that connect to them
+- Manipulate the bitsendds using addnode (onetry) an observe effects
 
 addnode connect to IPv4
 addnode connect to IPv6
@@ -31,7 +31,7 @@ import socket
 import os
 
 from test_framework.socks5 import Socks5Configuration, Socks5Command, Socks5Server, AddressType
-from test_framework.test_framework import MachinecoinTestFramework
+from test_framework.test_framework import BitsendTestFramework
 from test_framework.util import (
     PORT_MIN,
     PORT_RANGE,
@@ -41,7 +41,7 @@ from test_framework.netutil import test_ipv6_local
 
 RANGE_BEGIN = PORT_MIN + 2 * PORT_RANGE  # Start after p2p and rpc ports
 
-class ProxyTest(MachinecoinTestFramework):
+class ProxyTest(BitsendTestFramework):
     def set_test_params(self):
         self.num_nodes = 4
 
@@ -95,7 +95,7 @@ class ProxyTest(MachinecoinTestFramework):
         node.addnode("15.61.23.23:1234", "onetry")
         cmd = proxies[0].queue.get()
         assert(isinstance(cmd, Socks5Command))
-        # Note: machinecoind's SOCKS5 implementation only sends atyp DOMAINNAME, even if connecting directly to IPv4/IPv6
+        # Note: bitsendd's SOCKS5 implementation only sends atyp DOMAINNAME, even if connecting directly to IPv4/IPv6
         assert_equal(cmd.atyp, AddressType.DOMAINNAME)
         assert_equal(cmd.addr, b"15.61.23.23")
         assert_equal(cmd.port, 1234)
@@ -109,7 +109,7 @@ class ProxyTest(MachinecoinTestFramework):
             node.addnode("[1233:3432:2434:2343:3234:2345:6546:4534]:5443", "onetry")
             cmd = proxies[1].queue.get()
             assert(isinstance(cmd, Socks5Command))
-            # Note: machinecoind's SOCKS5 implementation only sends atyp DOMAINNAME, even if connecting directly to IPv4/IPv6
+            # Note: bitsendd's SOCKS5 implementation only sends atyp DOMAINNAME, even if connecting directly to IPv4/IPv6
             assert_equal(cmd.atyp, AddressType.DOMAINNAME)
             assert_equal(cmd.addr, b"1233:3432:2434:2343:3234:2345:6546:4534")
             assert_equal(cmd.port, 5443)
@@ -120,11 +120,11 @@ class ProxyTest(MachinecoinTestFramework):
 
         if test_onion:
             # Test: outgoing onion connection through node
-            node.addnode("machinecoinostk4e4re.onion:8333", "onetry")
+            node.addnode("bitsendostk4e4re.onion:8333", "onetry")
             cmd = proxies[2].queue.get()
             assert(isinstance(cmd, Socks5Command))
             assert_equal(cmd.atyp, AddressType.DOMAINNAME)
-            assert_equal(cmd.addr, b"machinecoinostk4e4re.onion")
+            assert_equal(cmd.addr, b"bitsendostk4e4re.onion")
             assert_equal(cmd.port, 8333)
             if not auth:
                 assert_equal(cmd.username, None)

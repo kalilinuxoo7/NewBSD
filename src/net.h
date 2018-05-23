@@ -1,10 +1,10 @@
 ﻿// Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2009-2018 The Machinecoin Core developers
+// Copyright (c) 2009-2018 The Bitsend Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef MACHINECOIN_NET_H
-#define MACHINECOIN_NET_H
+#ifndef BITSEND_NET_H
+#define BITSEND_NET_H
 
 #include <addrdb.h>
 #include <addrman.h>
@@ -185,8 +185,8 @@ public:
     
     // fConnectToMasternode should be 'true' only if you want this node to allow to connect to itself
     // and/or you want it to be disconnected on CMasternodeMan::ProcessMasternodeConnections()
-    // Unfortunately, can't make this method private like in Machinecoin,
-    // because it's used in many Machinecoin-specific places (masternode).
+    // Unfortunately, can't make this method private like in Bitsend,
+    // because it's used in many Bitsend-specific places (masternode).
     CNode* ConnectNode(CAddress addrConnect, const char *pszDest = NULL, bool fCountFailure = false, bool fConnectToMasternode = false);
 
     struct CFullyConnectedOnly {
@@ -958,4 +958,4 @@ public:
 /** Return a timestamp in the future (in microseconds) for exponentially distributed events. */
 int64_t PoissonNextSend(int64_t nNow, int average_interval_seconds);
 
-#endif // MACHINECOIN_NET_H
+#endif // BITSEND_NET_H

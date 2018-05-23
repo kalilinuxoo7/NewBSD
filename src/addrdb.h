@@ -1,10 +1,10 @@
 ﻿// Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2009-2017 The Machinecoin Core developers
+// Copyright (c) 2009-2017 The Bitsend Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef MACHINECOIN_ADDRDB_H
-#define MACHINECOIN_ADDRDB_H
+#ifndef BITSEND_ADDRDB_H
+#define BITSEND_ADDRDB_H
 
 #include <fs.h>
 #include <serialize.h>
@@ -99,4 +99,4 @@ public:
     bool Read(banmap_t& banSet);
 };
 
-#endif // MACHINECOIN_ADDRDB_H
+#endif // BITSEND_ADDRDB_H

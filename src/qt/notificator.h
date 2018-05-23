@@ -1,12 +1,12 @@
-// Copyright (c) 2011-2015 The Machinecoin Core developers
+// Copyright (c) 2011-2015 The Bitsend Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef MACHINECOIN_QT_NOTIFICATOR_H
-#define MACHINECOIN_QT_NOTIFICATOR_H
+#ifndef BITSEND_QT_NOTIFICATOR_H
+#define BITSEND_QT_NOTIFICATOR_H
 
 #if defined(HAVE_CONFIG_H)
-#include <config/machinecoin-config.h>
+#include <config/bitsend-config.h>
 #endif
 
 #include <QIcon>
@@ -69,9 +69,9 @@ private:
     void notifyDBus(Class cls, const QString &title, const QString &text, const QIcon &icon, int millisTimeout);
 #endif
     void notifySystray(Class cls, const QString &title, const QString &text, const QIcon &icon, int millisTimeout);
-#ifdef Q_OS_MAC
+#ifdef Q_OS_BSD
     void notifyMacUserNotificationCenter(Class cls, const QString &title, const QString &text, const QIcon &icon);
 #endif
 };
 
-#endif // MACHINECOIN_QT_NOTIFICATOR_H
+#endif // BITSEND_QT_NOTIFICATOR_H

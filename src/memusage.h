@@ -1,9 +1,9 @@
-﻿// Copyright (c) 2015-2018 The Machinecoin Core developers
+﻿// Copyright (c) 2015-2018 The Bitsend Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef MACHINECOIN_MEMUSAGE_H
-#define MACHINECOIN_MEMUSAGE_H
+#ifndef BITSEND_MEMUSAGE_H
+#define BITSEND_MEMUSAGE_H
 
 #include <indirectmap.h>
 
@@ -166,4 +166,4 @@ static inline size_t DynamicUsage(const std::unordered_map<X, Y, Z>& m)
 
 }
 
-#endif // MACHINECOIN_MEMUSAGE_H
+#endif // BITSEND_MEMUSAGE_H

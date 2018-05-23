@@ -1,9 +1,9 @@
-﻿// Copyright (c) 2011-2018 The Machinecoin Core developers
+﻿// Copyright (c) 2011-2018 The Bitsend Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef MACHINECOIN_QT_RECEIVECOINSDIALOG_H
-#define MACHINECOIN_QT_RECEIVECOINSDIALOG_H
+#ifndef BITSEND_QT_RECEIVECOINSDIALOG_H
+#define BITSEND_QT_RECEIVECOINSDIALOG_H
 
 #include <qt/guiutil.h>
 
@@ -26,7 +26,7 @@ QT_BEGIN_NAMESPACE
 class QModelIndex;
 QT_END_NAMESPACE
 
-/** Dialog for requesting payment of machinecoins */
+/** Dialog for requesting payment of bitsends */
 class ReceiveCoinsDialog : public QDialog
 {
     Q_OBJECT
@@ -77,4 +77,4 @@ private Q_SLOTS:
     void copyAmount();
 };
 
-#endif // MACHINECOIN_QT_RECEIVECOINSDIALOG_H
+#endif // BITSEND_QT_RECEIVECOINSDIALOG_H

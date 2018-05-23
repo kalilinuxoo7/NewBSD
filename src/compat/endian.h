@@ -1,12 +1,12 @@
-﻿// Copyright (c) 2014-2017 The Machinecoin Core developers
+﻿// Copyright (c) 2014-2017 The Bitsend Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef MACHINECOIN_COMPAT_ENDIAN_H
-#define MACHINECOIN_COMPAT_ENDIAN_H
+#ifndef BITSEND_COMPAT_ENDIAN_H
+#define BITSEND_COMPAT_ENDIAN_H
 
 #if defined(HAVE_CONFIG_H)
-#include <config/machinecoin-config.h>
+#include <config/bitsend-config.h>
 #endif
 
 #include <compat/byteswap.h>
@@ -193,4 +193,4 @@ inline uint64_t le64toh(uint64_t little_endian_64bits)
 
 #endif // WORDS_BIGENDIAN
 
-#endif // MACHINECOIN_COMPAT_ENDIAN_H
+#endif // BITSEND_COMPAT_ENDIAN_H

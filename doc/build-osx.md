@@ -40,17 +40,17 @@ from the root of the repository.
 
 **Note**: You only need Berkeley DB if the wallet is enabled (see the section *Disable-Wallet mode* below).
 
-Build Machinecoin Core
+Build Bitsend Core
 ------------------------
 
-1. Clone the machinecoin source code and cd into `machinecoin`
+1. Clone the bitsend source code and cd into `bitsend`
 
-        git clone https://github.com/machinecoin/machinecoin
-        cd machinecoin
+        git clone https://github.com/bitsend/bitsend
+        cd bitsend
 
-2.  Build machinecoin-core:
+2.  Build bitsend-core:
 
-    Configure and build the headless machinecoin binaries as well as the GUI (if Qt is found).
+    Configure and build the headless bitsend binaries as well as the GUI (if Qt is found).
 
     You can disable the GUI build by passing `--without-gui` to configure.
 
@@ -69,37 +69,37 @@ Build Machinecoin Core
 Running
 -------
 
-Machinecoin Core is now available at `./src/machinecoind`
+Bitsend Core is now available at `./src/bitsendd`
 
 Before running, it's recommended you create an RPC configuration file.
 
-    echo -e "rpcuser=machinecoinrpc\nrpcpassword=$(xxd -l 16 -p /dev/urandom)" > "/Users/${USER}/Library/Application Support/Machinecoin/machinecoin.conf"
+    echo -e "rpcuser=bitsendrpc\nrpcpassword=$(xxd -l 16 -p /dev/urandom)" > "/Users/${USER}/Library/Application Support/Bitsend/bitsend.conf"
 
-    chmod 600 "/Users/${USER}/Library/Application Support/Machinecoin/machinecoin.conf"
+    chmod 600 "/Users/${USER}/Library/Application Support/Bitsend/bitsend.conf"
 
-The first time you run machinecoind, it will start downloading the blockchain. This process could take several hours.
+The first time you run bitsendd, it will start downloading the blockchain. This process could take several hours.
 
 You can monitor the download process by looking at the debug.log file:
 
-    tail -f $HOME/Library/Application\ Support/Machinecoin/debug.log
+    tail -f $HOME/Library/Application\ Support/Bitsend/debug.log
 
 Other commands:
 -------
 
-    ./src/machinecoind -daemon # Starts the machinecoin daemon.
-    ./src/machinecoin-cli --help # Outputs a list of command-line options.
-    ./src/machinecoin-cli help # Outputs a list of RPC commands when the daemon is running.
+    ./src/bitsendd -daemon # Starts the bitsend daemon.
+    ./src/bitsend-cli --help # Outputs a list of command-line options.
+    ./src/bitsend-cli help # Outputs a list of RPC commands when the daemon is running.
 
 Using Qt Creator as IDE
 ------------------------
-You can use Qt Creator as an IDE, for machinecoin development.
+You can use Qt Creator as an IDE, for bitsend development.
 Download and install the community edition of [Qt Creator](https://www.qt.io/download/).
 Uncheck everything except Qt Creator during the installation process.
 
 1. Make sure you installed everything through Homebrew mentioned above
 2. Do a proper ./configure --enable-debug
 3. In Qt Creator do "New Project" -> Import Project -> Import Existing Project
-4. Enter "machinecoin-qt" as project name, enter src/qt as location
+4. Enter "bitsend-qt" as project name, enter src/qt as location
 5. Leave the file selection as it is
 6. Confirm the "summary page"
 7. In the "Projects" tab select "Manage Kits..."
@@ -112,4 +112,4 @@ Notes
 
 * Tested on OS X 10.8 through 10.13 on 64-bit Intel processors only.
 
-* Building with downloaded Qt binaries is not officially supported. See the notes in [#7714](https://github.com/machinecoin/machinecoin/issues/7714)
+* Building with downloaded Qt binaries is not officially supported. See the notes in [#7714](https://github.com/bitsend/bitsend/issues/7714)

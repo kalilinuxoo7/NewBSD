@@ -1,33 +1,33 @@
-﻿# /etc/conf.d/machinecoind: config file for /etc/init.d/machinecoind
+﻿# /etc/conf.d/bitsendd: config file for /etc/init.d/bitsendd
 
 # Config file location
-#MACHINECOIND_CONFIGFILE="/etc/machinecoin/machinecoin.conf"
+#BITSENDD_CONFIGFILE="/etc/bitsend/bitsend.conf"
 
-# What directory to write pidfile to?  (created and owned by $MACHINECOIND_USER)
-#MACHINECOIND_PIDDIR="/var/run/machinecoind"
+# What directory to write pidfile to?  (created and owned by $BITSENDD_USER)
+#BITSENDD_PIDDIR="/var/run/bitsendd"
 
 # What filename to give the pidfile
-#MACHINECOIND_PIDFILE="${MACHINECOIND_PIDDIR}/machinecoind.pid"
+#BITSENDD_PIDFILE="${BITSENDD_PIDDIR}/bitsendd.pid"
 
-# Where to write machinecoind data (be mindful that the blockchain is large)
-#MACHINECOIND_DATADIR="/var/lib/machinecoind"
+# Where to write bitsendd data (be mindful that the blockchain is large)
+#BITSENDD_DATADIR="/var/lib/bitsendd"
 
-# User and group to own machinecoind process
-#MACHINECOIND_USER="machinecoin"
-#MACHINECOIND_GROUP="machinecoin"
+# User and group to own bitsendd process
+#BITSENDD_USER="bitsend"
+#BITSENDD_GROUP="bitsend"
 
-# Path to machinecoind executable
-#MACHINECOIND_BIN="/usr/bin/machinecoind"
+# Path to bitsendd executable
+#BITSENDD_BIN="/usr/bin/bitsendd"
 
-# Nice value to run machinecoind under
-#MACHINECOIND_NICE=0
+# Nice value to run bitsendd under
+#BITSENDD_NICE=0
 
 # Additional options (avoid -conf and -datadir, use flags above)
-#MACHINECOIND_OPTS=""
+#BITSENDD_OPTS=""
 
-# The timeout in seconds OpenRC will wait for machinecoind to terminate
+# The timeout in seconds OpenRC will wait for bitsendd to terminate
 # after a SIGTERM has been raised.
 # Note that this will be mapped as argument to start-stop-daemon's
 # '--retry' option, which means you can specify a retry schedule
 # here. For more information see man 8 start-stop-daemon.
-MACHINECOIND_SIGTERM_TIMEOUT=60
+BITSENDD_SIGTERM_TIMEOUT=60

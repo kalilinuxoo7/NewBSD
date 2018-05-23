@@ -1,12 +1,12 @@
 ﻿#!/usr/bin/env python3
-# Copyright (c) 2014-2017 The Machinecoin Core developers
+# Copyright (c) 2014-2017 The Bitsend Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 """Test the importmulti RPC."""
-from test_framework.test_framework import MachinecoinTestFramework
+from test_framework.test_framework import BitsendTestFramework
 from test_framework.util import *
 
-class ImportMultiTest (MachinecoinTestFramework):
+class ImportMultiTest (BitsendTestFramework):
     def set_test_params(self):
         self.num_nodes = 2
         self.extra_args = [["-addresstype=legacy"], ["-addresstype=legacy"]]
@@ -37,7 +37,7 @@ class ImportMultiTest (MachinecoinTestFramework):
 
         # RPC importmulti -----------------------------------------------
 
-        # Machinecoin Address
+        # Bitsend Address
         self.log.info("Should import an address")
         address = self.nodes[0].validateaddress(self.nodes[0].getnewaddress())
         result = self.nodes[1].importmulti([{

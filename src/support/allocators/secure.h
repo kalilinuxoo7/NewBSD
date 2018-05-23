@@ -1,10 +1,10 @@
 ﻿// Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2009-2017 The Machinecoin Core developers
+// Copyright (c) 2009-2017 The Bitsend Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef MACHINECOIN_SUPPORT_ALLOCATORS_SECURE_H
-#define MACHINECOIN_SUPPORT_ALLOCATORS_SECURE_H
+#ifndef BITSEND_SUPPORT_ALLOCATORS_SECURE_H
+#define BITSEND_SUPPORT_ALLOCATORS_SECURE_H
 
 #include <support/lockedpool.h>
 #include <support/cleanse.h>
@@ -55,4 +55,4 @@ struct secure_allocator : public std::allocator<T> {
 // This is exactly like std::string, but with a custom allocator.
 typedef std::basic_string<char, std::char_traits<char>, secure_allocator<char> > SecureString;
 
-#endif // MACHINECOIN_SUPPORT_ALLOCATORS_SECURE_H
+#endif // BITSEND_SUPPORT_ALLOCATORS_SECURE_H

@@ -1,23 +1,23 @@
 ﻿# It is not recommended to modify this file in-place, because it will
 # be overwritten during package upgrades. If you want to add further
 # options or overwrite existing ones then use
-# $ systemctl edit machinecoind.service
+# $ systemctl edit bitsendd.service
 # See "man systemd.service" for details.
 
 # Note that almost all daemon options could be specified in
-# /etc/machinecoin/machinecoin.conf
+# /etc/bitsend/bitsend.conf
 
 [Unit]
-Description=Machinecoin daemon
+Description=Bitsend daemon
 After=network.target
 
 [Service]
-ExecStart=/usr/bin/machinecoind -daemon -conf=/etc/machinecoin/machinecoin.conf -pid=/run/machinecoind/machinecoind.pid
-# Creates /run/machinecoind owned by machinecoin
-RuntimeDirectory=machinecoind
-User=machinecoin
+ExecStart=/usr/bin/bitsendd -daemon -conf=/etc/bitsend/bitsend.conf -pid=/run/bitsendd/bitsendd.pid
+# Creates /run/bitsendd owned by bitsend
+RuntimeDirectory=bitsendd
+User=bitsend
 Type=forking
-PIDFile=/run/machinecoind/machinecoind.pid
+PIDFile=/run/bitsendd/bitsendd.pid
 Restart=on-failure
 PrivateTmp=true
 

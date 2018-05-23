@@ -1,15 +1,15 @@
-﻿// Copyright (c) 2011-2018 The Machinecoin Core developers
+﻿// Copyright (c) 2011-2018 The Bitsend Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #if defined(HAVE_CONFIG_H)
-#include <config/machinecoin-config.h>
+#include <config/bitsend-config.h>
 #endif
 
 #include <qt/optionsdialog.h>
 #include <qt/forms/ui_optionsdialog.h>
 
-#include <qt/machinecoinunits.h>
+#include <qt/bitsendunits.h>
 #include <qt/guiutil.h>
 #include <qt/optionsmodel.h>
 
@@ -60,7 +60,7 @@ OptionsDialog::OptionsDialog(QWidget *parent, bool enableWallet) :
     connect(ui->connectSocksTor, SIGNAL(toggled(bool)), this, SLOT(updateProxyValidationState()));
 
     /* Window elements init */
-#ifdef Q_OS_MAC
+#ifdef Q_OS_BSD
     /* remove Window tab on Mac */
     ui->tabWidget->removeTab(ui->tabWidget->indexOf(ui->tabWindow));
 #endif
@@ -73,10 +73,10 @@ OptionsDialog::OptionsDialog(QWidget *parent, bool enableWallet) :
     /* Display elements init */
     QDir translations(":translations");
 
-    ui->machinecoinAtStartup->setToolTip(ui->machinecoinAtStartup->toolTip().arg(tr(PACKAGE_NAME)));
-    ui->machinecoinAtStartup->setText(ui->machinecoinAtStartup->text().arg(tr(PACKAGE_NAME)));
+    ui->bitsendAtStartup->setToolTip(ui->bitsendAtStartup->toolTip().arg(tr(PACKAGE_NAME)));
+    ui->bitsendAtStartup->setText(ui->bitsendAtStartup->text().arg(tr(PACKAGE_NAME)));
 
-    ui->openMachinecoinConfButton->setToolTip(ui->openMachinecoinConfButton->toolTip().arg(tr(PACKAGE_NAME)));
+    ui->openBitsendConfButton->setToolTip(ui->openBitsendConfButton->toolTip().arg(tr(PACKAGE_NAME)));
 
     ui->lang->setToolTip(ui->lang->toolTip().arg(tr(PACKAGE_NAME)));
     ui->lang->addItem(QString("(") + tr("default") + QString(")"), QVariant(""));
@@ -110,7 +110,7 @@ OptionsDialog::OptionsDialog(QWidget *parent, bool enableWallet) :
     ui->thirdPartyTxUrls->setPlaceholderText("https://example.com/tx/%s");
 #endif
 
-    ui->unit->setModel(new MachinecoinUnits(this));
+    ui->unit->setModel(new BitsendUnits(this));
 
     /* Widget-to-option mapper */
     mapper = new QDataWidgetMapper(this);
@@ -173,7 +173,7 @@ void OptionsDialog::setModel(OptionsModel *_model)
 void OptionsDialog::setMapper()
 {
     /* Main */
-    mapper->addMapping(ui->machinecoinAtStartup, OptionsModel::StartAtStartup);
+    mapper->addMapping(ui->bitsendAtStartup, OptionsModel::StartAtStartup);
     mapper->addMapping(ui->threadsScriptVerif, OptionsModel::ThreadsScriptVerif);
     mapper->addMapping(ui->databaseCache, OptionsModel::DatabaseCache);
 
@@ -195,7 +195,7 @@ void OptionsDialog::setMapper()
     mapper->addMapping(ui->proxyPortTor, OptionsModel::ProxyPortTor);
 
     /* Window */
-#ifndef Q_OS_MAC
+#ifndef Q_OS_BSD
     mapper->addMapping(ui->hideTrayIcon, OptionsModel::HideTrayIcon);
     mapper->addMapping(ui->minimizeToTray, OptionsModel::MinimizeToTray);
     mapper->addMapping(ui->minimizeOnClose, OptionsModel::MinimizeOnClose);
@@ -230,7 +230,7 @@ void OptionsDialog::on_resetButton_clicked()
     }
 }
 
-void OptionsDialog::on_openMachinecoinConfButton_clicked()
+void OptionsDialog::on_openBitsendConfButton_clicked()
 {
     /* explain the purpose of the config file */
     QMessageBox::information(this, tr("Configuration options"),
@@ -238,7 +238,7 @@ void OptionsDialog::on_openMachinecoinConfButton_clicked()
            "Additionally, any command-line options will override this configuration file."));
 
     /* show an error if there was some problem opening the file */
-    if (!GUIUtil::openMachinecoinConf())
+    if (!GUIUtil::openBitsendConf())
         QMessageBox::critical(this, tr("Error"), tr("The configuration file could not be opened."));
 }
 

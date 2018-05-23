@@ -2,41 +2,41 @@
 
 # backward compatibility for existing gentoo layout 
 #
-if [ -d "/var/lib/machinecoin/.machinecoin" ]; then
-	MACHINECOIND_DEFAULT_DATADIR="/var/lib/machinecoin/.machinecoin"
+if [ -d "/var/lib/bitsend/.bitsend" ]; then
+	BITSENDD_DEFAULT_DATADIR="/var/lib/bitsend/.bitsend"
 else
-	MACHINECOIND_DEFAULT_DATADIR="/var/lib/machinecoind"
+	BITSENDD_DEFAULT_DATADIR="/var/lib/bitsendd"
 fi
 
-MACHINECOIND_CONFIGFILE=${MACHINECOIND_CONFIGFILE:-/etc/machinecoin/machinecoin.conf}
-MACHINECOIND_PIDDIR=${MACHINECOIND_PIDDIR:-/var/run/machinecoind}
-MACHINECOIND_PIDFILE=${MACHINECOIND_PIDFILE:-${MACHINECOIND_PIDDIR}/machinecoind.pid}
-MACHINECOIND_DATADIR=${MACHINECOIND_DATADIR:-${MACHINECOIND_DEFAULT_DATADIR}}
-MACHINECOIND_USER=${MACHINECOIND_USER:-${MACHINECOIN_USER:-machinecoin}}
-MACHINECOIND_GROUP=${MACHINECOIND_GROUP:-machinecoin}
-MACHINECOIND_BIN=${MACHINECOIND_BIN:-/usr/bin/machinecoind}
-MACHINECOIND_NICE=${MACHINECOIND_NICE:-${NICELEVEL:-0}}
-MACHINECOIND_OPTS="${MACHINECOIND_OPTS:-${MACHINECOIN_OPTS}}"
+BITSENDD_CONFIGFILE=${BITSENDD_CONFIGFILE:-/etc/bitsend/bitsend.conf}
+BITSENDD_PIDDIR=${BITSENDD_PIDDIR:-/var/run/bitsendd}
+BITSENDD_PIDFILE=${BITSENDD_PIDFILE:-${BITSENDD_PIDDIR}/bitsendd.pid}
+BITSENDD_DATADIR=${BITSENDD_DATADIR:-${BITSENDD_DEFAULT_DATADIR}}
+BITSENDD_USER=${BITSENDD_USER:-${BITSEND_USER:-bitsend}}
+BITSENDD_GROUP=${BITSENDD_GROUP:-bitsend}
+BITSENDD_BIN=${BITSENDD_BIN:-/usr/bin/bitsendd}
+BITSENDD_NICE=${BITSENDD_NICE:-${NICELEVEL:-0}}
+BITSENDD_OPTS="${BITSENDD_OPTS:-${BITSEND_OPTS}}"
 
-name="Machinecoin Core Daemon"
-description="Machinecoin cryptocurrency P2P network daemon"
+name="Bitsend Core Daemon"
+description="Bitsend cryptocurrency P2P network daemon"
 
-command="/usr/bin/machinecoind"
-command_args="-pid=\"${MACHINECOIND_PIDFILE}\" \
-		-conf=\"${MACHINECOIND_CONFIGFILE}\" \
-		-datadir=\"${MACHINECOIND_DATADIR}\" \
+command="/usr/bin/bitsendd"
+command_args="-pid=\"${BITSENDD_PIDFILE}\" \
+		-conf=\"${BITSENDD_CONFIGFILE}\" \
+		-datadir=\"${BITSENDD_DATADIR}\" \
 		-daemon \
-		${MACHINECOIND_OPTS}"
+		${BITSENDD_OPTS}"
 
-required_files="${MACHINECOIND_CONFIGFILE}"
-start_stop_daemon_args="-u ${MACHINECOIND_USER} \
-			-N ${MACHINECOIND_NICE} -w 2000"
-pidfile="${MACHINECOIND_PIDFILE}"
+required_files="${BITSENDD_CONFIGFILE}"
+start_stop_daemon_args="-u ${BITSENDD_USER} \
+			-N ${BITSENDD_NICE} -w 2000"
+pidfile="${BITSENDD_PIDFILE}"
 
 # The retry schedule to use when stopping the daemon. Could be either
 # a timeout in seconds or multiple signal/timeout pairs (like
 # "SIGKILL/180 SIGTERM/300")
-retry="${MACHINECOIND_SIGTERM_TIMEOUT}"
+retry="${BITSENDD_SIGTERM_TIMEOUT}"
 
 depend() {
 	need localmount net
@@ -50,29 +50,29 @@ start_pre() {
 	checkpath \
 	-d \
 	--mode 0750 \
-	--owner "${MACHINECOIND_USER}:${MACHINECOIND_GROUP}" \
-	"${MACHINECOIND_DATADIR}"
+	--owner "${BITSENDD_USER}:${BITSENDD_GROUP}" \
+	"${BITSENDD_DATADIR}"
 
 	checkpath \
 	-d \
 	--mode 0755 \
-	--owner "${MACHINECOIND_USER}:${MACHINECOIND_GROUP}" \
-	"${MACHINECOIND_PIDDIR}"
+	--owner "${BITSENDD_USER}:${BITSENDD_GROUP}" \
+	"${BITSENDD_PIDDIR}"
 
 	checkpath -f \
-	-o ${MACHINECOIND_USER}:${MACHINECOIND_GROUP} \
+	-o ${BITSENDD_USER}:${BITSENDD_GROUP} \
 	-m 0660 \
-	${MACHINECOIND_CONFIGFILE}
+	${BITSENDD_CONFIGFILE}
 
 	checkconfig || return 1
 }
 
 checkconfig()
 {
-	if ! grep -qs '^rpcpassword=' "${MACHINECOIND_CONFIGFILE}" ; then
+	if ! grep -qs '^rpcpassword=' "${BITSENDD_CONFIGFILE}" ; then
 		eerror ""
-		eerror "ERROR: You must set a secure rpcpassword to run machinecoind."
-		eerror "The setting must appear in ${MACHINECOIND_CONFIGFILE}"
+		eerror "ERROR: You must set a secure rpcpassword to run bitsendd."
+		eerror "The setting must appear in ${BITSENDD_CONFIGFILE}"
 		eerror ""
 		eerror "This password is security critical to securing wallets "
 		eerror "and must not be the same as the rpcuser setting."
@@ -84,7 +84,7 @@ checkconfig()
 		eerror "It is recommended that you also set alertnotify so you are "
 		eerror "notified of problems:"
 		eerror ""
-		eerror "ie: alertnotify=echo %%s | mail -s \"Machinecoin Alert\"" \
+		eerror "ie: alertnotify=echo %%s | mail -s \"Bitsend Alert\"" \
 			"admin@foo.com"
 		eerror ""
 		return 1

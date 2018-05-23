@@ -1,10 +1,10 @@
 ﻿// Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2009-2018 The Machinecoin Core developers
+// Copyright (c) 2009-2018 The Bitsend Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef MACHINECOIN_COMPRESSOR_H
-#define MACHINECOIN_COMPRESSOR_H
+#ifndef BITSEND_COMPRESSOR_H
+#define BITSEND_COMPRESSOR_H
 
 #include <primitives/transaction.h>
 #include <script/script.h>
@@ -118,4 +118,4 @@ public:
     }
 };
 
-#endif // MACHINECOIN_COMPRESSOR_H
+#endif // BITSEND_COMPRESSOR_H

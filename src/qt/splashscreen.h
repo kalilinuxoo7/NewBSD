@@ -1,9 +1,9 @@
-// Copyright (c) 2011-2017 The Machinecoin Core developers
+// Copyright (c) 2011-2017 The Bitsend Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef MACHINECOIN_QT_SPLASHSCREEN_H
-#define MACHINECOIN_QT_SPLASHSCREEN_H
+#ifndef BITSEND_QT_SPLASHSCREEN_H
+#define BITSEND_QT_SPLASHSCREEN_H
 
 #include <functional>
 #include <QSplashScreen>
@@ -13,7 +13,7 @@ class NetworkStyle;
 
 /** Class for the splashscreen with information of the running client.
  *
- * @note this is intentionally not a QSplashScreen. Machinecoin Core initialization
+ * @note this is intentionally not a QSplashScreen. Bitsend Core initialization
  * can take a long time, and in that case a progress window that cannot be
  * moved around and minimized has turned out to be frustrating to the user.
  */
@@ -55,4 +55,4 @@ private:
     QList<CWallet*> connectedWallets;
 };
 
-#endif // MACHINECOIN_QT_SPLASHSCREEN_H
+#endif // BITSEND_QT_SPLASHSCREEN_H

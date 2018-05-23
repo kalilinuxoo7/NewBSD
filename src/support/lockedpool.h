@@ -1,9 +1,9 @@
-﻿// Copyright (c) 2016-2017 The Machinecoin Core developers
+﻿// Copyright (c) 2016-2017 The Bitsend Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef MACHINECOIN_SUPPORT_LOCKEDPOOL_H
-#define MACHINECOIN_SUPPORT_LOCKEDPOOL_H
+#ifndef BITSEND_SUPPORT_LOCKEDPOOL_H
+#define BITSEND_SUPPORT_LOCKEDPOOL_H
 
 #include <stdint.h>
 #include <list>
@@ -228,4 +228,4 @@ private:
     static std::once_flag init_flag;
 };
 
-#endif // MACHINECOIN_SUPPORT_LOCKEDPOOL_H
+#endif // BITSEND_SUPPORT_LOCKEDPOOL_H

@@ -1,11 +1,11 @@
-﻿Machinecoin-Qt version 0.8.0 is now available from:
-  http://sourceforge.net/projects/machinecoin/files/Machinecoin/machinecoin-0.8.0/
+﻿Bitsend-Qt version 0.8.0 is now available from:
+  http://sourceforge.net/projects/bitsend/files/Bitsend/bitsend-0.8.0/
 
 This is a major release designed to improve performance and handle the
 increasing volume of transactions on the network.
 
 Please report bugs using the issue tracker at github:
-  https://github.com/machinecoin/machinecoin/issues
+  https://github.com/bitsend/bitsend/issues
 
 How to Upgrade
 --------------
@@ -13,11 +13,11 @@ How to Upgrade
 If you are running an older version, shut it down. Wait
 until it has completely shut down (which might take a few minutes for older
 versions), then run the installer (on Windows) or just copy over
-/Applications/Machinecoin-Qt (on Mac) or machinecoind/machinecoin-qt (on Linux).
+/Applications/Bitsend-Qt (on Mac) or bitsendd/bitsend-qt (on Linux).
 
 The first time you run after the upgrade a re-indexing process will be
 started that will take anywhere from 30 minutes to several hours,
-depending on the speed of your machine.
+depending on the speed of your bitsend.
 
 Incompatible Changes
 --------------------
@@ -31,20 +31,20 @@ details).
 Improvements
 ------------
 
-Mac and Windows binaries are signed with certificates owned by the Machinecoin
+Mac and Windows binaries are signed with certificates owned by the Bitsend
 Foundation, to be compatible with the new security features in OSX 10.8 and
 Windows 8.
 
 LevelDB, a fast, open-source, non-relational database from Google, is
 now used to store transaction and block indices.  LevelDB works much better
-on machines with slow I/O and is faster in general. Berkeley DB is now only
+on bitsends with slow I/O and is faster in general. Berkeley DB is now only
 used for the wallet.dat file (public and private wallet keys and transactions
 relevant to you).
 
 Pieter Wuille implemented many optimizations to the way transactions are
 verified, so a running, synchronized node uses less working memory and does
 much less I/O. He also implemented parallel signature checking, so if you
-have a multi-CPU machine all CPUs will be used to verify transactions.
+have a multi-CPU bitsend all CPUs will be used to verify transactions.
 
 New Features
 ------------
@@ -61,13 +61,13 @@ contrib/spendfrom is a python-language command-line utility that demonstrates
 how to use the "raw transactions" JSON-RPC api to send coins received from particular
 addresses (also known as "coin control").
 
-New/changed settings (command-line or machinecoin.conf file)
+New/changed settings (command-line or bitsend.conf file)
 --------------------------------------------------------
 
 dbcache : controls LevelDB memory usage.
 
 par : controls how many threads to use to validate transactions. Defaults to the number
-of CPUs on your machine, use -par=1 to limit to a single CPU.
+of CPUs on your bitsend, use -par=1 to limit to a single CPU.
 
 txindex : maintains an extra index of old, spent transaction ids so they will be found
 by the getrawtransaction JSON-RPC method.

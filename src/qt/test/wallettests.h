@@ -1,5 +1,5 @@
-#ifndef MACHINECOIN_QT_TEST_WALLETTESTS_H
-#define MACHINECOIN_QT_TEST_WALLETTESTS_H
+#ifndef BITSEND_QT_TEST_WALLETTESTS_H
+#define BITSEND_QT_TEST_WALLETTESTS_H
 
 #include <QObject>
 #include <QTest>
@@ -12,4 +12,4 @@ private Q_SLOTS:
     void walletTests();
 };
 
-#endif // MACHINECOIN_QT_TEST_WALLETTESTS_H
+#endif // BITSEND_QT_TEST_WALLETTESTS_H

@@ -1,10 +1,10 @@
 ﻿#!/usr/bin/env python3
-# Copyright (c) 2014-2017 The Machinecoin Core developers
+# Copyright (c) 2014-2017 The Bitsend Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 """Test BIP68 implementation."""
 
-from test_framework.test_framework import MachinecoinTestFramework
+from test_framework.test_framework import BitsendTestFramework
 from test_framework.util import *
 from test_framework.blocktools import *
 
@@ -16,7 +16,7 @@ SEQUENCE_LOCKTIME_MASK = 0x0000ffff
 # RPC error for non-BIP68 final transactions
 NOT_FINAL_ERROR = "64: non-BIP68-final"
 
-class BIP68Test(MachinecoinTestFramework):
+class BIP68Test(BitsendTestFramework):
     def set_test_params(self):
         self.num_nodes = 2
         self.extra_args = [[], ["-acceptnonstdtxn=0"]]
@@ -53,7 +53,7 @@ class BIP68Test(MachinecoinTestFramework):
     def test_disable_flag(self):
         # Create some unconfirmed inputs
         new_addr = self.nodes[0].getnewaddress()
-        self.nodes[0].sendtoaddress(new_addr, 2) # send 2 MAC
+        self.nodes[0].sendtoaddress(new_addr, 2) # send 2 BSD
 
         utxos = self.nodes[0].listunspent(0, 0)
         assert(len(utxos) > 0)

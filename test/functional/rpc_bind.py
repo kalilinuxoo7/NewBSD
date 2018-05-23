@@ -1,17 +1,17 @@
 ﻿#!/usr/bin/env python3
-# Copyright (c) 2014-2017 The Machinecoin Core developers
+# Copyright (c) 2014-2017 The Bitsend Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
-"""Test running machinecoind with the -rpcbind and -rpcallowip options."""
+"""Test running bitsendd with the -rpcbind and -rpcallowip options."""
 
 import socket
 import sys
 
-from test_framework.test_framework import MachinecoinTestFramework, SkipTest
+from test_framework.test_framework import BitsendTestFramework, SkipTest
 from test_framework.util import *
 from test_framework.netutil import *
 
-class RPCBindTest(MachinecoinTestFramework):
+class RPCBindTest(BitsendTestFramework):
     def set_test_params(self):
         self.setup_clean_chain = True
         self.num_nodes = 1

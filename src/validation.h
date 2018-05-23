@@ -1,13 +1,13 @@
 ﻿// Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2009-2017 The Machinecoin Core developers
+// Copyright (c) 2009-2017 The Bitsend Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef MACHINECOIN_VALIDATION_H
-#define MACHINECOIN_VALIDATION_H
+#ifndef BITSEND_VALIDATION_H
+#define BITSEND_VALIDATION_H
 
 #if defined(HAVE_CONFIG_H)
-#include <config/machinecoin-config.h>
+#include <config/bitsend-config.h>
 #endif
 
 #include <amount.h>
@@ -496,4 +496,4 @@ bool DumpMempool();
 /** Load the mempool from disk. */
 bool LoadMempool();
 
-#endif // MACHINECOIN_VALIDATION_H
+#endif // BITSEND_VALIDATION_H

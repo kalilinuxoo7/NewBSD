@@ -1,10 +1,10 @@
 ﻿// Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2009-2018 The Machinecoin Core developers
+// Copyright (c) 2009-2018 The Bitsend Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef MACHINECOIN_POLICY_POLICY_H
-#define MACHINECOIN_POLICY_POLICY_H
+#ifndef BITSEND_POLICY_POLICY_H
+#define BITSEND_POLICY_POLICY_H
 
 #include <consensus/consensus.h>
 #include <policy/feerate.h>
@@ -103,4 +103,4 @@ extern unsigned int nBytesPerSigOp;
 int64_t GetVirtualTransactionSize(int64_t nWeight, int64_t nSigOpCost);
 int64_t GetVirtualTransactionSize(const CTransaction& tx, int64_t nSigOpCost = 0);
 
-#endif // MACHINECOIN_POLICY_POLICY_H
+#endif // BITSEND_POLICY_POLICY_H

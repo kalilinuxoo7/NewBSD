@@ -1,41 +1,41 @@
-﻿Machinecoin Core
+﻿Bitsend Core
 =============
 
 Setup
 ---------------------
-Machinecoin Core is the original Machinecoin client and it builds the backbone of the network. It downloads and, by default, stores the entire history of Machinecoin transactions (which is currently more than 100 GBs); depending on the speed of your computer and network connection, the synchronization process can take anywhere from a few hours to a day or more.
+Bitsend Core is the original Bitsend client and it builds the backbone of the network. It downloads and, by default, stores the entire history of Bitsend transactions (which is currently more than 100 GBs); depending on the speed of your computer and network connection, the synchronization process can take anywhere from a few hours to a day or more.
 
-To download Machinecoin Core, visit [machinecoin.io](https://machinecoin.io/en/releases/).
+To download Bitsend Core, visit [bitsend.io](https://bitsend.io/en/releases/).
 
 Running
 ---------------------
-The following are some helpful notes on how to run Machinecoin on your native platform.
+The following are some helpful notes on how to run Bitsend on your native platform.
 
 ### Unix
 
 Unpack the files into a directory and run:
 
-- `bin/machinecoin-qt` (GUI) or
-- `bin/machinecoind` (headless)
+- `bin/bitsend-qt` (GUI) or
+- `bin/bitsendd` (headless)
 
 ### Windows
 
-Unpack the files into a directory, and then run machinecoin-qt.exe.
+Unpack the files into a directory, and then run bitsend-qt.exe.
 
 ### OS X
 
-Drag Machinecoin-Core to your applications folder, and then run Machinecoin-Core.
+Drag Bitsend-Core to your applications folder, and then run Bitsend-Core.
 
 ### Need Help?
 
-* See the documentation at the [Machinecoin Wiki](https://en.machinecoin.it/wiki/Main_Page)
+* See the documentation at the [Bitsend Wiki](https://en.bitsend.it/wiki/Main_Page)
 for help and more information.
-* Ask for help on [#machinecoin](http://webchat.freenode.net?channels=machinecoin) on Freenode. If you don't have an IRC client use [webchat here](http://webchat.freenode.net?channels=machinecoin).
-* Ask for help on the [MachinecoinTalk](https://machinecointalk.org/) forums, in the [Technical Support board](https://machinecointalk.org/index.php?board=4.0).
+* Ask for help on [#bitsend](http://webchat.freenode.net?channels=bitsend) on Freenode. If you don't have an IRC client use [webchat here](http://webchat.freenode.net?channels=bitsend).
+* Ask for help on the [BitsendTalk](https://bitsendtalk.org/) forums, in the [Technical Support board](https://bitsendtalk.org/index.php?board=4.0).
 
 Building
 ---------------------
-The following are developer notes on how to build Machinecoin on your native platform. They are not complete guides, but include notes on the necessary libraries, compile flags, etc.
+The following are developer notes on how to build Bitsend on your native platform. They are not complete guides, but include notes on the necessary libraries, compile flags, etc.
 
 - [Dependencies](dependencies.md)
 - [OS X Build Notes](build-osx.md)
@@ -46,12 +46,12 @@ The following are developer notes on how to build Machinecoin on your native pla
 
 Development
 ---------------------
-The Machinecoin repo's [root README](/README.md) contains relevant information on the development process and automated testing.
+The Bitsend repo's [root README](/README.md) contains relevant information on the development process and automated testing.
 
 - [Developer Notes](developer-notes.md)
 - [Release Notes](release-notes.md)
 - [Release Process](release-process.md)
-- [Source Code Documentation (External Link)](https://dev.visucore.com/machinecoin/doxygen/)
+- [Source Code Documentation (External Link)](https://dev.visucore.com/bitsend/doxygen/)
 - [Translation Process](translation_process.md)
 - [Translation Strings Policy](translation_strings_policy.md)
 - [Travis CI](travis-ci.md)
@@ -62,9 +62,9 @@ The Machinecoin repo's [root README](/README.md) contains relevant information o
 - [Benchmarking](benchmarking.md)
 
 ### Resources
-* Discuss on the [MachinecoinTalk](https://machinecointalk.org/) forums, in the [Development & Technical Discussion board](https://machinecointalk.org/index.php?board=6.0).
-* Discuss project-specific development on #machinecoin-core-dev on Freenode. If you don't have an IRC client use [webchat here](http://webchat.freenode.net/?channels=machinecoin-core-dev).
-* Discuss general Machinecoin development on #machinecoin-dev on Freenode. If you don't have an IRC client use [webchat here](http://webchat.freenode.net/?channels=machinecoin-dev).
+* Discuss on the [BitsendTalk](https://bitsendtalk.org/) forums, in the [Development & Technical Discussion board](https://bitsendtalk.org/index.php?board=6.0).
+* Discuss project-specific development on #bitsend-core-dev on Freenode. If you don't have an IRC client use [webchat here](http://webchat.freenode.net/?channels=bitsend-core-dev).
+* Discuss general Bitsend development on #bitsend-dev on Freenode. If you don't have an IRC client use [webchat here](http://webchat.freenode.net/?channels=bitsend-dev).
 
 ### Miscellaneous
 - [Assets Attribution](assets-attribution.md)

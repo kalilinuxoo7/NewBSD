@@ -1,10 +1,10 @@
 ﻿// Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2009-2018 The Machinecoin Core developers
+// Copyright (c) 2009-2018 The Bitsend Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef MACHINECOIN_CONSENSUS_PARAMS_H
-#define MACHINECOIN_CONSENSUS_PARAMS_H
+#ifndef BITSEND_CONSENSUS_PARAMS_H
+#define BITSEND_CONSENSUS_PARAMS_H
 
 #include <uint256.h>
 #include <limits>
@@ -50,7 +50,7 @@ struct Params {
     uint256 hashGenesisBlock;
     int nSubsidyHalvingInterval;
     /** Block height at which BIP16 becomes active
-     *  Not needed by Machinecoin.
+     *  Not needed by Bitsend.
      */
     // int BIP16Height;
     
@@ -86,7 +86,7 @@ struct Params {
     int64_t nPowTargetSpacing;
     int64_t nPowTargetTimespan;
     int64_t DifficultyAdjustmentInterval() const { return nPowTargetTimespan / nPowTargetSpacing; }
-		  // Machinecoin TimeTravel
+		  // Bitsend TimeTravel
 		  int64_t nPowTargetSpacingV2;
     int64_t nPowTargetTimespanV2;
     int64_t DifficultyAdjustmentIntervalV2() const { return nPowTargetTimespanV2 / nPowTargetSpacingV2; }
@@ -98,4 +98,4 @@ struct Params {
 };
 } // namespace Consensus
 
-#endif // MACHINECOIN_CONSENSUS_PARAMS_H
+#endif // BITSEND_CONSENSUS_PARAMS_H

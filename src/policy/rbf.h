@@ -1,9 +1,9 @@
-// Copyright (c) 2016 The Machinecoin Core developers
+// Copyright (c) 2016 The Bitsend Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef MACHINECOIN_POLICY_RBF_H
-#define MACHINECOIN_POLICY_RBF_H
+#ifndef BITSEND_POLICY_RBF_H
+#define BITSEND_POLICY_RBF_H
 
 #include <txmempool.h>
 
@@ -25,4 +25,4 @@ bool SignalsOptInRBF(const CTransaction &tx);
 // as the sequence numbers of all in-mempool ancestors.
 RBFTransactionState IsRBFOptIn(const CTransaction &tx, CTxMemPool &pool);
 
-#endif // MACHINECOIN_POLICY_RBF_H
+#endif // BITSEND_POLICY_RBF_H

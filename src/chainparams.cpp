@@ -1,5 +1,5 @@
 // Copyright (c) 2010 Satoshi Nakamoto
-// Copyright (c) 2009-2015 The Machinecoin Core developers
+// Copyright (c) 2009-2015 The Bitsend Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -74,23 +74,23 @@ class CMainParams : public CChainParams {
 public:
     CMainParams() {
         strNetworkID = "main";
-        consensus.nSubsidyHalvingInterval = 350000; // Machinecoin number of blocks until halving on 1st Nov. 2016 09:17:52 PM
+        consensus.nSubsidyHalvingInterval = 350000; // Bitsend number of blocks until halving on 1st Nov. 2016 09:17:52 PM
         consensus.BIP16Height = 0;
-        consensus.BIP34Height = 227931; // Machinecoin BIP34 height
-        consensus.BIP34Hash = uint256S("5b77f70e30731bbf8c4b6c44cf62170cc559b6015aa9b7988d8d44a30c4a4614"); // Machinecoin BIP34 Hash
+        consensus.BIP34Height = 227931; // Bitsend BIP34 height
+        consensus.BIP34Hash = uint256S("5b77f70e30731bbf8c4b6c44cf62170cc559b6015aa9b7988d8d44a30c4a4614"); // Bitsend BIP34 Hash
         consensus.BIP65Height = 416969; // c49bfa33dd4d76a6a05f93c1eb4310993ce00c7a8a9ee23c76164ddc2eecbdef
         consensus.BIP66Height = 415969; // 83703951207fcf9e22516f97603f8621299de483e85d85e8a86f7b0fd32717dc
-        consensus.powLimit = uint256S("00000fffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"); // Machinecoin PoW Limit
-        consensus.nPowTargetTimespan = 3.5 * 24 * 60 * 60; // Machinecoin 3.5 days
-        consensus.nPowTargetSpacing = 2.5 * 60; // Machinecoin 2.5 minutes
-        consensus.nPowTargetTimespanV2 = 2.5 * 60; // Machinecoin 2.5 minutes
-        consensus.nPowTargetSpacingV2 = 2.5 * 60; // Machinecoin 2.5 minutes
+        consensus.powLimit = uint256S("00000fffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"); // Bitsend PoW Limit
+        consensus.nPowTargetTimespan = 3.5 * 24 * 60 * 60; // Bitsend 3.5 days
+        consensus.nPowTargetSpacing = 2.5 * 60; // Bitsend 2.5 minutes
+        consensus.nPowTargetTimespanV2 = 2.5 * 60; // Bitsend 2.5 minutes
+        consensus.nPowTargetSpacingV2 = 2.5 * 60; // Bitsend 2.5 minutes
         // consensus.nPowTargetTimespanV3
         // consensus.nPowTargetSpacingV3
         consensus.fPowAllowMinDifficultyBlocks = false;
         consensus.fPowNoRetargeting = false;
-        consensus.nRuleChangeActivationThreshold = 1916; // Machinecoin
-        consensus.nMinerConfirmationWindow = 2016; // Machinecoin - max blocks for softfork to activate, default nPowTargetTimespan / nPowTargetSpacing
+        consensus.nRuleChangeActivationThreshold = 1916; // Bitsend
+        consensus.nMinerConfirmationWindow = 2016; // Bitsend - max blocks for softfork to activate, default nPowTargetTimespan / nPowTargetSpacing
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].bit = 28;
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nStartTime = 1199145601; // January 1, 2008
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nTimeout = 1230767999; // December 31, 2008
@@ -123,7 +123,7 @@ public:
         nDefaultPort = 40333;
         nPruneAfterHeight = 100000;
 
-        genesis = CreateGenesisBlock(1389040865, 3716037, 0x1e0ffff0, 1, 50 * COIN); // Machinecoin 1389040865, 3716037
+        genesis = CreateGenesisBlock(1389040865, 3716037, 0x1e0ffff0, 1, 50 * COIN); // Bitsend 1389040865, 3716037
         consensus.hashGenesisBlock = genesis.GetHash();
         assert(consensus.hashGenesisBlock == uint256S("0x6a1f879bcea5471cbfdee1fd0cb2ddcc4fed569a500e352d41de967703e83172"));
         assert(genesis.hashMerkleRoot == uint256S("0x36a9e41063f3e71466299d0ed9e8193c1c802a88b286016fa4a4d0c3bc384a5c"));
@@ -133,14 +133,14 @@ public:
         // This is fine at runtime as we'll fall back to using them as a oneshot if they dont support the
         // service bits we want, but we should get them updated to support all service bits wanted by any
         // release ASAP to avoid it where possible.
-        vSeeds.emplace_back("dnsseed1.machinecoin.io");
-        vSeeds.emplace_back("dnsseed2.machinecoin.io");
-        vSeeds.emplace_back("dnsseed3.machinecoin.io");
+        vSeeds.emplace_back("dnsseed1.bitsend.io");
+        vSeeds.emplace_back("dnsseed2.bitsend.io");
+        vSeeds.emplace_back("dnsseed3.bitsend.io");
 
-        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,50); // Machinecoin M
-        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,5); // Machinecoin 3
-        base58Prefixes[SCRIPT_ADDRESS2] = std::vector<unsigned char>(1,20); // Machinecoin 9
-        base58Prefixes[SECRET_KEY] =     std::vector<unsigned char>(1,178); // Machinecoin 2
+        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,50); // Bitsend M
+        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,5); // Bitsend 3
+        base58Prefixes[SCRIPT_ADDRESS2] = std::vector<unsigned char>(1,20); // Bitsend 9
+        base58Prefixes[SECRET_KEY] =     std::vector<unsigned char>(1,178); // Bitsend 2
         base58Prefixes[EXT_PUBLIC_KEY] = {0x04, 0x88, 0xB2, 0x1E};
         base58Prefixes[EXT_SECRET_KEY] = {0x04, 0x88, 0xAD, 0xE4};
         
@@ -154,16 +154,16 @@ public:
         
         checkpointData = {
             {
-                { 23021, uint256S("0x0268f4e816aac0874c911c83e263353289854c94a21cf97675652419893e7d8f")},  // Machinecoin: checkpoint at 23021
-                { 53600, uint256S("0x327ec569aa2439c16542ed9402884f5ce691d08f49168d672f19f817ace7a06b")},  // Machinecoin: checkpoint at 53600
-                {112715, uint256S("0x4fba0d1f891a35a7e0b7370d13b777e75fd2826423ef777ccca2f63d6acc70c5")},  // Machinecoin: checkpoint at 112715
-                {130938, uint256S("0x3fc5ccce46b45775ea3cb9f0d10169227bbd019518ebb90e5d6b8a770bf85d1d")},  // Machinecoin: checkpoint at 130938
-                {148401, uint256S("0x0c6b00515da19b9a95571e8cc61447442f6ade0f2e10e3b9ee6df133a76a809f")},  // Machinecoin: checkpoint at 148401
-                {305275, uint256S("0x4222db35707d9af172ea5c23582338874d1f2956b1850f857c50a3e6f2c6f313")},  // Machinecoin: checkpoint at 305275
-                {329528, uint256S("0x6fc60fe0c0133dfbb7fd7fae48e689c344e513a109cb4724913f768070f02a11")},  // Machinecoin: checkpoint at 329528
-                {410476, uint256S("0x8da1c7f79018fac8acac69a57b2f8b5d2743af67976a4525fdedc8c85a3a1418")},  // Machinecoin: checkpoint at 410476
-                {467593, uint256S("0xc69870ed876b17ebcf582ca8cd6362de13ebd83c98556d6518abfa8b4d71a975")},  // Machinecoin: checkpoint at 467593
-                {506003, uint256S("0x6ea758bfa652aa7b6ac492d6452deac5cc9e3eac154f49fd1032afd6c0a7520d")},  // Machinecoin: checkpoint at 506003
+                { 23021, uint256S("0x0268f4e816aac0874c911c83e263353289854c94a21cf97675652419893e7d8f")},  // Bitsend: checkpoint at 23021
+                { 53600, uint256S("0x327ec569aa2439c16542ed9402884f5ce691d08f49168d672f19f817ace7a06b")},  // Bitsend: checkpoint at 53600
+                {112715, uint256S("0x4fba0d1f891a35a7e0b7370d13b777e75fd2826423ef777ccca2f63d6acc70c5")},  // Bitsend: checkpoint at 112715
+                {130938, uint256S("0x3fc5ccce46b45775ea3cb9f0d10169227bbd019518ebb90e5d6b8a770bf85d1d")},  // Bitsend: checkpoint at 130938
+                {148401, uint256S("0x0c6b00515da19b9a95571e8cc61447442f6ade0f2e10e3b9ee6df133a76a809f")},  // Bitsend: checkpoint at 148401
+                {305275, uint256S("0x4222db35707d9af172ea5c23582338874d1f2956b1850f857c50a3e6f2c6f313")},  // Bitsend: checkpoint at 305275
+                {329528, uint256S("0x6fc60fe0c0133dfbb7fd7fae48e689c344e513a109cb4724913f768070f02a11")},  // Bitsend: checkpoint at 329528
+                {410476, uint256S("0x8da1c7f79018fac8acac69a57b2f8b5d2743af67976a4525fdedc8c85a3a1418")},  // Bitsend: checkpoint at 410476
+                {467593, uint256S("0xc69870ed876b17ebcf582ca8cd6362de13ebd83c98556d6518abfa8b4d71a975")},  // Bitsend: checkpoint at 467593
+                {506003, uint256S("0x6ea758bfa652aa7b6ac492d6452deac5cc9e3eac154f49fd1032afd6c0a7520d")},  // Bitsend: checkpoint at 506003
             }
         };
 
@@ -193,23 +193,23 @@ class CTestNetParams : public CChainParams {
 public:
     CTestNetParams() {
         strNetworkID = "test";
-        consensus.nSubsidyHalvingInterval = 350000; // Machinecoin number of blocks until halving on 1st Nov. 2016 09:17:52 PM
+        consensus.nSubsidyHalvingInterval = 350000; // Bitsend number of blocks until halving on 1st Nov. 2016 09:17:52 PM
         consensus.BIP16Height = 0;
-        consensus.BIP34Height = 0; // Machinecoin BIP34 height
-        consensus.BIP34Hash = uint256S("72059c481cc49a2941cc36bd0f070abfe1ccc6e329534602dbdef555547e895f"); // Machinecoin BIP34 Hash
+        consensus.BIP34Height = 0; // Bitsend BIP34 height
+        consensus.BIP34Hash = uint256S("72059c481cc49a2941cc36bd0f070abfe1ccc6e329534602dbdef555547e895f"); // Bitsend BIP34 Hash
         consensus.BIP65Height = 0; // c49bfa33dd4d76a6a05f93c1eb4310993ce00c7a8a9ee23c76164ddc2eecbdef
         consensus.BIP66Height = 0; // 83703951207fcf9e22516f97603f8621299de483e85d85e8a86f7b0fd32717dc
-        consensus.powLimit = uint256S("00000fffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"); // Machinecoin PoW Limit
-        consensus.nPowTargetTimespan = 3.5 * 24 * 60 * 60; // Machinecoin 3.5 days
-        consensus.nPowTargetSpacing = 2.5 * 60; // Machinecoin 2.5 minutes
-        consensus.nPowTargetTimespanV2 = 2.5 * 60; // Machinecoin 2.5 minutes
-        consensus.nPowTargetSpacingV2 = 2.5 * 60; // Machinecoin 2.5 minutes
+        consensus.powLimit = uint256S("00000fffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"); // Bitsend PoW Limit
+        consensus.nPowTargetTimespan = 3.5 * 24 * 60 * 60; // Bitsend 3.5 days
+        consensus.nPowTargetSpacing = 2.5 * 60; // Bitsend 2.5 minutes
+        consensus.nPowTargetTimespanV2 = 2.5 * 60; // Bitsend 2.5 minutes
+        consensus.nPowTargetSpacingV2 = 2.5 * 60; // Bitsend 2.5 minutes
         // consensus.nPowTargetTimespanV3
         // consensus.nPowTargetSpacingV3
         consensus.fPowAllowMinDifficultyBlocks = true;
         consensus.fPowNoRetargeting = false;
-        consensus.nRuleChangeActivationThreshold = 1; // Machinecoin Testnet 1% of 2
-        consensus.nMinerConfirmationWindow = 2; // Machinecoin nPowTargetTimespan / nPowTargetSpacing
+        consensus.nRuleChangeActivationThreshold = 1; // Bitsend Testnet 1% of 2
+        consensus.nMinerConfirmationWindow = 2; // Bitsend nPowTargetTimespan / nPowTargetSpacing
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].bit = 28;
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nStartTime = 1199145601; // January 1, 2008
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nTimeout = 1230767999; // December 31, 2008
@@ -237,7 +237,7 @@ public:
         nDefaultPort = 50333;
         nPruneAfterHeight = 100000;
 
-        genesis = CreateGenesisBlock(1473357600, 5653466, 0x1e0ffff0, 1, 50 * COIN); // Machinecoin Testnet 1473357600, 5653466
+        genesis = CreateGenesisBlock(1473357600, 5653466, 0x1e0ffff0, 1, 50 * COIN); // Bitsend Testnet 1473357600, 5653466
         consensus.hashGenesisBlock = genesis.GetHash();
         assert(consensus.hashGenesisBlock == uint256S("0x72059c481cc49a2941cc36bd0f070abfe1ccc6e329534602dbdef555547e895f"));
         assert(genesis.hashMerkleRoot == uint256S("0x36a9e41063f3e71466299d0ed9e8193c1c802a88b286016fa4a4d0c3bc384a5c"));
@@ -245,14 +245,14 @@ public:
         vFixedSeeds.clear();
         vSeeds.clear();
         // nodes with support for servicebits filtering should be at the top
-        vSeeds.emplace_back("dnsseed1.machinecoin.io");
-        vSeeds.emplace_back("dnsseed2.machinecoin.io");
-        vSeeds.emplace_back("dnsseed3.machinecoin.io");
+        vSeeds.emplace_back("dnsseed1.bitsend.io");
+        vSeeds.emplace_back("dnsseed2.bitsend.io");
+        vSeeds.emplace_back("dnsseed3.bitsend.io");
 
-        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,53); // Machinecoin N
-        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,5); // Machinecoin 9
-        base58Prefixes[SCRIPT_ADDRESS2] = std::vector<unsigned char>(1,23); // Machinecoin A
-        base58Prefixes[SECRET_KEY] =     std::vector<unsigned char>(1,178); // Machinecoin 2
+        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,53); // Bitsend N
+        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,5); // Bitsend 9
+        base58Prefixes[SCRIPT_ADDRESS2] = std::vector<unsigned char>(1,23); // Bitsend A
+        base58Prefixes[SECRET_KEY] =     std::vector<unsigned char>(1,178); // Bitsend 2
         base58Prefixes[EXT_PUBLIC_KEY] = {0x04, 0x35, 0x87, 0xCF};
         base58Prefixes[EXT_SECRET_KEY] = {0x04, 0x35, 0x83, 0x94};
 
@@ -266,7 +266,7 @@ public:
 
         checkpointData = {
             {
-//                { 0, uint256S("0x72059c481cc49a2941cc36bd0f070abfe1ccc6e329534602dbdef555547e895f")},  // Machinecoin Testnet: checkpoint at 0
+//                { 0, uint256S("0x72059c481cc49a2941cc36bd0f070abfe1ccc6e329534602dbdef555547e895f")},  // Bitsend Testnet: checkpoint at 0
             }
         };
 
@@ -296,17 +296,17 @@ class CRegTestParams : public CChainParams {
 public:
     CRegTestParams() {
         strNetworkID = "regtest";
-        consensus.nSubsidyHalvingInterval = 150; // Machinecoin number of blocks until halving on 1st Nov. 2016 09:17:52 PM
+        consensus.nSubsidyHalvingInterval = 150; // Bitsend number of blocks until halving on 1st Nov. 2016 09:17:52 PM
         consensus.BIP16Height = 0;
         consensus.BIP34Height = 100000000; // BIP34 has not activated on regtest (far in the future so block v1 are not rejected in tests)
-        consensus.BIP34Hash = uint256(); // Machinecoin BIP34 Hash
+        consensus.BIP34Hash = uint256(); // Bitsend BIP34 Hash
         consensus.BIP65Height = 1351; // BIP65 activated on regtest (Used in rpc activation tests)
         consensus.BIP66Height = 1351; // BIP65 activated on regtest (Used in rpc activation tests)
-        consensus.powLimit = uint256S("7fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"); // Machinecoin PoW Limit
-        consensus.nPowTargetTimespan = 3.5 * 24 * 60 * 60; // Machinecoin 3.5 days
-        consensus.nPowTargetSpacing = 2.5 * 60; // Machinecoin 2.5 minutes
-        consensus.nPowTargetTimespanV2 = 2.5 * 60; // Machinecoin 2.5 minutes
-        consensus.nPowTargetSpacingV2 = 2.5 * 60; // Machinecoin 2.5 minutes
+        consensus.powLimit = uint256S("7fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"); // Bitsend PoW Limit
+        consensus.nPowTargetTimespan = 3.5 * 24 * 60 * 60; // Bitsend 3.5 days
+        consensus.nPowTargetSpacing = 2.5 * 60; // Bitsend 2.5 minutes
+        consensus.nPowTargetTimespanV2 = 2.5 * 60; // Bitsend 2.5 minutes
+        consensus.nPowTargetSpacingV2 = 2.5 * 60; // Bitsend 2.5 minutes
         // consensus.nPowTargetTimespanV3
         // consensus.nPowTargetSpacingV3
         consensus.fPowAllowMinDifficultyBlocks = true;
@@ -340,7 +340,7 @@ public:
         nDefaultPort = 60333;
         nPruneAfterHeight = 1000;
 
-        genesis = CreateGenesisBlock(1296688602, 0, 0x207fffff, 1, 50 * COIN); // Machinecoin Regtest 1296688602, 0
+        genesis = CreateGenesisBlock(1296688602, 0, 0x207fffff, 1, 50 * COIN); // Bitsend Regtest 1296688602, 0
         consensus.hashGenesisBlock = genesis.GetHash();
         assert(consensus.hashGenesisBlock == uint256S("0x62214f698865bf3308a4cddec2a18c1e9a98f272189f696e0f99d5d1b137912b"));
         assert(genesis.hashMerkleRoot == uint256S("0x36a9e41063f3e71466299d0ed9e8193c1c802a88b286016fa4a4d0c3bc384a5c"));
@@ -354,7 +354,7 @@ public:
 
         checkpointData = {
             {
-                { 0, uint256S("0x62214f698865bf3308a4cddec2a18c1e9a98f272189f696e0f99d5d1b137912b")},  // Machinecoin Regtest: checkpoint at 0
+                { 0, uint256S("0x62214f698865bf3308a4cddec2a18c1e9a98f272189f696e0f99d5d1b137912b")},  // Bitsend Regtest: checkpoint at 0
             }
         };
 
@@ -373,10 +373,10 @@ public:
         consensus.nMasternodeMinimumConfirmations = 1;
         nFulfilledRequestExpireTime = 5*60; // fulfilled requests expire in 5 minutes
 
-        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,55); // Machinecoin N
-        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,5); // Machinecoin 3
-        base58Prefixes[SCRIPT_ADDRESS2] = std::vector<unsigned char>(1,23); // Machinecoin A
-        base58Prefixes[SECRET_KEY] =     std::vector<unsigned char>(1,178); // Machinecoin 2
+        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,55); // Bitsend N
+        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,5); // Bitsend 3
+        base58Prefixes[SCRIPT_ADDRESS2] = std::vector<unsigned char>(1,23); // Bitsend A
+        base58Prefixes[SECRET_KEY] =     std::vector<unsigned char>(1,178); // Bitsend 2
         base58Prefixes[EXT_PUBLIC_KEY] = {0x04, 0x35, 0x87, 0xCF};
         base58Prefixes[EXT_SECRET_KEY] = {0x04, 0x35, 0x83, 0x94};
         

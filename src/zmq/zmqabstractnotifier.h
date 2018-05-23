@@ -1,9 +1,9 @@
-﻿// Copyright (c) 2015-2017 The Machinecoin Core developers
+﻿// Copyright (c) 2015-2017 The Bitsend Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef MACHINECOIN_ZMQ_ZMQABSTRACTNOTIFIER_H
-#define MACHINECOIN_ZMQ_ZMQABSTRACTNOTIFIER_H
+#ifndef BITSEND_ZMQ_ZMQABSTRACTNOTIFIER_H
+#define BITSEND_ZMQ_ZMQABSTRACTNOTIFIER_H
 
 #include <zmq/zmqconfig.h>
 
@@ -41,4 +41,4 @@ protected:
     std::string address;
 };
 
-#endif // MACHINECOIN_ZMQ_ZMQABSTRACTNOTIFIER_H
+#endif // BITSEND_ZMQ_ZMQABSTRACTNOTIFIER_H

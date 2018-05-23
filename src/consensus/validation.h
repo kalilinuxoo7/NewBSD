@@ -1,10 +1,10 @@
 ﻿// Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2009-2018 The Machinecoin Core developers
+// Copyright (c) 2009-2018 The Bitsend Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef MACHINECOIN_CONSENSUS_VALIDATION_H
-#define MACHINECOIN_CONSENSUS_VALIDATION_H
+#ifndef BITSEND_CONSENSUS_VALIDATION_H
+#define BITSEND_CONSENSUS_VALIDATION_H
 
 #include <string>
 #include <version.h>
@@ -102,4 +102,4 @@ static inline int64_t GetBlockWeight(const CBlock& block)
     return ::GetSerializeSize(block, SER_NETWORK, PROTOCOL_VERSION | SERIALIZE_TRANSACTION_NO_WITNESS) * (WITNESS_SCALE_FACTOR - 1) + ::GetSerializeSize(block, SER_NETWORK, PROTOCOL_VERSION);
 }
 
-#endif // MACHINECOIN_CONSENSUS_VALIDATION_H
+#endif // BITSEND_CONSENSUS_VALIDATION_H

@@ -1,9 +1,9 @@
-﻿// Copyright (c) 2012-2018 The Machinecoin Core developers
+﻿// Copyright (c) 2012-2018 The Bitsend Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef MACHINECOIN_VERSION_H
-#define MACHINECOIN_VERSION_H
+#ifndef BITSEND_VERSION_H
+#define BITSEND_VERSION_H
 
 /**
  * network protocol versioning
@@ -45,7 +45,7 @@ static const int INVALID_CB_NO_BAN_VERSION = 70015;
 //! integrated difficulty adjustment algorithm
 static const int UPDATED_DIFF_ADJUST_ALGO = 70016;
 
-//! implemented masternodes to machinecoin
+//! implemented masternodes to bitsend
 static const int IMPLEMENTED_MASTERNODES = 70017;
 
-#endif // MACHINECOIN_VERSION_H
+#endif // BITSEND_VERSION_H

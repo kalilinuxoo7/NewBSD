@@ -428,7 +428,7 @@ typedef __arch_dependant__ sph_s64;
 /**
  * Rotate a 32-bit value by a number of bits to the left. The rotate
  * count must reside between 1 and 31. This macro assumes that its
- * first argument fits in 32 bits (no extra bit allowed on machines where
+ * first argument fits in 32 bits (no extra bit allowed on bitsends where
  * <code>sph_u32</code> is wider); both arguments may be evaluated
  * several times.
  *
@@ -440,7 +440,7 @@ typedef __arch_dependant__ sph_s64;
 /**
  * Rotate a 32-bit value by a number of bits to the left. The rotate
  * count must reside between 1 and 31. This macro assumes that its
- * first argument fits in 32 bits (no extra bit allowed on machines where
+ * first argument fits in 32 bits (no extra bit allowed on bitsends where
  * <code>sph_u32</code> is wider); both arguments may be evaluated
  * several times.
  *
@@ -484,7 +484,7 @@ typedef __arch_dependant__ sph_s64;
 /**
  * Rotate a 64-bit value by a number of bits to the left. The rotate
  * count must reside between 1 and 63. This macro assumes that its
- * first argument fits in 64 bits (no extra bit allowed on machines where
+ * first argument fits in 64 bits (no extra bit allowed on bitsends where
  * <code>sph_u64</code> is wider); both arguments may be evaluated
  * several times. This macro is defined only if a 64-bit type was detected
  * and used for <code>sph_u64</code>.
@@ -497,7 +497,7 @@ typedef __arch_dependant__ sph_s64;
 /**
  * Rotate a 64-bit value by a number of bits to the left. The rotate
  * count must reside between 1 and 63. This macro assumes that its
- * first argument fits in 64 bits (no extra bit allowed on machines where
+ * first argument fits in 64 bits (no extra bit allowed on bitsends where
  * <code>sph_u64</code> is wider); both arguments may be evaluated
  * several times. This macro is defined only if a 64-bit type was detected
  * and used for <code>sph_u64</code>.

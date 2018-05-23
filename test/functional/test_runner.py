@@ -1,5 +1,5 @@
 ﻿#!/usr/bin/env python3
-# Copyright (c) 2014-2017 The Machinecoin Core developers
+# Copyright (c) 2014-2017 The Bitsend Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 """Run regression test suite.
@@ -10,7 +10,7 @@ forward all unrecognized arguments onto the individual test scripts.
 Functional tests are disabled on Windows by default. Use --force to run them anyway.
 
 For a description of arguments recognized by test scripts, see
-`test/functional/test_framework/test_framework.py:MachinecoinTestFramework.main`.
+`test/functional/test_framework/test_framework.py:BitsendTestFramework.main`.
 
 """
 
@@ -83,7 +83,7 @@ BASE_SCRIPTS= [
     # vv Tests less than 30s vv
     'wallet_keypool_topup.py',
     'interface_zmq.py',
-    'interface_machinecoin_cli.py',
+    'interface_bitsend_cli.py',
     'mempool_resurrect.py',
     'wallet_txn_doublespend.py --mineblock',
     'wallet_txn_clone.py',
@@ -211,23 +211,23 @@ def main():
     logging.basicConfig(format='%(message)s', level=logging_level)
 
     # Create base test directory
-    tmpdir = "%s/machinecoin_test_runner_%s" % (args.tmpdirprefix, datetime.datetime.now().strftime("%Y%m%d_%H%M%S"))
+    tmpdir = "%s/bitsend_test_runner_%s" % (args.tmpdirprefix, datetime.datetime.now().strftime("%Y%m%d_%H%M%S"))
     os.makedirs(tmpdir)
 
     logging.debug("Temporary test directory at %s" % tmpdir)
 
     enable_wallet = config["components"].getboolean("ENABLE_WALLET")
     enable_utils = config["components"].getboolean("ENABLE_UTILS")
-    enable_machinecoind = config["components"].getboolean("ENABLE_MACHINECOIND")
+    enable_bitsendd = config["components"].getboolean("ENABLE_BITSENDD")
 
     if config["environment"]["EXEEXT"] == ".exe" and not args.force:
-        # https://github.com/machinecoin/machinecoin/commit/d52802551752140cf41f0d9a225a43e84404d3e9
-        # https://github.com/machinecoin/machinecoin/pull/5677#issuecomment-136646964
+        # https://github.com/bitsend/bitsend/commit/d52802551752140cf41f0d9a225a43e84404d3e9
+        # https://github.com/bitsend/bitsend/pull/5677#issuecomment-136646964
         print("Tests currently disabled on Windows by default. Use --force option to enable")
         sys.exit(0)
 
-    if not (enable_wallet and enable_utils and enable_machinecoind):
-        print("No functional tests to run. Wallet, utils, and machinecoind must all be enabled")
+    if not (enable_wallet and enable_utils and enable_bitsendd):
+        print("No functional tests to run. Wallet, utils, and bitsendd must all be enabled")
         print("Rerun `configure` with -enable-wallet, -with-utils and -with-daemon and rerun make")
         sys.exit(0)
 
@@ -280,10 +280,10 @@ def main():
     run_tests(test_list, config["environment"]["SRCDIR"], config["environment"]["BUILDDIR"], config["environment"]["EXEEXT"], tmpdir, args.jobs, args.coverage, passon_args, args.combinedlogslen)
 
 def run_tests(test_list, src_dir, build_dir, exeext, tmpdir, jobs=1, enable_coverage=False, args=[], combined_logs_len=0):
-    # Warn if machinecoind is already running (unix only)
+    # Warn if bitsendd is already running (unix only)
     try:
-        if subprocess.check_output(["pidof", "machinecoind"]) is not None:
-            print("%sWARNING!%s There is already a machinecoind process running on this system. Tests may fail unexpectedly due to resource contention!" % (BOLD[1], BOLD[0]))
+        if subprocess.check_output(["pidof", "bitsendd"]) is not None:
+            print("%sWARNING!%s There is already a bitsendd process running on this system. Tests may fail unexpectedly due to resource contention!" % (BOLD[1], BOLD[0]))
     except (OSError, subprocess.SubprocessError):
         pass
 
@@ -293,9 +293,9 @@ def run_tests(test_list, src_dir, build_dir, exeext, tmpdir, jobs=1, enable_cove
         print("%sWARNING!%s There is a cache directory here: %s. If tests fail unexpectedly, try deleting the cache directory." % (BOLD[1], BOLD[0], cache_dir))
 
     #Set env vars
-    if "MACHINECOIND" not in os.environ:
-        os.environ["MACHINECOIND"] = build_dir + '/src/machinecoind' + exeext
-        os.environ["MACHINECOINCLI"] = build_dir + '/src/machinecoin-cli' + exeext
+    if "BITSENDD" not in os.environ:
+        os.environ["BITSENDD"] = build_dir + '/src/bitsendd' + exeext
+        os.environ["BITSENDCLI"] = build_dir + '/src/bitsend-cli' + exeext
 
     tests_dir = src_dir + '/test/functional/'
 
@@ -392,7 +392,7 @@ class TestHandler:
         self.test_list = test_list
         self.flags = flags
         self.num_running = 0
-        # In case there is a graveyard of zombie machinecoinds, we can apply a
+        # In case there is a graveyard of zombie bitsendds, we can apply a
         # pseudorandom offset to hopefully jump over them.
         # (625 is PORT_RANGE/MAX_NODES)
         self.portseed_offset = int(time.time() * 1000) % 625
@@ -510,7 +510,7 @@ class RPCCoverage():
     Coverage calculation works by having each test script subprocess write
     coverage files into a particular directory. These files contain the RPC
     commands invoked during testing, as well as a complete listing of RPC
-    commands per `machinecoin-cli help` (`rpc_interface.txt`).
+    commands per `bitsend-cli help` (`rpc_interface.txt`).
 
     After all tests complete, the commands run are combined and diff'd against
     the complete list to calculate uncovered RPC commands.

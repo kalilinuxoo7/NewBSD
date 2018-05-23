@@ -1,2 +1,2 @@
-﻿contrib/machinecoind.bash-completion	machinecoind
-contrib/machinecoin-cli.bash-completion	machinecoin-cli
+﻿contrib/bitsendd.bash-completion	bitsendd
+contrib/bitsend-cli.bash-completion	bitsend-cli

@@ -1,6 +1,6 @@
 all:
-	$(MAKE) -C .. machinecoin_test
+	$(MAKE) -C .. bitsend_test
 clean:
-	$(MAKE) -C .. machinecoin_test_clean
+	$(MAKE) -C .. bitsend_test_clean
 check:
-	$(MAKE) -C .. machinecoin_test_check
+	$(MAKE) -C .. bitsend_test_check

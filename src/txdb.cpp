@@ -1,5 +1,5 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2009-2018 The Machinecoin Core developers
+// Copyright (c) 2009-2018 The Bitsend Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -287,11 +287,11 @@ bool CBlockTreeDB::LoadBlockIndexGuts(const Consensus::Params& consensusParams, 
                 pindexNew->nStatus        = diskindex.nStatus;
                 pindexNew->nTx            = diskindex.nTx;
 
-                // Machinecoin: Disable PoW Sanity check while loading block index from disk.
+                // Bitsend: Disable PoW Sanity check while loading block index from disk.
                 // We use the sha256 hash for the block index for performance reasons, which is recorded for later use.
                 // CheckProofOfWork() uses the scrypt hash which is discarded after a block is accepted.
                 // While it is technically feasible to verify the PoW, doing so takes several minutes as it
-                // requires recomputing every PoW hash during every Machinecoin startup.
+                // requires recomputing every PoW hash during every Bitsend startup.
                 // We opt instead to simply trust the data that is on your local disk.
                 //if (!CheckProofOfWork(pindexNew->GetBlockHash(), pindexNew->nBits, consensusParams))
                 //    return error("%s: CheckProofOfWork failed: %s", __func__, pindexNew->ToString());

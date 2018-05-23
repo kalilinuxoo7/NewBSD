@@ -1,10 +1,10 @@
 ﻿// Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2009-2018 The Machinecoin Core developers
+// Copyright (c) 2009-2018 The Bitsend Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef MACHINECOIN_SERIALIZE_H
-#define MACHINECOIN_SERIALIZE_H
+#ifndef BITSEND_SERIALIZE_H
+#define BITSEND_SERIALIZE_H
 
 #include <compat/endian.h>
 
@@ -1037,4 +1037,4 @@ size_t GetSerializeSize(const S& s, const T& t)
     return (CSizeComputer(s.GetType(), s.GetVersion()) << t).size();
 }
 
-#endif // MACHINECOIN_SERIALIZE_H
+#endif // BITSEND_SERIALIZE_H

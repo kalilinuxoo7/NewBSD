@@ -1,9 +1,9 @@
-// Copyright (c) 2015 The Machinecoin Core developers
+// Copyright (c) 2015 The Bitsend Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef MACHINECOIN_QT_PLATFORMSTYLE_H
-#define MACHINECOIN_QT_PLATFORMSTYLE_H
+#ifndef BITSEND_QT_PLATFORMSTYLE_H
+#define BITSEND_QT_PLATFORMSTYLE_H
 
 #include <QIcon>
 #include <QPixmap>
@@ -51,5 +51,5 @@ private:
     /* ... more to come later */
 };
 
-#endif // MACHINECOIN_QT_PLATFORMSTYLE_H
+#endif // BITSEND_QT_PLATFORMSTYLE_H
 

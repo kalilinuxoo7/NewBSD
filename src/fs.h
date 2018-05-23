@@ -1,9 +1,9 @@
-// Copyright (c) 2017-2018 The Machinecoin Core developers
+// Copyright (c) 2017-2018 The Bitsend Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef MACHINECOIN_FS_H
-#define MACHINECOIN_FS_H
+#ifndef BITSEND_FS_H
+#define BITSEND_FS_H
 
 #include <stdio.h>
 #include <string>
@@ -21,4 +21,4 @@ namespace fsbridge {
     FILE *freopen(const fs::path& p, const char *mode, FILE *stream);
 };
 
-#endif // MACHINECOIN_FS_H
+#endif // BITSEND_FS_H

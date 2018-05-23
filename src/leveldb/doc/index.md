@@ -110,7 +110,7 @@ db->Put(write_options, ...);
 ```
 
 Asynchronous writes are often more than a thousand times as fast as synchronous
-writes. The downside of asynchronous writes is that a crash of the machine may
+writes. The downside of asynchronous writes is that a crash of the bitsend may
 cause the last few updates to be lost. Note that a crash of just the writing
 process (i.e., not a reboot) will not cause any loss since even when sync is
 false, an update is pushed from the process memory into the operating system

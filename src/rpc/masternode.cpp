@@ -1,5 +1,5 @@
 ﻿// Copyright (c) 2014-2018 The Dash Core developers
-// Copyright (c) 2014-2018 The Machinecoin Core developers
+// Copyright (c) 2014-2018 The Bitsend Core developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -260,7 +260,7 @@ UniValue masternode(const JSONRPCRequest& request)
         CKey secret;
         secret.MakeNewKey(false);
 
-        return CMachinecoinSecret(secret).ToString();
+        return CBitsendSecret(secret).ToString();
     }
 
     if (strCommand == "list-conf")
@@ -395,7 +395,7 @@ UniValue masternodelist(const JSONRPCRequest& request)
                 "  lastpaidblock  - Print the last block height a node was paid on the network\n"
                 "  lastpaidtime   - Print the last time a node was paid on the network\n"
                 "  lastseen       - Print timestamp of when a masternode was last seen on the network\n"
-                "  payee          - Print Machinecoin address associated with a masternode (can be additionally filtered,\n"
+                "  payee          - Print Bitsend address associated with a masternode (can be additionally filtered,\n"
                 "                   partial match)\n"
                 "  protocol       - Print protocol of a masternode (can be additionally filtered, exact match)\n"
                 "  pubkey         - Print the masternode (not collateral) public key\n"

@@ -1,14 +1,14 @@
 ﻿#!/usr/bin/env python3
-# Copyright (c) 2017 The Machinecoin Core developers
+# Copyright (c) 2017 The Bitsend Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 """Test debug logging."""
 
 import os
 
-from test_framework.test_framework import MachinecoinTestFramework
+from test_framework.test_framework import BitsendTestFramework
 
-class LoggingTest(MachinecoinTestFramework):
+class LoggingTest(BitsendTestFramework):
     def set_test_params(self):
         self.num_nodes = 1
         self.setup_clean_chain = True

@@ -1,9 +1,9 @@
-﻿// Copyright (c) 2016-2017 The Machinecoin Core developers
+﻿// Copyright (c) 2016-2017 The Bitsend Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef MACHINECOIN_WALLET_RPCWALLET_H
-#define MACHINECOIN_WALLET_RPCWALLET_H
+#ifndef BITSEND_WALLET_RPCWALLET_H
+#define BITSEND_WALLET_RPCWALLET_H
 
 #include <string>
 
@@ -25,4 +25,4 @@ std::string HelpRequiringPassphrase(CWallet *);
 void EnsureWalletIsUnlocked(CWallet *);
 bool EnsureWalletIsAvailable(CWallet *, bool avoidException);
 
-#endif //MACHINECOIN_WALLET_RPCWALLET_H
+#endif //BITSEND_WALLET_RPCWALLET_H

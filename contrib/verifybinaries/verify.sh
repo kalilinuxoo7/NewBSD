@@ -1,10 +1,10 @@
 ﻿#!/bin/bash
-# Copyright (c) 2016 The Machinecoin Core developers
+# Copyright (c) 2016 The Bitsend Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 ###   This script attempts to download the signature file SHA256SUMS.asc from
-###   machinecoin.io and machinecoin.org and compares them.
+###   bitsend.io and bitsend.org and compares them.
 ###   It first checks if the signature passes, and then downloads the files specified in
 ###   the file, and checks if the hashes of these files match those that are specified
 ###   in the signature file.
@@ -18,15 +18,15 @@ function clean_up {
    done
 }
 
-WORKINGDIR="/tmp/machinecoin_verify_binaries"
+WORKINGDIR="/tmp/bitsend_verify_binaries"
 TMPFILE="hashes.tmp"
 
 SIGNATUREFILENAME="SHA256SUMS.asc"
 RCSUBDIR="test"
-HOST1="https://machinecoin.io"
-HOST2="https://machinecoin.org"
+HOST1="https://bitsend.io"
+HOST2="https://bitsend.org"
 BASEDIR="/bin/"
-VERSIONPREFIX="machinecoin-core-"
+VERSIONPREFIX="bitsend-core-"
 RCVERSIONSTRING="rc"
 
 if [ ! -d "$WORKINGDIR" ]; then
@@ -37,7 +37,7 @@ cd "$WORKINGDIR" || exit 1
 
 #test if a version number has been passed as an argument
 if [ -n "$1" ]; then
-   #let's also check if the version number includes the prefix 'machinecoin-',
+   #let's also check if the version number includes the prefix 'bitsend-',
    #  and add this prefix if it doesn't
    if [[ $1 == "$VERSIONPREFIX"* ]]; then
       VERSION="$1"
@@ -95,7 +95,7 @@ fi
 
 WGETOUT=$(wget -N -O "$SIGNATUREFILENAME.2" "$HOST2$BASEDIR$SIGNATUREFILENAME" 2>&1)
 if [ $? -ne 0 ]; then
-   echo "machinecoin.org failed to provide signature file, but machinecoin.io did?"
+   echo "bitsend.org failed to provide signature file, but bitsend.io did?"
    echo "wget output:"
    echo "$WGETOUT"|sed 's/^/\t/g'
    clean_up $SIGNATUREFILENAME
@@ -104,7 +104,7 @@ fi
 
 SIGFILEDIFFS="$(diff $SIGNATUREFILENAME $SIGNATUREFILENAME.2)"
 if [ "$SIGFILEDIFFS" != "" ]; then
-   echo "machinecoin.org and machinecoin.io signature files were not equal?"
+   echo "bitsend.org and bitsend.io signature files were not equal?"
    clean_up $SIGNATUREFILENAME $SIGNATUREFILENAME.2
    exit 4
 fi
@@ -123,7 +123,7 @@ if [ $RET -ne 0 ]; then
       echo "Bad signature."
    elif [ $RET -eq 2 ]; then
       #or if a gpg error has occurred
-      echo "gpg error. Do you have the Machinecoin Core binary release signing key installed?"
+      echo "gpg error. Do you have the Bitsend Core binary release signing key installed?"
    fi
 
    echo "gpg output:"

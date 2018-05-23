@@ -1,9 +1,9 @@
-// Copyright (c) 2017-2018 The Machinecoin Core developers
+// Copyright (c) 2017-2018 The Bitsend Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef MACHINECOIN_RPC_UTIL_H
-#define MACHINECOIN_RPC_UTIL_H
+#ifndef BITSEND_RPC_UTIL_H
+#define BITSEND_RPC_UTIL_H
 
 #include <string>
 #include <vector>
@@ -16,4 +16,4 @@ CPubKey HexToPubKey(const std::string& hex_in);
 CPubKey AddrToPubKey(CKeyStore* const keystore, const std::string& addr_in);
 CScript CreateMultisigRedeemscript(const int required, const std::vector<CPubKey>& pubkeys);
 
-#endif // MACHINECOIN_RPC_UTIL_H
+#endif // BITSEND_RPC_UTIL_H

@@ -1,5 +1,5 @@
 ﻿// Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2009-2018 The Machinecoin Core developers
+// Copyright (c) 2009-2018 The Bitsend Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -86,12 +86,12 @@
 // Application startup time (used for uptime calculation)
 const int64_t nStartupTime = GetTime();
 
-// Machinecoin only features
+// Bitsend only features
 bool fMasterNode = false;
 bool fLiteMode = false;
 
-const char * const MACHINECOIN_CONF_FILENAME = "machinecoin.conf";
-const char * const MACHINECOIN_PID_FILENAME = "machinecoin.pid";
+const char * const BITSEND_CONF_FILENAME = "bitsend.conf";
+const char * const BITSEND_PID_FILENAME = "bitsend.pid";
 const char * const DEFAULT_DEBUGLOGFILE = "debug.log";
 
 ArgsManager gArgs;
@@ -569,7 +569,7 @@ static std::string FormatException(const std::exception* pex, const char* pszThr
     char pszModule[MAX_PATH] = "";
     GetModuleFileNameA(nullptr, pszModule, sizeof(pszModule));
 #else
-    const char* pszModule = "machinecoin";
+    const char* pszModule = "bitsend";
 #endif
     if (pex)
         return strprintf(
@@ -588,13 +588,13 @@ void PrintExceptionContinue(const std::exception* pex, const char* pszThread)
 
 fs::path GetDefaultDataDir()
 {
-    // Windows < Vista: C:\Documents and Settings\Username\Application Data\Machinecoin
-    // Windows >= Vista: C:\Users\Username\AppData\Roaming\Machinecoin
-    // Mac: ~/Library/Application Support/Machinecoin
-    // Unix: ~/.machinecoin
+    // Windows < Vista: C:\Documents and Settings\Username\Application Data\Bitsend
+    // Windows >= Vista: C:\Users\Username\AppData\Roaming\Bitsend
+    // Mac: ~/Library/Application Support/Bitsend
+    // Unix: ~/.bitsend
 #ifdef WIN32
     // Windows
-    return GetSpecialFolderPath(CSIDL_APPDATA) / "Machinecoin";
+    return GetSpecialFolderPath(CSIDL_APPDATA) / "Bitsend";
 #else
     fs::path pathRet;
     char* pszHome = getenv("HOME");
@@ -602,12 +602,12 @@ fs::path GetDefaultDataDir()
         pathRet = fs::path("/");
     else
         pathRet = fs::path(pszHome);
-#ifdef MAC_OSX
+#ifdef BSD_OSX
     // Mac
-    return pathRet / "Library/Application Support/Machinecoin";
+    return pathRet / "Library/Application Support/Bitsend";
 #else
     // Unix
-    return pathRet / ".machinecoin";
+    return pathRet / ".bitsend";
 #endif
 #endif
 }
@@ -678,7 +678,7 @@ void ArgsManager::ReadConfigFile(const std::string& confPath)
 {
     fs::ifstream streamConfig(GetConfigFile(confPath));
     if (!streamConfig.good())
-        return; // No machinecoin.conf file is OK
+        return; // No bitsend.conf file is OK
 
     {
         LOCK(cs_args);
@@ -687,7 +687,7 @@ void ArgsManager::ReadConfigFile(const std::string& confPath)
 
         for (boost::program_options::detail::config_file_iterator it(streamConfig, setOptions), end; it != end; ++it)
         {
-            // Don't overwrite existing settings so command line settings override machinecoin.conf
+            // Don't overwrite existing settings so command line settings override bitsend.conf
             std::string strKey = std::string("-") + it->string_key;
             std::string strValue = it->value[0];
             InterpretNegativeSetting(strKey, strValue);
@@ -706,7 +706,7 @@ void ArgsManager::ReadConfigFile(const std::string& confPath)
 #ifndef WIN32
 fs::path GetPidFile()
 {
-    fs::path pathPidFile(gArgs.GetArg("-pid", MACHINECOIN_PID_FILENAME));
+    fs::path pathPidFile(gArgs.GetArg("-pid", BITSEND_PID_FILENAME));
     if (!pathPidFile.is_complete()) pathPidFile = GetDataDir() / pathPidFile;
     return pathPidFile;
 }
@@ -814,7 +814,7 @@ void AllocateFileRange(FILE *file, unsigned int offset, unsigned int length) {
     nFileSize.u.HighPart = nEndPos >> 32;
     SetFilePointerEx(hFile, nFileSize, 0, FILE_BEGIN);
     SetEndOfFile(hFile);
-#elif defined(MAC_OSX)
+#elif defined(BSD_OSX)
     // OSX specific version
     fstore_t fst;
     fst.fst_flags = F_ALLOCATECONTIG;
@@ -905,7 +905,7 @@ void RenameThread(const char* name)
 #elif (defined(__FreeBSD__) || defined(__OpenBSD__) || defined(__DragonFly__))
     pthread_set_name_np(pthread_self(), name);
 
-#elif defined(MAC_OSX)
+#elif defined(BSD_OSX)
     pthread_setname_np(name);
 #else
     // Prevent warnings for unused parameters...
@@ -927,7 +927,7 @@ void SetupEnvironment()
 #endif
     // On most POSIX systems (e.g. Linux, but not BSD) the environment's locale
     // may be invalid, in which case the "C" locale is used as fallback.
-#if !defined(WIN32) && !defined(MAC_OSX) && !defined(__FreeBSD__) && !defined(__OpenBSD__)
+#if !defined(WIN32) && !defined(BSD_OSX) && !defined(__FreeBSD__) && !defined(__OpenBSD__)
     try {
         std::locale(""); // Raises a runtime error if current locale is invalid
     } catch (const std::runtime_error&) {
@@ -967,9 +967,9 @@ std::string CopyrightHolders(const std::string& strPrefix)
 {
     std::string strCopyrightHolders = strPrefix + strprintf(_(COPYRIGHT_HOLDERS), _(COPYRIGHT_HOLDERS_SUBSTITUTION));
 
-    // Check for untranslated substitution to make sure Machinecoin Core copyright is not removed by accident
-    if (strprintf(COPYRIGHT_HOLDERS, COPYRIGHT_HOLDERS_SUBSTITUTION).find("Machinecoin Core") == std::string::npos) {
-        strCopyrightHolders += "\n" + strPrefix + "The Machinecoin Core developers";
+    // Check for untranslated substitution to make sure Bitsend Core copyright is not removed by accident
+    if (strprintf(COPYRIGHT_HOLDERS, COPYRIGHT_HOLDERS_SUBSTITUTION).find("Bitsend Core") == std::string::npos) {
+        strCopyrightHolders += "\n" + strPrefix + "The Bitsend Core developers";
     }
     return strCopyrightHolders;
 }

@@ -127,7 +127,7 @@ if (test -f /.attbin/uname) >/dev/null 2>&1 ; then
 	PATH=$PATH:/.attbin ; export PATH
 fi
 
-UNAME_MACHINE=`(uname -m) 2>/dev/null` || UNAME_MACHINE=unknown
+UNAME_BITSEND=`(uname -m) 2>/dev/null` || UNAME_BITSEND=unknown
 UNAME_RELEASE=`(uname -r) 2>/dev/null` || UNAME_RELEASE=unknown
 UNAME_SYSTEM=`(uname -s) 2>/dev/null`  || UNAME_SYSTEM=unknown
 UNAME_VERSION=`(uname -v) 2>/dev/null` || UNAME_VERSION=unknown
@@ -155,7 +155,7 @@ esac
 
 # Note: order is significant - the case branches are not exclusive.
 
-case "${UNAME_MACHINE}:${UNAME_SYSTEM}:${UNAME_RELEASE}:${UNAME_VERSION}" in
+case "${UNAME_BITSEND}:${UNAME_SYSTEM}:${UNAME_RELEASE}:${UNAME_VERSION}" in
     *:NetBSD:*:*)
 	# NetBSD (nbsd) targets should (where applicable) match one or
 	# more of the tuples: *-*-netbsdelf*, *-*-netbsdaout*,
@@ -167,27 +167,27 @@ case "${UNAME_MACHINE}:${UNAME_SYSTEM}:${UNAME_RELEASE}:${UNAME_VERSION}" in
 	#
 	# Note: NetBSD doesn't particularly care about the vendor
 	# portion of the name.  We always set it to "unknown".
-	sysctl="sysctl -n hw.machine_arch"
-	UNAME_MACHINE_ARCH=`(uname -p 2>/dev/null || \
+	sysctl="sysctl -n hw.bitsend_arch"
+	UNAME_BITSEND_ARCH=`(uname -p 2>/dev/null || \
 	    /sbin/$sysctl 2>/dev/null || \
 	    /usr/sbin/$sysctl 2>/dev/null || \
 	    echo unknown)`
-	case "${UNAME_MACHINE_ARCH}" in
-	    armeb) machine=armeb-unknown ;;
-	    arm*) machine=arm-unknown ;;
-	    sh3el) machine=shl-unknown ;;
-	    sh3eb) machine=sh-unknown ;;
-	    sh5el) machine=sh5le-unknown ;;
+	case "${UNAME_BITSEND_ARCH}" in
+	    armeb) bitsend=armeb-unknown ;;
+	    arm*) bitsend=arm-unknown ;;
+	    sh3el) bitsend=shl-unknown ;;
+	    sh3eb) bitsend=sh-unknown ;;
+	    sh5el) bitsend=sh5le-unknown ;;
 	    earmv*)
-		arch=`echo ${UNAME_MACHINE_ARCH} | sed -e 's,^e\(armv[0-9]\).*$,\1,'`
-		endian=`echo ${UNAME_MACHINE_ARCH} | sed -ne 's,^.*\(eb\)$,\1,p'`
-		machine=${arch}${endian}-unknown
+		arch=`echo ${UNAME_BITSEND_ARCH} | sed -e 's,^e\(armv[0-9]\).*$,\1,'`
+		endian=`echo ${UNAME_BITSEND_ARCH} | sed -ne 's,^.*\(eb\)$,\1,p'`
+		bitsend=${arch}${endian}-unknown
 		;;
-	    *) machine=${UNAME_MACHINE_ARCH}-unknown ;;
+	    *) bitsend=${UNAME_BITSEND_ARCH}-unknown ;;
 	esac
 	# The Operating System including object format, if it has switched
 	# to ELF recently (or will in the future) and ABI.
-	case "${UNAME_MACHINE_ARCH}" in
+	case "${UNAME_BITSEND_ARCH}" in
 	    earm*)
 		os=netbsdelf
 		;;
@@ -208,14 +208,14 @@ case "${UNAME_MACHINE}:${UNAME_SYSTEM}:${UNAME_RELEASE}:${UNAME_VERSION}" in
 		;;
 	esac
 	# Determine ABI tags.
-	case "${UNAME_MACHINE_ARCH}" in
+	case "${UNAME_BITSEND_ARCH}" in
 	    earm*)
 		expr='s/^earmv[0-9]/-eabi/;s/eb$//'
-		abi=`echo ${UNAME_MACHINE_ARCH} | sed -e "$expr"`
+		abi=`echo ${UNAME_BITSEND_ARCH} | sed -e "$expr"`
 		;;
 	esac
 	# The OS release
-	# Debian GNU/NetBSD machines have a different userland, and
+	# Debian GNU/NetBSD bitsends have a different userland, and
 	# thus, need a distinct triplet. However, they do not need
 	# kernel version information, so it can be replaced with a
 	# suitable tag, in the style of linux-gnu.
@@ -230,34 +230,34 @@ case "${UNAME_MACHINE}:${UNAME_SYSTEM}:${UNAME_RELEASE}:${UNAME_VERSION}" in
 	# Since CPU_TYPE-MANUFACTURER-KERNEL-OPERATING_SYSTEM:
 	# contains redundant information, the shorter form:
 	# CPU_TYPE-MANUFACTURER-OPERATING_SYSTEM is used.
-	echo "${machine}-${os}${release}${abi}"
+	echo "${bitsend}-${os}${release}${abi}"
 	exit ;;
     *:Bitrig:*:*)
-	UNAME_MACHINE_ARCH=`arch | sed 's/Bitrig.//'`
-	echo ${UNAME_MACHINE_ARCH}-unknown-bitrig${UNAME_RELEASE}
+	UNAME_BITSEND_ARCH=`arch | sed 's/Bitrig.//'`
+	echo ${UNAME_BITSEND_ARCH}-unknown-bitrig${UNAME_RELEASE}
 	exit ;;
     *:OpenBSD:*:*)
-	UNAME_MACHINE_ARCH=`arch | sed 's/OpenBSD.//'`
-	echo ${UNAME_MACHINE_ARCH}-unknown-openbsd${UNAME_RELEASE}
+	UNAME_BITSEND_ARCH=`arch | sed 's/OpenBSD.//'`
+	echo ${UNAME_BITSEND_ARCH}-unknown-openbsd${UNAME_RELEASE}
 	exit ;;
     *:LibertyBSD:*:*)
-	UNAME_MACHINE_ARCH=`arch | sed 's/^.*BSD\.//'`
-	echo ${UNAME_MACHINE_ARCH}-unknown-libertybsd${UNAME_RELEASE}
+	UNAME_BITSEND_ARCH=`arch | sed 's/^.*BSD\.//'`
+	echo ${UNAME_BITSEND_ARCH}-unknown-libertybsd${UNAME_RELEASE}
 	exit ;;
     *:ekkoBSD:*:*)
-	echo ${UNAME_MACHINE}-unknown-ekkobsd${UNAME_RELEASE}
+	echo ${UNAME_BITSEND}-unknown-ekkobsd${UNAME_RELEASE}
 	exit ;;
     *:SolidBSD:*:*)
-	echo ${UNAME_MACHINE}-unknown-solidbsd${UNAME_RELEASE}
+	echo ${UNAME_BITSEND}-unknown-solidbsd${UNAME_RELEASE}
 	exit ;;
     macppc:MirBSD:*:*)
 	echo powerpc-unknown-mirbsd${UNAME_RELEASE}
 	exit ;;
     *:MirBSD:*:*)
-	echo ${UNAME_MACHINE}-unknown-mirbsd${UNAME_RELEASE}
+	echo ${UNAME_BITSEND}-unknown-mirbsd${UNAME_RELEASE}
 	exit ;;
     *:Sortix:*:*)
-	echo ${UNAME_MACHINE}-unknown-sortix
+	echo ${UNAME_BITSEND}-unknown-sortix
 	exit ;;
     alpha:OSF1:*:*)
 	case $UNAME_RELEASE in
@@ -275,49 +275,49 @@ case "${UNAME_MACHINE}:${UNAME_SYSTEM}:${UNAME_RELEASE}:${UNAME_VERSION}" in
 	ALPHA_CPU_TYPE=`/usr/sbin/psrinfo -v | sed -n -e 's/^  The alpha \(.*\) processor.*$/\1/p' | head -n 1`
 	case "$ALPHA_CPU_TYPE" in
 	    "EV4 (21064)")
-		UNAME_MACHINE=alpha ;;
+		UNAME_BITSEND=alpha ;;
 	    "EV4.5 (21064)")
-		UNAME_MACHINE=alpha ;;
+		UNAME_BITSEND=alpha ;;
 	    "LCA4 (21066/21068)")
-		UNAME_MACHINE=alpha ;;
+		UNAME_BITSEND=alpha ;;
 	    "EV5 (21164)")
-		UNAME_MACHINE=alphaev5 ;;
+		UNAME_BITSEND=alphaev5 ;;
 	    "EV5.6 (21164A)")
-		UNAME_MACHINE=alphaev56 ;;
+		UNAME_BITSEND=alphaev56 ;;
 	    "EV5.6 (21164PC)")
-		UNAME_MACHINE=alphapca56 ;;
+		UNAME_BITSEND=alphapca56 ;;
 	    "EV5.7 (21164PC)")
-		UNAME_MACHINE=alphapca57 ;;
+		UNAME_BITSEND=alphapca57 ;;
 	    "EV6 (21264)")
-		UNAME_MACHINE=alphaev6 ;;
+		UNAME_BITSEND=alphaev6 ;;
 	    "EV6.7 (21264A)")
-		UNAME_MACHINE=alphaev67 ;;
+		UNAME_BITSEND=alphaev67 ;;
 	    "EV6.8CB (21264C)")
-		UNAME_MACHINE=alphaev68 ;;
+		UNAME_BITSEND=alphaev68 ;;
 	    "EV6.8AL (21264B)")
-		UNAME_MACHINE=alphaev68 ;;
+		UNAME_BITSEND=alphaev68 ;;
 	    "EV6.8CX (21264D)")
-		UNAME_MACHINE=alphaev68 ;;
+		UNAME_BITSEND=alphaev68 ;;
 	    "EV6.9A (21264/EV69A)")
-		UNAME_MACHINE=alphaev69 ;;
+		UNAME_BITSEND=alphaev69 ;;
 	    "EV7 (21364)")
-		UNAME_MACHINE=alphaev7 ;;
+		UNAME_BITSEND=alphaev7 ;;
 	    "EV7.9 (21364A)")
-		UNAME_MACHINE=alphaev79 ;;
+		UNAME_BITSEND=alphaev79 ;;
 	esac
 	# A Pn.n version is a patched version.
 	# A Vn.n version is a released version.
 	# A Tn.n version is a released field test version.
 	# A Xn.n version is an unreleased experimental baselevel.
 	# 1.2 uses "1.2" for uname -r.
-	echo ${UNAME_MACHINE}-dec-osf`echo ${UNAME_RELEASE} | sed -e 's/^[PVTX]//' | tr ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz`
+	echo ${UNAME_BITSEND}-dec-osf`echo ${UNAME_RELEASE} | sed -e 's/^[PVTX]//' | tr ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz`
 	# Reset EXIT trap before exiting to avoid spurious non-zero exit code.
 	exitcode=$?
 	trap '' 0
 	exit $exitcode ;;
     Alpha\ *:Windows_NT*:*)
 	# How do we know it's Interix rather than the generic POSIX subsystem?
-	# Should we change UNAME_MACHINE based on the output of uname instead
+	# Should we change UNAME_BITSEND based on the output of uname instead
 	# of the specific Alpha model?
 	echo alpha-pc-interix
 	exit ;;
@@ -328,10 +328,10 @@ case "${UNAME_MACHINE}:${UNAME_SYSTEM}:${UNAME_RELEASE}:${UNAME_VERSION}" in
 	echo m68k-unknown-sysv4
 	exit ;;
     *:[Aa]miga[Oo][Ss]:*:*)
-	echo ${UNAME_MACHINE}-unknown-amigaos
+	echo ${UNAME_BITSEND}-unknown-amigaos
 	exit ;;
     *:[Mm]orph[Oo][Ss]:*:*)
-	echo ${UNAME_MACHINE}-unknown-morphos
+	echo ${UNAME_BITSEND}-unknown-morphos
 	exit ;;
     *:OS/390:*:*)
 	echo i370-ibm-openedition
@@ -370,7 +370,7 @@ case "${UNAME_MACHINE}:${UNAME_SYSTEM}:${UNAME_RELEASE}:${UNAME_VERSION}" in
 	    sparc) echo sparc-icl-nx7; exit ;;
 	esac ;;
     s390x:SunOS:*:*)
-	echo ${UNAME_MACHINE}-ibm-solaris2`echo ${UNAME_RELEASE}|sed -e 's/[^.]*//'`
+	echo ${UNAME_BITSEND}-ibm-solaris2`echo ${UNAME_RELEASE}|sed -e 's/[^.]*//'`
 	exit ;;
     sun4H:SunOS:5.*:*)
 	echo sparc-hal-solaris2`echo ${UNAME_RELEASE}|sed -e 's/[^.]*//'`
@@ -430,7 +430,7 @@ case "${UNAME_MACHINE}:${UNAME_SYSTEM}:${UNAME_RELEASE}:${UNAME_VERSION}" in
     aushp:SunOS:*:*)
 	echo sparc-auspex-sunos${UNAME_RELEASE}
 	exit ;;
-    # The situation for MiNT is a little confusing.  The machine name
+    # The situation for MiNT is a little confusing.  The bitsend name
     # can be virtually everything (everything which is not
     # "atarist" or "atariste" at least should have a processor
     # > m68000).  The system name ranges from "MiNT" over "FreeMiNT"
@@ -568,7 +568,7 @@ EOF
 	else
 		IBM_REV=${UNAME_VERSION}.${UNAME_RELEASE}
 	fi
-	echo ${UNAME_MACHINE}-ibm-aix${IBM_REV}
+	echo ${UNAME_BITSEND}-ibm-aix${IBM_REV}
 	exit ;;
     *:AIX:2:3)
 	if grep bos325 /usr/include/stdio.h >/dev/null 2>&1; then
@@ -634,7 +634,7 @@ EOF
 	exit ;;
     9000/[34678]??:HP-UX:*:*)
 	HPUX_REV=`echo ${UNAME_RELEASE}|sed -e 's/[^.]*.[0B]*//'`
-	case "${UNAME_MACHINE}" in
+	case "${UNAME_BITSEND}" in
 	    9000/31? )            HP_ARCH=m68000 ;;
 	    9000/[34]?? )         HP_ARCH=m68k ;;
 	    9000/[678][0-9][0-9])
@@ -766,9 +766,9 @@ EOF
 	exit ;;
     i*86:OSF1:*:*)
 	if [ -x /usr/sbin/sysversion ] ; then
-	    echo ${UNAME_MACHINE}-unknown-osf1mk
+	    echo ${UNAME_BITSEND}-unknown-osf1mk
 	else
-	    echo ${UNAME_MACHINE}-unknown-osf1
+	    echo ${UNAME_BITSEND}-unknown-osf1
 	fi
 	exit ;;
     parisc*:Lites*:*:*)
@@ -796,7 +796,7 @@ EOF
 	echo ymp-cray-unicos${UNAME_RELEASE} | sed -e 's/\.[^.]*$/.X/'
 	exit ;;
     CRAY*[A-Z]90:*:*:*)
-	echo ${UNAME_MACHINE}-cray-unicos${UNAME_RELEASE} \
+	echo ${UNAME_BITSEND}-cray-unicos${UNAME_RELEASE} \
 	| sed -e 's/CRAY.*\([A-Z]90\)/\1/' \
 	      -e y/ABCDEFGHIJKLMNOPQRSTUVWXYZ/abcdefghijklmnopqrstuvwxyz/ \
 	      -e 's/\.[^.]*$/.X/'
@@ -825,13 +825,13 @@ EOF
 	echo "sparc-fujitsu-${FUJITSU_SYS}${FUJITSU_REL}"
 	exit ;;
     i*86:BSD/386:*:* | i*86:BSD/OS:*:* | *:Ascend\ Embedded/OS:*:*)
-	echo ${UNAME_MACHINE}-pc-bsdi${UNAME_RELEASE}
+	echo ${UNAME_BITSEND}-pc-bsdi${UNAME_RELEASE}
 	exit ;;
     sparc*:BSD/OS:*:*)
 	echo sparc-unknown-bsdi${UNAME_RELEASE}
 	exit ;;
     *:BSD/OS:*:*)
-	echo ${UNAME_MACHINE}-unknown-bsdi${UNAME_RELEASE}
+	echo ${UNAME_BITSEND}-unknown-bsdi${UNAME_RELEASE}
 	exit ;;
     *:FreeBSD:*:*)
 	UNAME_PROCESSOR=`/usr/bin/uname -p`
@@ -844,26 +844,26 @@ EOF
 	echo ${UNAME_PROCESSOR}-unknown-freebsd`echo ${UNAME_RELEASE}|sed -e 's/[-(].*//'`
 	exit ;;
     i*:CYGWIN*:*)
-	echo ${UNAME_MACHINE}-pc-cygwin
+	echo ${UNAME_BITSEND}-pc-cygwin
 	exit ;;
     *:MINGW64*:*)
-	echo ${UNAME_MACHINE}-pc-mingw64
+	echo ${UNAME_BITSEND}-pc-mingw64
 	exit ;;
     *:MINGW*:*)
-	echo ${UNAME_MACHINE}-pc-mingw32
+	echo ${UNAME_BITSEND}-pc-mingw32
 	exit ;;
     *:MSYS*:*)
-	echo ${UNAME_MACHINE}-pc-msys
+	echo ${UNAME_BITSEND}-pc-msys
 	exit ;;
     i*:windows32*:*)
 	# uname -m includes "-pc" on this system.
-	echo ${UNAME_MACHINE}-mingw32
+	echo ${UNAME_BITSEND}-mingw32
 	exit ;;
     i*:PW*:*)
-	echo ${UNAME_MACHINE}-pc-pw32
+	echo ${UNAME_BITSEND}-pc-pw32
 	exit ;;
     *:Interix*:*)
-	case ${UNAME_MACHINE} in
+	case ${UNAME_BITSEND} in
 	    x86)
 		echo i586-pc-interix${UNAME_RELEASE}
 		exit ;;
@@ -875,7 +875,7 @@ EOF
 		exit ;;
 	esac ;;
     [345]86:Windows_95:* | [345]86:Windows_98:* | [345]86:Windows_NT:*)
-	echo i${UNAME_MACHINE}-pc-mks
+	echo i${UNAME_BITSEND}-pc-mks
 	exit ;;
     8664:Windows_NT:*)
 	echo x86_64-pc-mks
@@ -883,11 +883,11 @@ EOF
     i*:Windows_NT*:* | Pentium*:Windows_NT*:*)
 	# How do we know it's Interix rather than the generic POSIX subsystem?
 	# It also conflicts with pre-2.0 versions of AT&T UWIN. Should we
-	# UNAME_MACHINE based on the output of uname instead of i386?
+	# UNAME_BITSEND based on the output of uname instead of i386?
 	echo i586-pc-interix
 	exit ;;
     i*:UWIN*:*)
-	echo ${UNAME_MACHINE}-pc-uwin
+	echo ${UNAME_BITSEND}-pc-uwin
 	exit ;;
     amd64:CYGWIN*:*:* | x86_64:CYGWIN*:*:*)
 	echo x86_64-unknown-cygwin
@@ -900,99 +900,99 @@ EOF
 	exit ;;
     *:GNU:*:*)
 	# the GNU system
-	echo `echo ${UNAME_MACHINE}|sed -e 's,[-/].*$,,'`-unknown-${LIBC}`echo ${UNAME_RELEASE}|sed -e 's,/.*$,,'`
+	echo `echo ${UNAME_BITSEND}|sed -e 's,[-/].*$,,'`-unknown-${LIBC}`echo ${UNAME_RELEASE}|sed -e 's,/.*$,,'`
 	exit ;;
     *:GNU/*:*:*)
 	# other systems with GNU libc and userland
-	echo ${UNAME_MACHINE}-unknown-`echo ${UNAME_SYSTEM} | sed 's,^[^/]*/,,' | tr "[:upper:]" "[:lower:]"``echo ${UNAME_RELEASE}|sed -e 's/[-(].*//'`-${LIBC}
+	echo ${UNAME_BITSEND}-unknown-`echo ${UNAME_SYSTEM} | sed 's,^[^/]*/,,' | tr "[:upper:]" "[:lower:]"``echo ${UNAME_RELEASE}|sed -e 's/[-(].*//'`-${LIBC}
 	exit ;;
     i*86:Minix:*:*)
-	echo ${UNAME_MACHINE}-pc-minix
+	echo ${UNAME_BITSEND}-pc-minix
 	exit ;;
     aarch64:Linux:*:*)
-	echo ${UNAME_MACHINE}-unknown-linux-${LIBC}
+	echo ${UNAME_BITSEND}-unknown-linux-${LIBC}
 	exit ;;
     aarch64_be:Linux:*:*)
-	UNAME_MACHINE=aarch64_be
-	echo ${UNAME_MACHINE}-unknown-linux-${LIBC}
+	UNAME_BITSEND=aarch64_be
+	echo ${UNAME_BITSEND}-unknown-linux-${LIBC}
 	exit ;;
     alpha:Linux:*:*)
 	case `sed -n '/^cpu model/s/^.*: \(.*\)/\1/p' < /proc/cpuinfo` in
-	  EV5)   UNAME_MACHINE=alphaev5 ;;
-	  EV56)  UNAME_MACHINE=alphaev56 ;;
-	  PCA56) UNAME_MACHINE=alphapca56 ;;
-	  PCA57) UNAME_MACHINE=alphapca56 ;;
-	  EV6)   UNAME_MACHINE=alphaev6 ;;
-	  EV67)  UNAME_MACHINE=alphaev67 ;;
-	  EV68*) UNAME_MACHINE=alphaev68 ;;
+	  EV5)   UNAME_BITSEND=alphaev5 ;;
+	  EV56)  UNAME_BITSEND=alphaev56 ;;
+	  PCA56) UNAME_BITSEND=alphapca56 ;;
+	  PCA57) UNAME_BITSEND=alphapca56 ;;
+	  EV6)   UNAME_BITSEND=alphaev6 ;;
+	  EV67)  UNAME_BITSEND=alphaev67 ;;
+	  EV68*) UNAME_BITSEND=alphaev68 ;;
 	esac
 	objdump --private-headers /bin/sh | grep -q ld.so.1
 	if test "$?" = 0 ; then LIBC=gnulibc1 ; fi
-	echo ${UNAME_MACHINE}-unknown-linux-${LIBC}
+	echo ${UNAME_BITSEND}-unknown-linux-${LIBC}
 	exit ;;
     arc:Linux:*:* | arceb:Linux:*:*)
-	echo ${UNAME_MACHINE}-unknown-linux-${LIBC}
+	echo ${UNAME_BITSEND}-unknown-linux-${LIBC}
 	exit ;;
     arm*:Linux:*:*)
 	eval $set_cc_for_build
 	if echo __ARM_EABI__ | $CC_FOR_BUILD -E - 2>/dev/null \
 	    | grep -q __ARM_EABI__
 	then
-	    echo ${UNAME_MACHINE}-unknown-linux-${LIBC}
+	    echo ${UNAME_BITSEND}-unknown-linux-${LIBC}
 	else
 	    if echo __ARM_PCS_VFP | $CC_FOR_BUILD -E - 2>/dev/null \
 		| grep -q __ARM_PCS_VFP
 	    then
-		echo ${UNAME_MACHINE}-unknown-linux-${LIBC}eabi
+		echo ${UNAME_BITSEND}-unknown-linux-${LIBC}eabi
 	    else
-		echo ${UNAME_MACHINE}-unknown-linux-${LIBC}eabihf
+		echo ${UNAME_BITSEND}-unknown-linux-${LIBC}eabihf
 	    fi
 	fi
 	exit ;;
     avr32*:Linux:*:*)
-	echo ${UNAME_MACHINE}-unknown-linux-${LIBC}
+	echo ${UNAME_BITSEND}-unknown-linux-${LIBC}
 	exit ;;
     cris:Linux:*:*)
-	echo ${UNAME_MACHINE}-axis-linux-${LIBC}
+	echo ${UNAME_BITSEND}-axis-linux-${LIBC}
 	exit ;;
     crisv32:Linux:*:*)
-	echo ${UNAME_MACHINE}-axis-linux-${LIBC}
+	echo ${UNAME_BITSEND}-axis-linux-${LIBC}
 	exit ;;
     e2k:Linux:*:*)
-	echo ${UNAME_MACHINE}-unknown-linux-${LIBC}
+	echo ${UNAME_BITSEND}-unknown-linux-${LIBC}
 	exit ;;
     frv:Linux:*:*)
-	echo ${UNAME_MACHINE}-unknown-linux-${LIBC}
+	echo ${UNAME_BITSEND}-unknown-linux-${LIBC}
 	exit ;;
     hexagon:Linux:*:*)
-	echo ${UNAME_MACHINE}-unknown-linux-${LIBC}
+	echo ${UNAME_BITSEND}-unknown-linux-${LIBC}
 	exit ;;
     i*86:Linux:*:*)
-	echo ${UNAME_MACHINE}-pc-linux-${LIBC}
+	echo ${UNAME_BITSEND}-pc-linux-${LIBC}
 	exit ;;
     ia64:Linux:*:*)
-	echo ${UNAME_MACHINE}-unknown-linux-${LIBC}
+	echo ${UNAME_BITSEND}-unknown-linux-${LIBC}
 	exit ;;
     k1om:Linux:*:*)
-	echo ${UNAME_MACHINE}-unknown-linux-${LIBC}
+	echo ${UNAME_BITSEND}-unknown-linux-${LIBC}
 	exit ;;
     m32r*:Linux:*:*)
-	echo ${UNAME_MACHINE}-unknown-linux-${LIBC}
+	echo ${UNAME_BITSEND}-unknown-linux-${LIBC}
 	exit ;;
     m68*:Linux:*:*)
-	echo ${UNAME_MACHINE}-unknown-linux-${LIBC}
+	echo ${UNAME_BITSEND}-unknown-linux-${LIBC}
 	exit ;;
     mips:Linux:*:* | mips64:Linux:*:*)
 	eval $set_cc_for_build
 	sed 's/^	//' << EOF >$dummy.c
 	#undef CPU
-	#undef ${UNAME_MACHINE}
-	#undef ${UNAME_MACHINE}el
+	#undef ${UNAME_BITSEND}
+	#undef ${UNAME_BITSEND}el
 	#if defined(__MIPSEL__) || defined(__MIPSEL) || defined(_MIPSEL) || defined(MIPSEL)
-	CPU=${UNAME_MACHINE}el
+	CPU=${UNAME_BITSEND}el
 	#else
 	#if defined(__MIPSEB__) || defined(__MIPSEB) || defined(_MIPSEB) || defined(MIPSEB)
-	CPU=${UNAME_MACHINE}
+	CPU=${UNAME_BITSEND}
 	#else
 	CPU=
 	#endif
@@ -1002,13 +1002,13 @@ EOF
 	test x"${CPU}" != x && { echo "${CPU}-unknown-linux-${LIBC}"; exit; }
 	;;
     mips64el:Linux:*:*)
-	echo ${UNAME_MACHINE}-unknown-linux-${LIBC}
+	echo ${UNAME_BITSEND}-unknown-linux-${LIBC}
 	exit ;;
     openrisc*:Linux:*:*)
 	echo or1k-unknown-linux-${LIBC}
 	exit ;;
     or32:Linux:*:* | or1k*:Linux:*:*)
-	echo ${UNAME_MACHINE}-unknown-linux-${LIBC}
+	echo ${UNAME_BITSEND}-unknown-linux-${LIBC}
 	exit ;;
     padre:Linux:*:*)
 	echo sparc-unknown-linux-${LIBC}
@@ -1037,31 +1037,31 @@ EOF
 	echo powerpcle-unknown-linux-${LIBC}
 	exit ;;
     riscv32:Linux:*:* | riscv64:Linux:*:*)
-	echo ${UNAME_MACHINE}-unknown-linux-${LIBC}
+	echo ${UNAME_BITSEND}-unknown-linux-${LIBC}
 	exit ;;
     s390:Linux:*:* | s390x:Linux:*:*)
-	echo ${UNAME_MACHINE}-ibm-linux-${LIBC}
+	echo ${UNAME_BITSEND}-ibm-linux-${LIBC}
 	exit ;;
     sh64*:Linux:*:*)
-	echo ${UNAME_MACHINE}-unknown-linux-${LIBC}
+	echo ${UNAME_BITSEND}-unknown-linux-${LIBC}
 	exit ;;
     sh*:Linux:*:*)
-	echo ${UNAME_MACHINE}-unknown-linux-${LIBC}
+	echo ${UNAME_BITSEND}-unknown-linux-${LIBC}
 	exit ;;
     sparc:Linux:*:* | sparc64:Linux:*:*)
-	echo ${UNAME_MACHINE}-unknown-linux-${LIBC}
+	echo ${UNAME_BITSEND}-unknown-linux-${LIBC}
 	exit ;;
     tile*:Linux:*:*)
-	echo ${UNAME_MACHINE}-unknown-linux-${LIBC}
+	echo ${UNAME_BITSEND}-unknown-linux-${LIBC}
 	exit ;;
     vax:Linux:*:*)
-	echo ${UNAME_MACHINE}-dec-linux-${LIBC}
+	echo ${UNAME_BITSEND}-dec-linux-${LIBC}
 	exit ;;
     x86_64:Linux:*:*)
-	echo ${UNAME_MACHINE}-pc-linux-${LIBC}
+	echo ${UNAME_BITSEND}-pc-linux-${LIBC}
 	exit ;;
     xtensa*:Linux:*:*)
-	echo ${UNAME_MACHINE}-unknown-linux-${LIBC}
+	echo ${UNAME_BITSEND}-unknown-linux-${LIBC}
 	exit ;;
     i*86:DYNIX/ptx:4*:*)
 	# ptx 4.0 does uname -s correctly, with DYNIX/ptx in there.
@@ -1075,61 +1075,61 @@ EOF
 	# I am not positive that other SVR4 systems won't match this,
 	# I just have to hope.  -- rms.
 	# Use sysv4.2uw... so that sysv4* matches it.
-	echo ${UNAME_MACHINE}-pc-sysv4.2uw${UNAME_VERSION}
+	echo ${UNAME_BITSEND}-pc-sysv4.2uw${UNAME_VERSION}
 	exit ;;
     i*86:OS/2:*:*)
 	# If we were able to find `uname', then EMX Unix compatibility
 	# is probably installed.
-	echo ${UNAME_MACHINE}-pc-os2-emx
+	echo ${UNAME_BITSEND}-pc-os2-emx
 	exit ;;
     i*86:XTS-300:*:STOP)
-	echo ${UNAME_MACHINE}-unknown-stop
+	echo ${UNAME_BITSEND}-unknown-stop
 	exit ;;
     i*86:atheos:*:*)
-	echo ${UNAME_MACHINE}-unknown-atheos
+	echo ${UNAME_BITSEND}-unknown-atheos
 	exit ;;
     i*86:syllable:*:*)
-	echo ${UNAME_MACHINE}-pc-syllable
+	echo ${UNAME_BITSEND}-pc-syllable
 	exit ;;
     i*86:LynxOS:2.*:* | i*86:LynxOS:3.[01]*:* | i*86:LynxOS:4.[02]*:*)
 	echo i386-unknown-lynxos${UNAME_RELEASE}
 	exit ;;
     i*86:*DOS:*:*)
-	echo ${UNAME_MACHINE}-pc-msdosdjgpp
+	echo ${UNAME_BITSEND}-pc-msdosdjgpp
 	exit ;;
     i*86:*:4.*:* | i*86:SYSTEM_V:4.*:*)
 	UNAME_REL=`echo ${UNAME_RELEASE} | sed 's/\/MP$//'`
 	if grep Novell /usr/include/link.h >/dev/null 2>/dev/null; then
-		echo ${UNAME_MACHINE}-univel-sysv${UNAME_REL}
+		echo ${UNAME_BITSEND}-univel-sysv${UNAME_REL}
 	else
-		echo ${UNAME_MACHINE}-pc-sysv${UNAME_REL}
+		echo ${UNAME_BITSEND}-pc-sysv${UNAME_REL}
 	fi
 	exit ;;
     i*86:*:5:[678]*)
 	# UnixWare 7.x, OpenUNIX and OpenServer 6.
-	case `/bin/uname -X | grep "^Machine"` in
-	    *486*)	     UNAME_MACHINE=i486 ;;
-	    *Pentium)	     UNAME_MACHINE=i586 ;;
-	    *Pent*|*Celeron) UNAME_MACHINE=i686 ;;
+	case `/bin/uname -X | grep "^Bitsend"` in
+	    *486*)	     UNAME_BITSEND=i486 ;;
+	    *Pentium)	     UNAME_BITSEND=i586 ;;
+	    *Pent*|*Celeron) UNAME_BITSEND=i686 ;;
 	esac
-	echo ${UNAME_MACHINE}-unknown-sysv${UNAME_RELEASE}${UNAME_SYSTEM}${UNAME_VERSION}
+	echo ${UNAME_BITSEND}-unknown-sysv${UNAME_RELEASE}${UNAME_SYSTEM}${UNAME_VERSION}
 	exit ;;
     i*86:*:3.2:*)
 	if test -f /usr/options/cb.name; then
 		UNAME_REL=`sed -n 's/.*Version //p' </usr/options/cb.name`
-		echo ${UNAME_MACHINE}-pc-isc$UNAME_REL
+		echo ${UNAME_BITSEND}-pc-isc$UNAME_REL
 	elif /bin/uname -X 2>/dev/null >/dev/null ; then
 		UNAME_REL=`(/bin/uname -X|grep Release|sed -e 's/.*= //')`
-		(/bin/uname -X|grep i80486 >/dev/null) && UNAME_MACHINE=i486
-		(/bin/uname -X|grep '^Machine.*Pentium' >/dev/null) \
-			&& UNAME_MACHINE=i586
-		(/bin/uname -X|grep '^Machine.*Pent *II' >/dev/null) \
-			&& UNAME_MACHINE=i686
-		(/bin/uname -X|grep '^Machine.*Pentium Pro' >/dev/null) \
-			&& UNAME_MACHINE=i686
-		echo ${UNAME_MACHINE}-pc-sco$UNAME_REL
+		(/bin/uname -X|grep i80486 >/dev/null) && UNAME_BITSEND=i486
+		(/bin/uname -X|grep '^Bitsend.*Pentium' >/dev/null) \
+			&& UNAME_BITSEND=i586
+		(/bin/uname -X|grep '^Bitsend.*Pent *II' >/dev/null) \
+			&& UNAME_BITSEND=i686
+		(/bin/uname -X|grep '^Bitsend.*Pentium Pro' >/dev/null) \
+			&& UNAME_BITSEND=i686
+		echo ${UNAME_BITSEND}-pc-sco$UNAME_REL
 	else
-		echo ${UNAME_MACHINE}-pc-sysv32
+		echo ${UNAME_BITSEND}-pc-sysv32
 	fi
 	exit ;;
     pc:*:*:*)
@@ -1213,8 +1213,8 @@ EOF
 	exit ;;
     *:SINIX-*:*:*)
 	if uname -p 2>/dev/null >/dev/null ; then
-		UNAME_MACHINE=`(uname -p) 2>/dev/null`
-		echo ${UNAME_MACHINE}-sni-sysv4
+		UNAME_BITSEND=`(uname -p) 2>/dev/null`
+		echo ${UNAME_BITSEND}-sni-sysv4
 	else
 		echo ns32k-sni-sysv
 	fi
@@ -1234,7 +1234,7 @@ EOF
 	exit ;;
     i*86:VOS:*:*)
 	# From Paul.Green@stratus.com.
-	echo ${UNAME_MACHINE}-stratus-vos
+	echo ${UNAME_BITSEND}-stratus-vos
 	exit ;;
     *:VOS:*:*)
 	# From Paul.Green@stratus.com.
@@ -1293,7 +1293,7 @@ EOF
 	echo powerpc-apple-rhapsody${UNAME_RELEASE}
 	exit ;;
     *:Rhapsody:*:*)
-	echo ${UNAME_MACHINE}-apple-rhapsody${UNAME_RELEASE}
+	echo ${UNAME_BITSEND}-apple-rhapsody${UNAME_RELEASE}
 	exit ;;
     *:Darwin:*:*)
 	UNAME_PROCESSOR=`uname -p` || UNAME_PROCESSOR=unknown
@@ -1328,9 +1328,9 @@ EOF
 	UNAME_PROCESSOR=`uname -p`
 	if test "$UNAME_PROCESSOR" = x86; then
 		UNAME_PROCESSOR=i386
-		UNAME_MACHINE=pc
+		UNAME_BITSEND=pc
 	fi
-	echo ${UNAME_PROCESSOR}-${UNAME_MACHINE}-nto-qnx${UNAME_RELEASE}
+	echo ${UNAME_PROCESSOR}-${UNAME_BITSEND}-nto-qnx${UNAME_RELEASE}
 	exit ;;
     *:QNX:*:4*)
 	echo i386-pc-qnx
@@ -1354,18 +1354,18 @@ EOF
 	echo bs2000-siemens-sysv
 	exit ;;
     DS/*:UNIX_System_V:*:*)
-	echo ${UNAME_MACHINE}-${UNAME_SYSTEM}-${UNAME_RELEASE}
+	echo ${UNAME_BITSEND}-${UNAME_SYSTEM}-${UNAME_RELEASE}
 	exit ;;
     *:Plan9:*:*)
 	# "uname -m" is not consistent, so use $cputype instead. 386
 	# is converted to i386 for consistency with other x86
 	# operating systems.
 	if test "$cputype" = 386; then
-	    UNAME_MACHINE=i386
+	    UNAME_BITSEND=i386
 	else
-	    UNAME_MACHINE="$cputype"
+	    UNAME_BITSEND="$cputype"
 	fi
-	echo ${UNAME_MACHINE}-unknown-plan9
+	echo ${UNAME_BITSEND}-unknown-plan9
 	exit ;;
     *:TOPS-10:*:*)
 	echo pdp10-unknown-tops10
@@ -1389,11 +1389,11 @@ EOF
 	echo mips-sei-seiux${UNAME_RELEASE}
 	exit ;;
     *:DragonFly:*:*)
-	echo ${UNAME_MACHINE}-unknown-dragonfly`echo ${UNAME_RELEASE}|sed -e 's/[-(].*//'`
+	echo ${UNAME_BITSEND}-unknown-dragonfly`echo ${UNAME_RELEASE}|sed -e 's/[-(].*//'`
 	exit ;;
     *:*VMS:*:*)
-	UNAME_MACHINE=`(uname -p) 2>/dev/null`
-	case "${UNAME_MACHINE}" in
+	UNAME_BITSEND=`(uname -p) 2>/dev/null`
+	case "${UNAME_BITSEND}" in
 	    A*) echo alpha-dec-vms ; exit ;;
 	    I*) echo ia64-dec-vms ; exit ;;
 	    V*) echo vax-dec-vms ; exit ;;
@@ -1402,16 +1402,16 @@ EOF
 	echo i386-pc-xenix
 	exit ;;
     i*86:skyos:*:*)
-	echo ${UNAME_MACHINE}-pc-skyos`echo ${UNAME_RELEASE} | sed -e 's/ .*$//'`
+	echo ${UNAME_BITSEND}-pc-skyos`echo ${UNAME_RELEASE} | sed -e 's/ .*$//'`
 	exit ;;
     i*86:rdos:*:*)
-	echo ${UNAME_MACHINE}-pc-rdos
+	echo ${UNAME_BITSEND}-pc-rdos
 	exit ;;
     i*86:AROS:*:*)
-	echo ${UNAME_MACHINE}-pc-aros
+	echo ${UNAME_BITSEND}-pc-aros
 	exit ;;
     x86_64:VMkernel:*:*)
-	echo ${UNAME_MACHINE}-unknown-esx
+	echo ${UNAME_BITSEND}-unknown-esx
 	exit ;;
     amd64:Isilon\ OneFS:*:*)
 	echo x86_64-unknown-onefs
@@ -1450,7 +1450,7 @@ hostinfo               = `(hostinfo) 2>/dev/null`
 /usr/bin/oslevel       = `(/usr/bin/oslevel) 2>/dev/null`
 /usr/convex/getsysinfo = `(/usr/convex/getsysinfo) 2>/dev/null`
 
-UNAME_MACHINE = ${UNAME_MACHINE}
+UNAME_BITSEND = ${UNAME_BITSEND}
 UNAME_RELEASE = ${UNAME_RELEASE}
 UNAME_SYSTEM  = ${UNAME_SYSTEM}
 UNAME_VERSION = ${UNAME_VERSION}

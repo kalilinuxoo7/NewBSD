@@ -1,13 +1,13 @@
 ﻿*.tar.gz
 
 *.exe
-src/machinecoin
-src/machinecoind
-src/machinecoin-cli
-src/machinecoin-tx
-src/test/test_machinecoin
-src/test/test_machinecoin_fuzzy
-src/qt/test/test_machinecoin-qt
+src/bitsend
+src/bitsendd
+src/bitsend-cli
+src/bitsend-tx
+src/test/test_bitsend
+src/test/test_bitsend_fuzzy
+src/qt/test/test_bitsend-qt
 
 # autoreconf
 Makefile.in
@@ -30,8 +30,8 @@ config.log
 config.status
 configure
 libtool
-src/config/machinecoin-config.h
-src/config/machinecoin-config.h.in
+src/config/bitsend-config.h
+src/config/bitsend-config.h.in
 src/config/stamp-h1
 share/setup.nsi
 share/qt/Info.plist
@@ -44,11 +44,11 @@ src/qt/forms/ui_*.h
 
 src/qt/test/moc*.cpp
 
-src/qt/machinecoin-qt.config
-src/qt/machinecoin-qt.creator
-src/qt/machinecoin-qt.creator.user
-src/qt/machinecoin-qt.files
-src/qt/machinecoin-qt.includes
+src/qt/bitsend-qt.config
+src/qt/bitsend-qt.creator
+src/qt/bitsend-qt.creator.user
+src/qt/bitsend-qt.files
+src/qt/bitsend-qt.includes
 
 .deps
 .dirstamp
@@ -80,13 +80,13 @@ src/qt/machinecoin-qt.includes
 # Compilation and Qt preprocessor part
 *.qm
 Makefile
-machinecoin-qt
-Machinecoin-Qt.app
+bitsend-qt
+Bitsend-Qt.app
 background.tiff*
 
 # Unit-tests
 Makefile.test
-machinecoin-qt_test
+bitsend-qt_test
 
 # Resources cpp
 qrc_*.cpp
@@ -99,7 +99,7 @@ build
 *.gcno
 *.gcda
 /*.info
-test_machinecoin.coverage/
+test_bitsend.coverage/
 total.coverage/
 coverage_percent.txt
 
@@ -114,7 +114,7 @@ test/cache/*
 
 /doc/doxygen/
 
-libmachinecoinconsensus.pc
+libbitsendconsensus.pc
 contrib/devtools/split-debug.sh
 
 !depends/patches/*

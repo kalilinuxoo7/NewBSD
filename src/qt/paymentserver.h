@@ -1,12 +1,12 @@
-﻿// Copyright (c) 2011-2018 The Machinecoin Core developers
+﻿// Copyright (c) 2011-2018 The Bitsend Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef MACHINECOIN_QT_PAYMENTSERVER_H
-#define MACHINECOIN_QT_PAYMENTSERVER_H
+#ifndef BITSEND_QT_PAYMENTSERVER_H
+#define BITSEND_QT_PAYMENTSERVER_H
 
 // This class handles payment requests from clicking on
-// machinecoin: URIs
+// bitsend: URIs
 //
 // This is somewhat tricky, because we have to deal with
 // the situation where the user clicks on a link during
@@ -145,4 +145,4 @@ private:
     OptionsModel *optionsModel;
 };
 
-#endif // MACHINECOIN_QT_PAYMENTSERVER_H
+#endif // BITSEND_QT_PAYMENTSERVER_H

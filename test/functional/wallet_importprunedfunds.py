@@ -1,12 +1,12 @@
 ﻿#!/usr/bin/env python3
-# Copyright (c) 2014-2017 The Machinecoin Core developers
+# Copyright (c) 2014-2017 The Bitsend Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 """Test the importprunedfunds and removeprunedfunds RPCs."""
-from test_framework.test_framework import MachinecoinTestFramework
+from test_framework.test_framework import BitsendTestFramework
 from test_framework.util import *
 
-class ImportPrunedFundsTest(MachinecoinTestFramework):
+class ImportPrunedFundsTest(BitsendTestFramework):
     def set_test_params(self):
         self.setup_clean_chain = True
         self.num_nodes = 2

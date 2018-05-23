@@ -1,9 +1,9 @@
-﻿// Copyright (c) 2012-2017 The Machinecoin Core developers
+﻿// Copyright (c) 2012-2017 The Bitsend Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef MACHINECOIN_DBWRAPPER_H
-#define MACHINECOIN_DBWRAPPER_H
+#ifndef BITSEND_DBWRAPPER_H
+#define BITSEND_DBWRAPPER_H
 
 #include <clientversion.h>
 #include <fs.h>
@@ -340,4 +340,4 @@ public:
 
 };
 
-#endif // MACHINECOIN_DBWRAPPER_H
+#endif // BITSEND_DBWRAPPER_H

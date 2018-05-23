@@ -1,10 +1,10 @@
 ﻿// Copyright (c) 2010 Satoshi Nakamoto
-// Copyright (c) 2009-2018 The Machinecoin Core developers
+// Copyright (c) 2009-2018 The Bitsend Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef MACHINECOIN_RPCSERVER_H
-#define MACHINECOIN_RPCSERVER_H
+#ifndef BITSEND_RPCSERVER_H
+#define BITSEND_RPCSERVER_H
 
 #include <amount.h>
 #include <rpc/protocol.h>
@@ -140,7 +140,7 @@ public:
 };
 
 /**
- * Machinecoin RPC command dispatcher.
+ * Bitsend RPC command dispatcher.
  */
 class CRPCTable
 {
@@ -210,4 +210,4 @@ std::string JSONRPCExecBatch(const JSONRPCRequest& jreq, const UniValue& vReq);
 // Retrieves any serialization flags requested in command line argument
 int RPCSerializationFlags();
 
-#endif // MACHINECOIN_RPCSERVER_H
+#endif // BITSEND_RPCSERVER_H

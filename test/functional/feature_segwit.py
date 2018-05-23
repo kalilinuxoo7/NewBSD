@@ -1,5 +1,5 @@
 ﻿#!/usr/bin/env python3
-# Copyright (c) 2016-2017 The Machinecoin Core developers
+# Copyright (c) 2016-2017 The Bitsend Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 """Test the SegWit changeover logic."""
@@ -12,7 +12,7 @@ from test_framework.address import (
     script_to_p2wsh,
 )
 from test_framework.blocktools import witness_script, send_to_witness
-from test_framework.test_framework import MachinecoinTestFramework
+from test_framework.test_framework import BitsendTestFramework
 from test_framework.util import *
 from test_framework.mininode import sha256, CTransaction, CTxIn, COutPoint, CTxOut, COIN, ToHex, FromHex
 from test_framework.address import script_to_p2sh, key_to_p2pkh
@@ -35,7 +35,7 @@ def find_unspent(node, min_value):
         if utxo['amount'] >= min_value:
             return utxo
 
-class SegWitTest(MachinecoinTestFramework):
+class SegWitTest(BitsendTestFramework):
     def set_test_params(self):
         self.setup_clean_chain = True
         self.num_nodes = 3
@@ -264,7 +264,7 @@ class SegWitTest(MachinecoinTestFramework):
             "02A47F2CBCEFFA7B9BCDA184E7D5668D3DA6F9079AD41E422FA5FD7B2D458F2538", # cPQFjcVRpAUBG8BA9hzr2yEzHwKoMgLkJZBBtK9vJnvGJgMjzTbd
             "036722F784214129FEB9E8129D626324F3F6716555B603FFE8300BBCB882151228", # cQGtcm34xiLjB1v7bkRa4V3aAc9tS2UTuBZ1UnZGeSeNy627fN66
             "0266A8396EE936BF6D99D17920DB21C6C7B1AB14C639D5CD72B300297E416FD2EC", # cTW5mR5M45vHxXkeChZdtSPozrFwFgmEvTNnanCW6wrqwaCZ1X7K
-            "0450A38BD7F0AC212FEBA77354A9B036A32E0F7C81FC4E0C5ADCA7C549C4505D2522458C2D9AE3CEFD684E039194B72C8A10F9CB9D4764AB26FCC2718D421D3B84", # 92h2XPssjBpsJN5CqSP7v9a7cf2kgDunBC6PDFwJHMACM1rrVBJ
+            "0450A38BD7F0AC212FEBA77354A9B036A32E0F7C81FC4E0C5ADCA7C549C4505D2522458C2D9AE3CEFD684E039194B72C8A10F9CB9D4764AB26FCC2718D421D3B84", # 92h2XPssjBpsJN5CqSP7v9a7cf2kgDunBC6PDFwJHBSDM1rrVBJ
         ]
 
         # Import a compressed key and an uncompressed key, generate some multisig addresses

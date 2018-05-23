@@ -1,10 +1,10 @@
 ﻿// Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2009-2018 The Machinecoin Core developers
+// Copyright (c) 2009-2018 The Bitsend Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef MACHINECOIN_PRIMITIVES_BLOCK_H
-#define MACHINECOIN_PRIMITIVES_BLOCK_H
+#ifndef BITSEND_PRIMITIVES_BLOCK_H
+#define BITSEND_PRIMITIVES_BLOCK_H
 
 #include <primitives/transaction.h>
 #include <serialize.h>
@@ -158,4 +158,4 @@ struct CBlockLocator
     }
 };
 
-#endif // MACHINECOIN_PRIMITIVES_BLOCK_H
+#endif // BITSEND_PRIMITIVES_BLOCK_H

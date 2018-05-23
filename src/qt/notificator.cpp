@@ -1,4 +1,4 @@
-﻿// Copyright (c) 2011-2018 The Machinecoin Core developers
+﻿// Copyright (c) 2011-2018 The Bitsend Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -20,8 +20,8 @@
 // Include ApplicationServices.h after QtDbus to avoid redefinition of check().
 // This affects at least OSX 10.6. See /usr/include/AssertMacros.h for details.
 // Note: This could also be worked around using:
-// #define __ASSERT_MACROS_DEFINE_VERSIONS_WITHOUT_UNDERSCORES 0
-#ifdef Q_OS_MAC
+// #define __ASSERT_BSDROS_DEFINE_VERSIONS_WITHOUT_UNDERSCORES 0
+#ifdef Q_OS_BSD
 #include <ApplicationServices/ApplicationServices.h>
 #include <qt/macnotificationhandler.h>
 #endif
@@ -54,7 +54,7 @@ Notificator::Notificator(const QString &_programName, QSystemTrayIcon *_trayIcon
         mode = Freedesktop;
     }
 #endif
-#ifdef Q_OS_MAC
+#ifdef Q_OS_BSD
     // check if users OS has support for NSUserNotification
     if( MacNotificationHandler::instance()->hasUserNotificationCenterSupport()) {
         mode = UserNotificationCenter;
@@ -223,7 +223,7 @@ void Notificator::notifySystray(Class cls, const QString &title, const QString &
 }
 
 // Based on Qt's tray icon implementation
-#ifdef Q_OS_MAC
+#ifdef Q_OS_BSD
 
 void Notificator::notifyMacUserNotificationCenter(Class cls, const QString &title, const QString &text, const QIcon &icon) {
     // icon is not supported by the user notification center yet. OSX will use the app icon.
@@ -244,7 +244,7 @@ void Notificator::notify(Class cls, const QString &title, const QString &text, c
     case QSystemTray:
         notifySystray(cls, title, text, icon, millisTimeout);
         break;
-#ifdef Q_OS_MAC
+#ifdef Q_OS_BSD
     case UserNotificationCenter:
         notifyMacUserNotificationCenter(cls, title, text, icon);
         break;

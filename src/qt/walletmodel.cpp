@@ -1,4 +1,4 @@
-// Copyright (c) 2011-2017 The Machinecoin Core developers
+// Copyright (c) 2011-2017 The Bitsend Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -234,7 +234,7 @@ WalletModel::SendCoinsReturn WalletModel::prepareTransaction(WalletModelTransact
             total += subtotal;
         }
         else
-        {   // User-entered machinecoin address / amount:
+        {   // User-entered bitsend address / amount:
             if(!validateAddress(rcp.address))
             {
                 return InvalidAddress;
@@ -325,7 +325,7 @@ WalletModel::SendCoinsReturn WalletModel::sendCoins(WalletModelTransaction &tran
                 rcp.paymentRequest.SerializeToString(&value);
                 newTx->vOrderForm.push_back(make_pair(key, value));
             }
-            else if (!rcp.message.isEmpty()) // Message from normal machinecoin:URI (machinecoin:123...?message=example)
+            else if (!rcp.message.isEmpty()) // Message from normal bitsend:URI (bitsend:123...?message=example)
                 newTx->vOrderForm.push_back(make_pair("Message", rcp.message.toStdString()));
         }
 
@@ -683,15 +683,15 @@ bool WalletModel::bumpFee(uint256 hash)
     questionString.append("<tr><td>");
     questionString.append(tr("Current fee:"));
     questionString.append("</td><td>");
-    questionString.append(MachinecoinUnits::formatHtmlWithUnit(getOptionsModel()->getDisplayUnit(), old_fee));
+    questionString.append(BitsendUnits::formatHtmlWithUnit(getOptionsModel()->getDisplayUnit(), old_fee));
     questionString.append("</td></tr><tr><td>");
     questionString.append(tr("Increase:"));
     questionString.append("</td><td>");
-    questionString.append(MachinecoinUnits::formatHtmlWithUnit(getOptionsModel()->getDisplayUnit(), new_fee - old_fee));
+    questionString.append(BitsendUnits::formatHtmlWithUnit(getOptionsModel()->getDisplayUnit(), new_fee - old_fee));
     questionString.append("</td></tr><tr><td>");
     questionString.append(tr("New fee:"));
     questionString.append("</td><td>");
-    questionString.append(MachinecoinUnits::formatHtmlWithUnit(getOptionsModel()->getDisplayUnit(), new_fee));
+    questionString.append(BitsendUnits::formatHtmlWithUnit(getOptionsModel()->getDisplayUnit(), new_fee));
     questionString.append("</td></tr></table>");
     SendConfirmationDialog confirmationDialog(tr("Confirm fee bump"), questionString);
     confirmationDialog.exec();

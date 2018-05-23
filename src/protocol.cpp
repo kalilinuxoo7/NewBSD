@@ -1,5 +1,5 @@
 ﻿// Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2009-2018 The Machinecoin Core developers
+// Copyright (c) 2009-2018 The Bitsend Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -39,7 +39,7 @@ const char *SENDCMPCT="sendcmpct";
 const char *CMPCTBLOCK="cmpctblock";
 const char *GETBLOCKTXN="getblocktxn";
 const char *BLOCKTXN="blocktxn";
-// Machinecoin message types
+// Bitsend message types
 const char *MASTERNODEPAYMENTVOTE="mnw";
 const char *MASTERNODEPAYMENTBLOCK="mnwb";
 const char *MASTERNODEPAYMENTSYNC="mnget";
@@ -57,7 +57,7 @@ const char *MNVERIFY="mnv";
 const static std::string ppszTypeName[] =
 {
     "ERROR", // Should never occur
-    // Machinecoin message types
+    // Bitsend message types
     // NOTE: include non-implmented here, we must keep this list in sync with enum in protocol.h
     NetMsgType::MASTERNODEPAYMENTVOTE,
     NetMsgType::MASTERNODEPAYMENTBLOCK, // reusing, was MNSCANERROR previousely, was NOT used in 12.0, we need this for inv
@@ -99,7 +99,7 @@ const static std::string allNetMessageTypes[] = {
     NetMsgType::CMPCTBLOCK,
     NetMsgType::GETBLOCKTXN,
     NetMsgType::BLOCKTXN,
-    // Machinecoin message types
+    // Bitsend message types
     // NOTE: do NOT include non-implmented here, we want them to be "Unknown command" in ProcessMessage()
     NetMsgType::MASTERNODEPAYMENTVOTE,
     // NetMsgType::MASTERNODEPAYMENTBLOCK, // there is no message for this, only inventory

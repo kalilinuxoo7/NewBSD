@@ -1,9 +1,9 @@
-﻿// Copyright (c) 2011-2018 The Machinecoin Core developers
+﻿// Copyright (c) 2011-2018 The Bitsend Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef MACHINECOIN_QT_GUIUTIL_H
-#define MACHINECOIN_QT_GUIUTIL_H
+#ifndef BITSEND_QT_GUIUTIL_H
+#define BITSEND_QT_GUIUTIL_H
 
 #include <amount.h>
 #include <fs.h>
@@ -29,7 +29,7 @@ class QUrl;
 class QWidget;
 QT_END_NAMESPACE
 
-/** Utility functions used by the Machinecoin Qt UI.
+/** Utility functions used by the Bitsend Qt UI.
  */
 namespace GUIUtil
 {
@@ -44,10 +44,10 @@ namespace GUIUtil
     void setupAddressWidget(QValidatedLineEdit *widget, QWidget *parent);
     void setupAmountWidget(QLineEdit *widget, QWidget *parent);
 
-    // Parse "machinecoin:" URI into recipient object, return true on successful parsing
-    bool parseMachinecoinURI(const QUrl &uri, SendCoinsRecipient *out);
-    bool parseMachinecoinURI(QString uri, SendCoinsRecipient *out);
-    QString formatMachinecoinURI(const SendCoinsRecipient &info);
+    // Parse "bitsend:" URI into recipient object, return true on successful parsing
+    bool parseBitsendURI(const QUrl &uri, SendCoinsRecipient *out);
+    bool parseBitsendURI(QString uri, SendCoinsRecipient *out);
+    QString formatBitsendURI(const SendCoinsRecipient &info);
 
     // Returns true if given address+amount meets "dust" definition
     bool isDust(const QString& address, const CAmount& amount);
@@ -114,7 +114,7 @@ namespace GUIUtil
     void openDebugLogfile();
     
     // Open the config file
-    bool openMachinecoinConf();
+    bool openBitsendConf();
 
     // Replace invalid default fonts with known good ones
     void SubstituteFonts(const QString& language);
@@ -229,7 +229,7 @@ namespace GUIUtil
         void mouseReleaseEvent(QMouseEvent *event);
     };
 
-#if defined(Q_OS_MAC) && QT_VERSION >= 0x050000
+#if defined(Q_OS_BSD) && QT_VERSION >= 0x050000
     // workaround for Qt OSX Bug:
     // https://bugreports.qt-project.org/browse/QTBUG-15631
     // QProgressBar uses around 10% CPU even when app is in background
@@ -245,4 +245,4 @@ namespace GUIUtil
 
 } // namespace GUIUtil
 
-#endif // MACHINECOIN_QT_GUIUTIL_H
+#endif // BITSEND_QT_GUIUTIL_H

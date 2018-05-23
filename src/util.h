@@ -1,5 +1,5 @@
 ﻿// Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2009-2018 The Machinecoin Core developers
+// Copyright (c) 2009-2018 The Bitsend Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -7,11 +7,11 @@
  * Server/client environment: argument handling, config file parsing,
  * logging, thread wrappers, startup time
  */
-#ifndef MACHINECOIN_UTIL_H
-#define MACHINECOIN_UTIL_H
+#ifndef BITSEND_UTIL_H
+#define BITSEND_UTIL_H
 
 #if defined(HAVE_CONFIG_H)
-#include <config/machinecoin-config.h>
+#include <config/bitsend-config.h>
 #endif
 
 #include <compat.h>
@@ -33,7 +33,7 @@
 // Application startup time (used for uptime calculation)
 int64_t GetStartupTime();
 
-// Machinecoin only features
+// Bitsend only features
 extern bool fMasterNode;
 extern bool fLiteMode;
 
@@ -59,8 +59,8 @@ extern bool fLogIPs;
 extern std::atomic<bool> fReopenDebugLog;
 extern CTranslationInterface translationInterface;
 
-extern const char * const MACHINECOIN_CONF_FILENAME;
-extern const char * const MACHINECOIN_PID_FILENAME;
+extern const char * const BITSEND_CONF_FILENAME;
+extern const char * const BITSEND_PID_FILENAME;
 
 extern std::atomic<uint32_t> logCategories;
 
@@ -323,7 +323,7 @@ void RenameThread(const char* name);
  */
 template <typename Callable> void TraceThread(const char* name,  Callable func)
 {
-    std::string s = strprintf("machinecoin-%s", name);
+    std::string s = strprintf("bitsend-%s", name);
     RenameThread(s.c_str());
     try
     {
@@ -382,4 +382,4 @@ std::string IntVersionToString(uint32_t nVersion);
  */
 std::string SafeIntVersionToString(uint32_t nVersion);
 
-#endif // MACHINECOIN_UTIL_H
+#endif // BITSEND_UTIL_H

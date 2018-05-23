@@ -1,10 +1,10 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2009-2018 The Machinecoin Core developers
+// Copyright (c) 2009-2018 The Bitsend Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef MACHINECOIN_SCRIPT_SIGN_H
-#define MACHINECOIN_SCRIPT_SIGN_H
+#ifndef BITSEND_SCRIPT_SIGN_H
+#define BITSEND_SCRIPT_SIGN_H
 
 #include <script/interpreter.h>
 
@@ -87,4 +87,4 @@ void UpdateTransaction(CMutableTransaction& tx, unsigned int nIn, const Signatur
  * Solvability is unrelated to whether we consider this output to be ours. */
 bool IsSolvable(const CKeyStore& store, const CScript& script);
 
-#endif // MACHINECOIN_SCRIPT_SIGN_H
+#endif // BITSEND_SCRIPT_SIGN_H

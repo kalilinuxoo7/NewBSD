@@ -1,10 +1,10 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2009-2018 The Machinecoin Core developers
+// Copyright (c) 2009-2018 The Bitsend Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef MACHINECOIN_UNDO_H
-#define MACHINECOIN_UNDO_H
+#ifndef BITSEND_UNDO_H
+#define BITSEND_UNDO_H
 
 #include <compressor.h>
 #include <consensus/consensus.h>
@@ -109,4 +109,4 @@ public:
     }
 };
 
-#endif // MACHINECOIN_UNDO_H
+#endif // BITSEND_UNDO_H

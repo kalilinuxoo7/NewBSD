@@ -1,4 +1,4 @@
-// Copyright (c) 2011-2017 The Machinecoin Core developers
+// Copyright (c) 2011-2017 The Bitsend Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -6,7 +6,7 @@
 
 #include <qt/addressbookpage.h>
 #include <qt/askpassphrasedialog.h>
-#include <qt/machinecoingui.h>
+#include <qt/bitsendgui.h>
 #include <qt/clientmodel.h>
 #include <qt/guiutil.h>
 #include <masternodeconfig.h>
@@ -93,7 +93,7 @@ WalletView::~WalletView()
 {
 }
 
-void WalletView::setMachinecoinGUI(MachinecoinGUI *gui)
+void WalletView::setBitsendGUI(BitsendGUI *gui)
 {
     if (gui)
     {
@@ -139,7 +139,7 @@ void WalletView::setWalletModel(WalletModel *_walletModel)
     usedSendingAddressesPage->setModel(_walletModel ? _walletModel->getAddressTableModel() : nullptr);
 
     //added wallet model to avoid crash when start is clicked at masternode tab
-    //note that at this time its not possible to run node via this tab because coins are pre-loced at start of MAC and start button trying to lock it again
+    //note that at this time its not possible to run node via this tab because coins are pre-loced at start of BSD and start button trying to lock it again
     QSettings settings;
     if (settings.value("fShowMasternodesTab").toBool()) {
         masternodeListPage->setWalletModel(_walletModel);

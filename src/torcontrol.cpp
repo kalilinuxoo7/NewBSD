@@ -1,4 +1,4 @@
-// Copyright (c) 2015-2018 The Machinecoin Core developers
+// Copyright (c) 2015-2018 The Bitsend Core developers
 // Copyright (c) 2017 The Zcash developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
@@ -403,7 +403,7 @@ static bool WriteBinaryFile(const fs::path &filename, const std::string &data)
     return true;
 }
 
-/****** Machinecoin specific TorController implementation ********/
+/****** Bitsend specific TorController implementation ********/
 
 /** Controller that connects to Tor control socket, authenticate, then create
  * and maintain an ephemeral hidden service.
@@ -548,23 +548,23 @@ void TorController::auth_cb(TorControlConnection& _conn, const TorControlReply& 
 /** Compute Tor SAFECOOKIE response.
  *
  *    ServerHash is computed as:
- *      HMAC-SHA256("Tor safe cookie authentication server-to-controller hash",
+ *      HBSD-SHA256("Tor safe cookie authentication server-to-controller hash",
  *                  CookieString | ClientNonce | ServerNonce)
- *    (with the HMAC key as its first argument)
+ *    (with the HBSD key as its first argument)
  *
  *    After a controller sends a successful AUTHCHALLENGE command, the
  *    next command sent on the connection must be an AUTHENTICATE command,
  *    and the only authentication string which that AUTHENTICATE command
  *    will accept is:
  *
- *      HMAC-SHA256("Tor safe cookie authentication controller-to-server hash",
+ *      HBSD-SHA256("Tor safe cookie authentication controller-to-server hash",
  *                  CookieString | ClientNonce | ServerNonce)
  *
  */
 static std::vector<uint8_t> ComputeResponse(const std::string &key, const std::vector<uint8_t> &cookie,  const std::vector<uint8_t> &clientNonce, const std::vector<uint8_t> &serverNonce)
 {
-    CHMAC_SHA256 computeHash((const uint8_t*)key.data(), key.size());
-    std::vector<uint8_t> computedHash(CHMAC_SHA256::OUTPUT_SIZE, 0);
+    CHBSD_SHA256 computeHash((const uint8_t*)key.data(), key.size());
+    std::vector<uint8_t> computedHash(CHBSD_SHA256::OUTPUT_SIZE, 0);
     computeHash.Write(cookie.data(), cookie.size());
     computeHash.Write(clientNonce.data(), clientNonce.size());
     computeHash.Write(serverNonce.data(), serverNonce.size());

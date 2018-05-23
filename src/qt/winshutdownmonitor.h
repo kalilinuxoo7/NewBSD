@@ -1,9 +1,9 @@
-// Copyright (c) 2014 The Machinecoin Core developers
+// Copyright (c) 2014 The Bitsend Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef MACHINECOIN_QT_WINSHUTDOWNMONITOR_H
-#define MACHINECOIN_QT_WINSHUTDOWNMONITOR_H
+#ifndef BITSEND_QT_WINSHUTDOWNMONITOR_H
+#define BITSEND_QT_WINSHUTDOWNMONITOR_H
 
 #ifdef WIN32
 #include <QByteArray>
@@ -26,4 +26,4 @@ public:
 #endif
 #endif
 
-#endif // MACHINECOIN_QT_WINSHUTDOWNMONITOR_H
+#endif // BITSEND_QT_WINSHUTDOWNMONITOR_H

@@ -1,10 +1,10 @@
 ﻿// Copyright (c) 2014-2018 The Dash Core developers
-// Copyright (c) 2018 The Machinecoin Core developers
+// Copyright (c) 2018 The Bitsend Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef MACHINECOIN_DSNOTIFICATIONINTERFACE_H
-#define MACHINECOIN_DSNOTIFICATIONINTERFACE_H
+#ifndef BITSEND_DSNOTIFICATIONINTERFACE_H
+#define BITSEND_DSNOTIFICATIONINTERFACE_H
 
 #include <validationinterface.h>
 
@@ -28,4 +28,4 @@ private:
     CConnman* connman;
 };
 
-#endif // MACHINECOIN_DSNOTIFICATIONINTERFACE_H
+#endif // BITSEND_DSNOTIFICATIONINTERFACE_H

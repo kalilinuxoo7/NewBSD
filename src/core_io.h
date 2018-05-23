@@ -1,9 +1,9 @@
-﻿// Copyright (c) 2009-2018 The Machinecoin Core developers
+﻿// Copyright (c) 2009-2018 The Bitsend Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef MACHINECOIN_CORE_IO_H
-#define MACHINECOIN_CORE_IO_H
+#ifndef BITSEND_CORE_IO_H
+#define BITSEND_CORE_IO_H
 
 #include <amount.h>
 
@@ -33,4 +33,4 @@ std::string EncodeHexTx(const CTransaction& tx, const int serializeFlags = 0);
 void ScriptPubKeyToUniv(const CScript& scriptPubKey, UniValue& out, bool fIncludeHex);
 void TxToUniv(const CTransaction& tx, const uint256& hashBlock, UniValue& entry, bool include_hex = true, int serialize_flags = 0);
 
-#endif // MACHINECOIN_CORE_IO_H
+#endif // BITSEND_CORE_IO_H

@@ -1,4 +1,4 @@
-// Copyright (c) 2014-2018 The Machinecoin Core developers
+// Copyright (c) 2014-2018 The Bitsend Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -274,7 +274,7 @@ CTxDestination DecodeDestination(const std::string& str, const CChainParams& par
     std::vector<unsigned char> data;
     uint160 hash;
     if (DecodeBase58Check(str, data)) {
-        // base58-encoded Machinecoin addresses.
+        // base58-encoded Bitsend addresses.
         // Public-key-hash-addresses have version 0 (or 111 testnet).
         // The data vector contains RIPEMD160(SHA256(pubkey)), where pubkey is the serialized public key.
         const std::vector<unsigned char>& pubkey_prefix = params.Base58Prefix(CChainParams::PUBKEY_ADDRESS);
@@ -336,7 +336,7 @@ CTxDestination DecodeDestination(const std::string& str, const CChainParams& par
 }
 } // namespace
 
-void CMachinecoinSecret::SetKey(const CKey& vchSecret)
+void CBitsendSecret::SetKey(const CKey& vchSecret)
 {
     assert(vchSecret.IsValid());
     SetData(Params().Base58Prefix(CChainParams::SECRET_KEY), vchSecret.begin(), vchSecret.size());
@@ -344,7 +344,7 @@ void CMachinecoinSecret::SetKey(const CKey& vchSecret)
         vchData.push_back(1);
 }
 
-CKey CMachinecoinSecret::GetKey()
+CKey CBitsendSecret::GetKey()
 {
     CKey ret;
     assert(vchData.size() >= 32);
@@ -352,19 +352,19 @@ CKey CMachinecoinSecret::GetKey()
     return ret;
 }
 
-bool CMachinecoinSecret::IsValid() const
+bool CBitsendSecret::IsValid() const
 {
     bool fExpectedFormat = vchData.size() == 32 || (vchData.size() == 33 && vchData[32] == 1);
     bool fCorrectVersion = vchVersion == Params().Base58Prefix(CChainParams::SECRET_KEY);
     return fExpectedFormat && fCorrectVersion;
 }
 
-bool CMachinecoinSecret::SetString(const char* pszSecret)
+bool CBitsendSecret::SetString(const char* pszSecret)
 {
     return CBase58Data::SetString(pszSecret) && IsValid();
 }
 
-bool CMachinecoinSecret::SetString(const std::string& strSecret)
+bool CBitsendSecret::SetString(const std::string& strSecret)
 {
     return SetString(strSecret.c_str());
 }

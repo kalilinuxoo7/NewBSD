@@ -1,4 +1,4 @@
-// Copyright (c) 2014 The Machinecoin Core developers
+// Copyright (c) 2014 The Bitsend Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -6,7 +6,7 @@
 
 #include <string.h>
 
-CHMAC_SHA256::CHMAC_SHA256(const unsigned char* key, size_t keylen)
+CHBSD_SHA256::CHBSD_SHA256(const unsigned char* key, size_t keylen)
 {
     unsigned char rkey[64];
     if (keylen <= 64) {
@@ -26,7 +26,7 @@ CHMAC_SHA256::CHMAC_SHA256(const unsigned char* key, size_t keylen)
     inner.Write(rkey, 64);
 }
 
-void CHMAC_SHA256::Finalize(unsigned char hash[OUTPUT_SIZE])
+void CHBSD_SHA256::Finalize(unsigned char hash[OUTPUT_SIZE])
 {
     unsigned char temp[32];
     inner.Finalize(temp);

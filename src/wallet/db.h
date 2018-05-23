@@ -1,10 +1,10 @@
 ﻿// Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2009-2017 The Machinecoin Core developers
+// Copyright (c) 2009-2017 The Bitsend Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef MACHINECOIN_WALLET_DB_H
-#define MACHINECOIN_WALLET_DB_H
+#ifndef BITSEND_WALLET_DB_H
+#define BITSEND_WALLET_DB_H
 
 #include <clientversion.h>
 #include <fs.h>
@@ -368,4 +368,4 @@ public:
     bool static Rewrite(CWalletDBWrapper& dbw, const char* pszSkip = nullptr);
 };
 
-#endif // MACHINECOIN_WALLET_DB_H
+#endif // BITSEND_WALLET_DB_H

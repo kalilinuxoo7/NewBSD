@@ -1,4 +1,4 @@
-# Copyright (c) 2013-2018 The Machinecoin Core developers
+# Copyright (c) 2013-2018 The Bitsend Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -18,28 +18,28 @@ else
 LIBUNIVALUE = $(UNIVALUE_LIBS)
 endif
 
-MACHINECOIN_INCLUDES=-I$(builddir) $(BDB_CPPFLAGS) $(BOOST_CPPFLAGS) $(LEVELDB_CPPFLAGS) $(CRYPTO_CFLAGS) $(SSL_CFLAGS)
+BITSEND_INCLUDES=-I$(builddir) $(BDB_CPPFLAGS) $(BOOST_CPPFLAGS) $(LEVELDB_CPPFLAGS) $(CRYPTO_CFLAGS) $(SSL_CFLAGS)
 
-MACHINECOIN_INCLUDES += -I$(srcdir)/secp256k1/include
-MACHINECOIN_INCLUDES += $(UNIVALUE_CFLAGS)
+BITSEND_INCLUDES += -I$(srcdir)/secp256k1/include
+BITSEND_INCLUDES += $(UNIVALUE_CFLAGS)
 
-LIBMACHINECOIN_SERVER=libmachinecoin_server.a
-LIBMACHINECOIN_COMMON=libmachinecoin_common.a
-LIBMACHINECOIN_CONSENSUS=libmachinecoin_consensus.a
-LIBMACHINECOIN_CLI=libmachinecoin_cli.a
-LIBMACHINECOIN_UTIL=libmachinecoin_util.a
-LIBMACHINECOIN_CRYPTO=crypto/libmachinecoin_crypto.a
-LIBMACHINECOINQT=qt/libmachinecoinqt.a
+LIBBITSEND_SERVER=libbitsend_server.a
+LIBBITSEND_COMMON=libbitsend_common.a
+LIBBITSEND_CONSENSUS=libbitsend_consensus.a
+LIBBITSEND_CLI=libbitsend_cli.a
+LIBBITSEND_UTIL=libbitsend_util.a
+LIBBITSEND_CRYPTO=crypto/libbitsend_crypto.a
+LIBBITSENDQT=qt/libbitsendqt.a
 LIBSECP256K1=secp256k1/libsecp256k1.la
 
 if ENABLE_ZMQ
-LIBMACHINECOIN_ZMQ=libmachinecoin_zmq.a
+LIBBITSEND_ZMQ=libbitsend_zmq.a
 endif
-if BUILD_MACHINECOIN_LIBS
-LIBMACHINECOINCONSENSUS=libmachinecoinconsensus.la
+if BUILD_BITSEND_LIBS
+LIBBITSENDCONSENSUS=libbitsendconsensus.la
 endif
 if ENABLE_WALLET
-LIBMACHINECOIN_WALLET=libmachinecoin_wallet.a
+LIBBITSEND_WALLET=libbitsend_wallet.a
 endif
 
 $(LIBSECP256K1): $(wildcard secp256k1/src/*) $(wildcard secp256k1/include/*)
@@ -48,33 +48,33 @@ $(LIBSECP256K1): $(wildcard secp256k1/src/*) $(wildcard secp256k1/include/*)
 # Make is not made aware of per-object dependencies to avoid limiting building parallelization
 # But to build the less dependent modules first, we manually select their order here:
 EXTRA_LIBRARIES += \
-  $(LIBMACHINECOIN_CRYPTO) \
-  $(LIBMACHINECOIN_UTIL) \
-  $(LIBMACHINECOIN_COMMON) \
-  $(LIBMACHINECOIN_CONSENSUS) \
-  $(LIBMACHINECOIN_SERVER) \
-  $(LIBMACHINECOIN_CLI) \
-  $(LIBMACHINECOIN_WALLET) \
-  $(LIBMACHINECOIN_ZMQ)
+  $(LIBBITSEND_CRYPTO) \
+  $(LIBBITSEND_UTIL) \
+  $(LIBBITSEND_COMMON) \
+  $(LIBBITSEND_CONSENSUS) \
+  $(LIBBITSEND_SERVER) \
+  $(LIBBITSEND_CLI) \
+  $(LIBBITSEND_WALLET) \
+  $(LIBBITSEND_ZMQ)
 
-lib_LTLIBRARIES = $(LIBMACHINECOINCONSENSUS)
+lib_LTLIBRARIES = $(LIBBITSENDCONSENSUS)
 
 bin_PROGRAMS =
 noinst_PROGRAMS =
 TESTS =
 BENCHMARKS =
 
-if BUILD_MACHINECOIND
-  bin_PROGRAMS += machinecoind
+if BUILD_BITSENDD
+  bin_PROGRAMS += bitsendd
 endif
 
-if BUILD_MACHINECOIN_UTILS
-  bin_PROGRAMS += machinecoin-cli machinecoin-tx
+if BUILD_BITSEND_UTILS
+  bin_PROGRAMS += bitsend-cli bitsend-tx
 endif
 
 .PHONY: FORCE check-symbols check-security
-# machinecoin core #
-MACHINECOIN_CORE_H = \
+# bitsend core #
+BITSEND_CORE_H = \
   addrdb.h \
   activemasternode.h \
   addrman.h \
@@ -195,19 +195,19 @@ MACHINECOIN_CORE_H = \
   zmq/zmqnotificationinterface.h \
   zmq/zmqpublishnotifier.h \
   crypto/scrypt.h \
-  $(MACHINECOIN_TIMETRAVEL_H)
+  $(BITSEND_TIMETRAVEL_H)
 
 
 obj/build.h: FORCE
 	@$(MKDIR_P) $(builddir)/obj
 	@$(top_srcdir)/share/genbuild.sh "$(abs_top_builddir)/src/obj/build.h" \
 	  "$(abs_top_srcdir)"
-libmachinecoin_util_a-clientversion.$(OBJEXT): obj/build.h
+libbitsend_util_a-clientversion.$(OBJEXT): obj/build.h
 
-# server: shared between machinecoind and machinecoin-qt
-libmachinecoin_server_a_CPPFLAGS = $(AM_CPPFLAGS) $(MACHINECOIN_INCLUDES) $(MINIUPNPC_CPPFLAGS) $(EVENT_CFLAGS) $(EVENT_PTHREADS_CFLAGS)
-libmachinecoin_server_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-libmachinecoin_server_a_SOURCES = \
+# server: shared between bitsendd and bitsend-qt
+libbitsend_server_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITSEND_INCLUDES) $(MINIUPNPC_CPPFLAGS) $(EVENT_CFLAGS) $(EVENT_PTHREADS_CFLAGS)
+libbitsend_server_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+libbitsend_server_a_SOURCES = \
   activemasternode.cpp \
   addrdb.cpp \
   addrman.cpp \
@@ -263,23 +263,23 @@ libmachinecoin_server_a_SOURCES = \
   validation.cpp \
   validationinterface.cpp \
   versionbits.cpp \
-  $(MACHINECOIN_CORE_H)
+  $(BITSEND_CORE_H)
 
 if ENABLE_ZMQ
-libmachinecoin_zmq_a_CPPFLAGS = $(MACHINECOIN_INCLUDES) $(ZMQ_CFLAGS)
-libmachinecoin_zmq_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-libmachinecoin_zmq_a_SOURCES = \
+libbitsend_zmq_a_CPPFLAGS = $(BITSEND_INCLUDES) $(ZMQ_CFLAGS)
+libbitsend_zmq_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+libbitsend_zmq_a_SOURCES = \
   zmq/zmqabstractnotifier.cpp \
   zmq/zmqnotificationinterface.cpp \
   zmq/zmqpublishnotifier.cpp
 endif
 
 
-# wallet: shared between machinecoind and machinecoin-qt, but only linked
+# wallet: shared between bitsendd and bitsend-qt, but only linked
 # when wallet enabled
-libmachinecoin_wallet_a_CPPFLAGS = $(AM_CPPFLAGS) $(MACHINECOIN_INCLUDES)
-libmachinecoin_wallet_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-libmachinecoin_wallet_a_SOURCES = \
+libbitsend_wallet_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITSEND_INCLUDES)
+libbitsend_wallet_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+libbitsend_wallet_a_SOURCES = \
   rpc/misc.cpp \
   script/ismine.cpp \
   wallet/crypter.cpp \
@@ -292,10 +292,10 @@ libmachinecoin_wallet_a_SOURCES = \
   wallet/wallet.cpp \
   wallet/walletdb.cpp \
   wallet/walletutil.cpp \
-  $(MACHINECOIN_CORE_H)
+  $(BITSEND_CORE_H)
 
 # timetravel related libraries
-MACHINECOIN_TIMETRAVEL = \
+BITSEND_TIMETRAVEL = \
   crypto/aes_helper.c \
   crypto/blake.c \
   crypto/bmw.c \
@@ -309,7 +309,7 @@ MACHINECOIN_TIMETRAVEL = \
   crypto/simd.c \
   crypto/echo.c
 
-MACHINECOIN_TIMETRAVEL_H = \
+BITSEND_TIMETRAVEL_H = \
   crypto/sph_types.h \
   crypto/sph_blake.h \
   crypto/sph_bmw.h \
@@ -325,9 +325,9 @@ MACHINECOIN_TIMETRAVEL_H = \
   crypto/hashblock.h
 
 # crypto primitives library
-crypto_libmachinecoin_crypto_a_CPPFLAGS = $(AM_CPPFLAGS) $(SSL_CFLAGS)
-crypto_libmachinecoin_crypto_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-crypto_libmachinecoin_crypto_a_SOURCES = \
+crypto_libbitsend_crypto_a_CPPFLAGS = $(AM_CPPFLAGS) $(SSL_CFLAGS)
+crypto_libbitsend_crypto_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+crypto_libbitsend_crypto_a_SOURCES = \
   crypto/aes.cpp \
   crypto/aes.h \
   crypto/chacha20.h \
@@ -347,13 +347,13 @@ crypto_libmachinecoin_crypto_a_SOURCES = \
   crypto/sha512.h
 
 if USE_ASM
-crypto_libmachinecoin_crypto_a_SOURCES += crypto/sha256_sse4.cpp
+crypto_libbitsend_crypto_a_SOURCES += crypto/sha256_sse4.cpp
 endif
 
 # consensus: shared between all executables that validate any consensus rules.
-libmachinecoin_consensus_a_CPPFLAGS = $(AM_CPPFLAGS) $(MACHINECOIN_INCLUDES)
-libmachinecoin_consensus_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-libmachinecoin_consensus_a_SOURCES = \
+libbitsend_consensus_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITSEND_INCLUDES) $(BOOST_CPPFLAGS)
+libbitsend_consensus_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+libbitsend_consensus_a_SOURCES = \
   amount.h \
   arith_uint256.cpp \
   arith_uint256.h \
@@ -370,7 +370,7 @@ libmachinecoin_consensus_a_SOURCES = \
   primitives/transaction.h \
   pubkey.cpp \
   pubkey.h \
-  script/machinecoinconsensus.cpp \
+  script/bitsendconsensus.cpp \
   script/interpreter.cpp \
   script/interpreter.h \
   script/script.cpp \
@@ -387,13 +387,13 @@ libmachinecoin_consensus_a_SOURCES = \
   crypto/scrypt.cpp \
   crypto/scrypt-sse2.cpp \
   crypto/scrypt.h \
-  $(MACHINECOIN_TIMETRAVEL) \
-  $(MACHINECOIN_TIMETRAVEL_H)
+  $(BITSEND_TIMETRAVEL) \
+  $(BITSEND_TIMETRAVEL_H)
 
-# common: shared between machinecoind, and machinecoin-qt and non-server tools
-libmachinecoin_common_a_CPPFLAGS = $(AM_CPPFLAGS) $(MACHINECOIN_INCLUDES)
-libmachinecoin_common_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-libmachinecoin_common_a_SOURCES = \
+# common: shared between bitsendd, and bitsend-qt and non-server tools
+libbitsend_common_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITSEND_INCLUDES)
+libbitsend_common_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+libbitsend_common_a_SOURCES = \
   base58.cpp \
   bech32.cpp \
   chainparams.cpp \
@@ -402,7 +402,7 @@ libmachinecoin_common_a_SOURCES = \
   core_read.cpp \
   core_write.cpp \
   crypto/scrypt.cpp \
-  $(MACHINECOIN_TIMETRAVEL) \
+  $(BITSEND_TIMETRAVEL) \
   key.cpp \
   keystore.cpp \
   netaddress.cpp \
@@ -413,14 +413,14 @@ libmachinecoin_common_a_SOURCES = \
   script/sign.cpp \
   script/standard.cpp \
   warnings.cpp \
-  $(MACHINECOIN_CORE_H)
+  $(BITSEND_CORE_H)
 
 # util: shared between all executables.
 # This library *must* be included to make sure that the glibc
 # backward-compatibility objects and their sanity checks are linked.
-libmachinecoin_util_a_CPPFLAGS = $(AM_CPPFLAGS) $(MACHINECOIN_INCLUDES)
-libmachinecoin_util_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-libmachinecoin_util_a_SOURCES = \
+libbitsend_util_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITSEND_INCLUDES)
+libbitsend_util_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+libbitsend_util_a_SOURCES = \
   support/lockedpool.cpp \
   chainparamsbase.cpp \
   clientversion.cpp \
@@ -438,102 +438,102 @@ libmachinecoin_util_a_SOURCES = \
   utilmoneystr.cpp \
   utilstrencodings.cpp \
   utiltime.cpp \
-  $(MACHINECOIN_CORE_H)
+  $(BITSEND_CORE_H)
 
 if GLIBC_BACK_COMPAT
-libmachinecoin_util_a_SOURCES += compat/glibc_compat.cpp
+libbitsend_util_a_SOURCES += compat/glibc_compat.cpp
 endif
 
-# cli: shared between machinecoin-cli and machinecoin-qt
-libmachinecoin_cli_a_CPPFLAGS = $(AM_CPPFLAGS) $(MACHINECOIN_INCLUDES)
-libmachinecoin_cli_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-libmachinecoin_cli_a_SOURCES = \
+# cli: shared between bitsend-cli and bitsend-qt
+libbitsend_cli_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITSEND_INCLUDES)
+libbitsend_cli_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+libbitsend_cli_a_SOURCES = \
   rpc/client.cpp \
-  $(MACHINECOIN_CORE_H)
+  $(BITSEND_CORE_H)
 
-nodist_libmachinecoin_util_a_SOURCES = $(srcdir)/obj/build.h
+nodist_libbitsend_util_a_SOURCES = $(srcdir)/obj/build.h
 #
 
-# machinecoind binary #
-machinecoind_SOURCES = machinecoind.cpp
-machinecoind_CPPFLAGS = $(AM_CPPFLAGS) $(MACHINECOIN_INCLUDES)
-machinecoind_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-machinecoind_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+# bitsendd binary #
+bitsendd_SOURCES = bitsendd.cpp
+bitsendd_CPPFLAGS = $(AM_CPPFLAGS) $(BITSEND_INCLUDES)
+bitsendd_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+bitsendd_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 if TARGET_WINDOWS
-machinecoind_SOURCES += machinecoind-res.rc
+bitsendd_SOURCES += bitsendd-res.rc
 endif
 
-machinecoind_LDADD = \
-  $(LIBMACHINECOIN_SERVER) \
-  $(LIBMACHINECOIN_COMMON) \
+bitsendd_LDADD = \
+  $(LIBBITSEND_SERVER) \
+  $(LIBBITSEND_COMMON) \
   $(LIBUNIVALUE) \
-  $(LIBMACHINECOIN_UTIL) \
-  $(LIBMACHINECOIN_WALLET) \
-  $(LIBMACHINECOIN_ZMQ) \
-  $(LIBMACHINECOIN_CONSENSUS) \
-  $(LIBMACHINECOIN_CRYPTO) \
+  $(LIBBITSEND_UTIL) \
+  $(LIBBITSEND_WALLET) \
+  $(LIBBITSEND_ZMQ) \
+  $(LIBBITSEND_CONSENSUS) \
+  $(LIBBITSEND_CRYPTO) \
   $(LIBLEVELDB) \
   $(LIBLEVELDB_SSE42) \
   $(LIBMEMENV) \
   $(LIBSECP256K1)
 
-machinecoind_LDADD += $(BOOST_LIBS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS) $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS) $(ZMQ_LIBS)
+bitsendd_LDADD += $(BOOST_LIBS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS) $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS) $(ZMQ_LIBS)
 
-# machinecoin-cli binary #
-machinecoin_cli_SOURCES = machinecoin-cli.cpp
-machinecoin_cli_CPPFLAGS = $(AM_CPPFLAGS) $(MACHINECOIN_INCLUDES) $(EVENT_CFLAGS)
-machinecoin_cli_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-machinecoin_cli_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+# bitsend-cli binary #
+bitsend_cli_SOURCES = bitsend-cli.cpp
+bitsend_cli_CPPFLAGS = $(AM_CPPFLAGS) $(BITSEND_INCLUDES) $(EVENT_CFLAGS)
+bitsend_cli_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+bitsend_cli_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 if TARGET_WINDOWS
-machinecoin_cli_SOURCES += machinecoin-cli-res.rc
+bitsend_cli_SOURCES += bitsend-cli-res.rc
 endif
 
-machinecoin_cli_LDADD = \
-  $(LIBMACHINECOIN_CLI) \
+bitsend_cli_LDADD = \
+  $(LIBBITSEND_CLI) \
   $(LIBUNIVALUE) \
-  $(LIBMACHINECOIN_UTIL) \
-  $(LIBMACHINECOIN_CRYPTO)
+  $(LIBBITSEND_UTIL) \
+  $(LIBBITSEND_CRYPTO)
 
-machinecoin_cli_LDADD += $(BOOST_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(EVENT_LIBS)
+bitsend_cli_LDADD += $(BOOST_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(EVENT_LIBS)
 #
 
-# machinecoin-tx binary #
-machinecoin_tx_SOURCES = machinecoin-tx.cpp
-machinecoin_tx_CPPFLAGS = $(AM_CPPFLAGS) $(MACHINECOIN_INCLUDES)
-machinecoin_tx_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-machinecoin_tx_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+# bitsend-tx binary #
+bitsend_tx_SOURCES = bitsend-tx.cpp
+bitsend_tx_CPPFLAGS = $(AM_CPPFLAGS) $(BITSEND_INCLUDES)
+bitsend_tx_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+bitsend_tx_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 if TARGET_WINDOWS
-machinecoin_tx_SOURCES += machinecoin-tx-res.rc
+bitsend_tx_SOURCES += bitsend-tx-res.rc
 endif
 
-machinecoin_tx_LDADD = \
+bitsend_tx_LDADD = \
   $(LIBUNIVALUE) \
-  $(LIBMACHINECOIN_COMMON) \
-  $(LIBMACHINECOIN_UTIL) \
-  $(LIBMACHINECOIN_CONSENSUS) \
-  $(LIBMACHINECOIN_CRYPTO) \
-  $(LIBMACHINECOIN_TIMETRAVEL) \
+  $(LIBBITSEND_COMMON) \
+  $(LIBBITSEND_UTIL) \
+  $(LIBBITSEND_CONSENSUS) \
+  $(LIBBITSEND_CRYPTO) \
+  $(LIBBITSEND_TIMETRAVEL) \
   $(LIBSECP256K1)
 
-machinecoin_tx_LDADD += $(BOOST_LIBS) $(CRYPTO_LIBS)
+bitsend_tx_LDADD += $(BOOST_LIBS) $(CRYPTO_LIBS)
 #
 
-# machinecoinconsensus library #
-if BUILD_MACHINECOIN_LIBS
-include_HEADERS = script/machinecoinconsensus.h
-libmachinecoinconsensus_la_SOURCES = $(crypto_libmachinecoin_crypto_a_SOURCES) $(libmachinecoin_consensus_a_SOURCES)
+# bitsendconsensus library #
+if BUILD_BITSEND_LIBS
+include_HEADERS = script/bitsendconsensus.h
+libbitsendconsensus_la_SOURCES = $(crypto_libbitsend_crypto_a_SOURCES) $(libbitsend_consensus_a_SOURCES)
 
 if GLIBC_BACK_COMPAT
-  libmachinecoinconsensus_la_SOURCES += compat/glibc_compat.cpp
+  libbitsendconsensus_la_SOURCES += compat/glibc_compat.cpp
 endif
 
-libmachinecoinconsensus_la_LDFLAGS = $(AM_LDFLAGS) -no-undefined $(RELDFLAGS)
-libmachinecoinconsensus_la_LIBADD = $(LIBSECP256K1) $(CRYPTO_LIBS) $(BOOST_LIBS)
-libmachinecoinconsensus_la_CPPFLAGS = $(AM_CPPFLAGS) -I$(builddir)/obj -I$(srcdir)/secp256k1/include -DBUILD_MACHINECOIN_INTERNAL $(SSL_CFLAGS)
-libmachinecoinconsensus_la_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+libbitsendconsensus_la_LDFLAGS = $(AM_LDFLAGS) -no-undefined $(RELDFLAGS)
+libbitsendconsensus_la_LIBADD = $(LIBSECP256K1) $(CRYPTO_LIBS) $(BOOST_LIBS)
+libbitsendconsensus_la_CPPFLAGS = $(AM_CPPFLAGS) $(BOOST_CPPFLAGS) -I$(builddir)/obj -I$(srcdir)/secp256k1/include -DBUILD_BITSEND_INTERNAL $(SSL_CFLAGS)
+libbitsendconsensus_la_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 
 endif
 #
@@ -563,12 +563,12 @@ CLEANFILES += obj/build.h
 EXTRA_DIST = $(CTAES_DIST)
 
 
-config/machinecoin-config.h: config/stamp-h1
+config/bitsend-config.h: config/stamp-h1
 	@$(MAKE) -C $(top_builddir) $(subdir)/$(@)
-config/stamp-h1: $(top_srcdir)/$(subdir)/config/machinecoin-config.h.in $(top_builddir)/config.status
+config/stamp-h1: $(top_srcdir)/$(subdir)/config/bitsend-config.h.in $(top_builddir)/config.status
 	$(AM_V_at)$(MAKE) -C $(top_builddir) $(subdir)/$(@)
-$(top_srcdir)/$(subdir)/config/machinecoin-config.h.in:  $(am__configure_deps)
-	$(AM_V_at)$(MAKE) -C $(top_srcdir) $(subdir)/config/machinecoin-config.h.in
+$(top_srcdir)/$(subdir)/config/bitsend-config.h.in:  $(am__configure_deps)
+	$(AM_V_at)$(MAKE) -C $(top_srcdir) $(subdir)/config/bitsend-config.h.in
 
 clean-local:
 	-$(MAKE) -C secp256k1 clean

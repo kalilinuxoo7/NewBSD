@@ -81,8 +81,8 @@ case "$TARGET_OS" in
         PORT_SSE_FILE=port/port_posix_sse.cc
         ;;
     Darwin)
-        PLATFORM=OS_MACOSX
-        COMMON_FLAGS="$MEMCMP_FLAG -DOS_MACOSX"
+        PLATFORM=OS_BSDOSX
+        COMMON_FLAGS="$MEMCMP_FLAG -DOS_BSDOSX"
         PLATFORM_SHARED_EXT=dylib
         [ -z "$INSTALL_PATH" ] && INSTALL_PATH=`pwd`
         PLATFORM_SHARED_LDFLAGS="-dynamiclib -install_name $INSTALL_PATH/"
@@ -156,7 +156,7 @@ case "$TARGET_OS" in
         ;;
     IOS)
         PLATFORM=IOS
-        COMMON_FLAGS="$MEMCMP_FLAG -DOS_MACOSX"
+        COMMON_FLAGS="$MEMCMP_FLAG -DOS_BSDOSX"
         [ -z "$INSTALL_PATH" ] && INSTALL_PATH=`pwd`
         PORT_FILE=port/port_posix.cc
         PORT_SSE_FILE=port/port_posix_sse.cc

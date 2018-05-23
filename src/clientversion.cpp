@@ -1,4 +1,4 @@
-﻿// Copyright (c) 2012-2018 The Machinecoin Core developers
+﻿// Copyright (c) 2012-2018 The Bitsend Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -8,7 +8,7 @@
 
 /**
  * Name of client reported in the 'version' message. Report the same name
- * for both machinecoind and machinecoin-core, to make it harder for attackers to
+ * for both bitsendd and bitsend-core, to make it harder for attackers to
  * target servers or GUI users specifically.
  */
 const std::string CLIENT_NAME("Octopus");
@@ -82,7 +82,7 @@ std::string FormatFullVersion()
 }
 
 /** 
- * Format the subversion field according to BIP 14 spec (https://github.com/machinecoin/bips/blob/master/bip-0014.mediawiki) 
+ * Format the subversion field according to BIP 14 spec (https://github.com/bitsend/bips/blob/master/bip-0014.mediawiki) 
  */
 std::string FormatSubVersion(const std::string& name, int nClientVersion, const std::vector<std::string>& comments)
 {

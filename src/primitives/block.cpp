@@ -1,5 +1,5 @@
 ﻿// Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2009-2018 The Machinecoin Core developers
+// Copyright (c) 2009-2018 The Bitsend Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -9,8 +9,8 @@
 #include <tinyformat.h>
 #include <utilstrencodings.h>
 #include <crypto/common.h>
-#include <crypto/scrypt.h> // Machinecoin Scrypt
-#include <crypto/hashblock.h> // Machinecoin TimeTravel
+#include <crypto/scrypt.h> // Bitsend Scrypt
+#include <crypto/hashblock.h> // Bitsend TimeTravel
 
 uint256 CBlockHeader::GetHash() const
 {
@@ -19,14 +19,14 @@ uint256 CBlockHeader::GetHash() const
 
 uint256 CBlockHeader::GetPoWHash() const
 {
-		if(GetBlockTime() >= 1473444000) // Machinecoin PoW Hardfork, Friday, 09-Sep-16 18:00:00 UTC
+		if(GetBlockTime() >= 1473444000) // Bitsend PoW Hardfork, Friday, 09-Sep-16 18:00:00 UTC
 		{
-				return HashTimeTravel(BEGIN(nVersion), END(nNonce), GetBlockTime()); // Machinecoin TimeTravel
+				return HashTimeTravel(BEGIN(nVersion), END(nNonce), GetBlockTime()); // Bitsend TimeTravel
 		}
 		else
 		{
 				uint256 thash;
-				scrypt_1024_1_1_256(BEGIN(nVersion), BEGIN(thash)); // Machinecoin Scrypt
+				scrypt_1024_1_1_256(BEGIN(nVersion), BEGIN(thash)); // Bitsend Scrypt
 				return thash;
 		}
 }

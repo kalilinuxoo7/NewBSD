@@ -1,9 +1,9 @@
-// Copyright (c) 2011-2017 The Machinecoin Core developers
+// Copyright (c) 2011-2017 The Bitsend Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef MACHINECOIN_QT_WALLETMODELTRANSACTION_H
-#define MACHINECOIN_QT_WALLETMODELTRANSACTION_H
+#ifndef BITSEND_QT_WALLETMODELTRANSACTION_H
+#define BITSEND_QT_WALLETMODELTRANSACTION_H
 
 #include <qt/walletmodel.h>
 
@@ -44,4 +44,4 @@ private:
     CAmount fee;
 };
 
-#endif // MACHINECOIN_QT_WALLETMODELTRANSACTION_H
+#endif // BITSEND_QT_WALLETMODELTRANSACTION_H

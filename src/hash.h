@@ -1,10 +1,10 @@
 ﻿// Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2009-2018 The Machinecoin Core developers
+// Copyright (c) 2009-2018 The Bitsend Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef MACHINECOIN_HASH_H
-#define MACHINECOIN_HASH_H
+#ifndef BITSEND_HASH_H
+#define BITSEND_HASH_H
 
 #include <crypto/ripemd160.h>
 #include <crypto/sha256.h>
@@ -17,7 +17,7 @@
 
 typedef uint256 ChainCode;
 
-/** A hasher class for Machinecoin's 256-bit hash (double SHA-256). */
+/** A hasher class for Bitsend's 256-bit hash (double SHA-256). */
 class CHash256 {
 private:
     CSHA256 sha;
@@ -41,7 +41,7 @@ public:
     }
 };
 
-/** A hasher class for Machinecoin's 160-bit hash (SHA-256 + RIPEMD-160). */
+/** A hasher class for Bitsend's 160-bit hash (SHA-256 + RIPEMD-160). */
 class CHash160 {
 private:
     CSHA256 sha;
@@ -229,4 +229,4 @@ public:
 uint64_t SipHashUint256(uint64_t k0, uint64_t k1, const uint256& val);
 uint64_t SipHashUint256Extra(uint64_t k0, uint64_t k1, const uint256& val, uint32_t extra);
 
-#endif // MACHINECOIN_HASH_H
+#endif // BITSEND_HASH_H

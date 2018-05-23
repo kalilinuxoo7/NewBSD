@@ -1,9 +1,9 @@
-// Copyright (c) 2011-2015 The Machinecoin Core developers
+// Copyright (c) 2011-2015 The Bitsend Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef MACHINECOIN_QT_ADDRESSTABLEMODEL_H
-#define MACHINECOIN_QT_ADDRESSTABLEMODEL_H
+#ifndef BITSEND_QT_ADDRESSTABLEMODEL_H
+#define BITSEND_QT_ADDRESSTABLEMODEL_H
 
 #include <QAbstractTableModel>
 #include <QStringList>
@@ -28,7 +28,7 @@ public:
 
     enum ColumnIndex {
         Label = 0,   /**< User specified label */
-        Address = 1  /**< Machinecoin address */
+        Address = 1  /**< Bitsend address */
     };
 
     enum RoleIndex {
@@ -94,4 +94,4 @@ public Q_SLOTS:
     friend class AddressTablePriv;
 };
 
-#endif // MACHINECOIN_QT_ADDRESSTABLEMODEL_H
+#endif // BITSEND_QT_ADDRESSTABLEMODEL_H

@@ -1,9 +1,9 @@
-﻿// Copyright (c) 2011-2018 The Machinecoin Core developers
+﻿// Copyright (c) 2011-2018 The Bitsend Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef MACHINECOIN_QT_CLIENTMODEL_H
-#define MACHINECOIN_QT_CLIENTMODEL_H
+#ifndef BITSEND_QT_CLIENTMODEL_H
+#define BITSEND_QT_CLIENTMODEL_H
 
 #include <QObject>
 #include <QDateTime>
@@ -34,7 +34,7 @@ enum NumConnections {
     CONNECTIONS_ALL  = (CONNECTIONS_IN | CONNECTIONS_OUT),
 };
 
-/** Model for Machinecoin network client. */
+/** Model for Bitsend network client. */
 class ClientModel : public QObject
 {
     Q_OBJECT
@@ -122,4 +122,4 @@ public Q_SLOTS:
     void updateBanlist();
 };
 
-#endif // MACHINECOIN_QT_CLIENTMODEL_H
+#endif // BITSEND_QT_CLIENTMODEL_H

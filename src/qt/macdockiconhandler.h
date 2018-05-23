@@ -1,9 +1,9 @@
-// Copyright (c) 2011-2015 The Machinecoin Core developers
+// Copyright (c) 2011-2015 The Bitsend Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef MACHINECOIN_QT_MACDOCKICONHANDLER_H
-#define MACHINECOIN_QT_MACDOCKICONHANDLER_H
+#ifndef BITSEND_QT_BSDDOCKICONHANDLER_H
+#define BITSEND_QT_BSDDOCKICONHANDLER_H
 
 #include <QMainWindow>
 #include <QObject>
@@ -41,4 +41,4 @@ private:
     QMainWindow *mainWindow;
 };
 
-#endif // MACHINECOIN_QT_MACDOCKICONHANDLER_H
+#endif // BITSEND_QT_BSDDOCKICONHANDLER_H

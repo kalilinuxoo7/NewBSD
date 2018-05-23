@@ -1,4 +1,4 @@
-﻿// Copyright (c) 2011-2017 The Machinecoin Core developers
+﻿// Copyright (c) 2011-2017 The Bitsend Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -12,11 +12,11 @@
 #include <script/sign.h>
 #include <util.h>
 #include <utilstrencodings.h>
-#include <test/test_machinecoin.h>
+#include <test/test_bitsend.h>
 #include <rpc/server.h>
 
 #if defined(HAVE_CONSENSUS_LIB)
-#include <script/machinecoinconsensus.h>
+#include <script/bitsendconsensus.h>
 #endif
 
 #include <fstream>
@@ -180,13 +180,13 @@ void DoTest(const CScript& scriptPubKey, const CScript& scriptSig, const CScript
 #if defined(HAVE_CONSENSUS_LIB)
     CDataStream stream(SER_NETWORK, PROTOCOL_VERSION);
     stream << tx2;
-    int libconsensus_flags = flags & machinecoinconsensus_SCRIPT_FLAGS_VERIFY_ALL;
+    int libconsensus_flags = flags & bitsendconsensus_SCRIPT_FLAGS_VERIFY_ALL;
     if (libconsensus_flags == flags) {
-        if (flags & machinecoinconsensus_SCRIPT_FLAGS_VERIFY_WITNESS) {
-            BOOST_CHECK_MESSAGE(machinecoinconsensus_verify_script_with_amount(scriptPubKey.data(), scriptPubKey.size(), txCredit.vout[0].nValue, (const unsigned char*)&stream[0], stream.size(), 0, libconsensus_flags, nullptr) == expect, message);
+        if (flags & bitsendconsensus_SCRIPT_FLAGS_VERIFY_WITNESS) {
+            BOOST_CHECK_MESSAGE(bitsendconsensus_verify_script_with_amount(scriptPubKey.data(), scriptPubKey.size(), txCredit.vout[0].nValue, (const unsigned char*)&stream[0], stream.size(), 0, libconsensus_flags, nullptr) == expect, message);
         } else {
-            BOOST_CHECK_MESSAGE(machinecoinconsensus_verify_script_with_amount(scriptPubKey.data(), scriptPubKey.size(), 0, (const unsigned char*)&stream[0], stream.size(), 0, libconsensus_flags, nullptr) == expect, message);
-            BOOST_CHECK_MESSAGE(machinecoinconsensus_verify_script(scriptPubKey.data(), scriptPubKey.size(), (const unsigned char*)&stream[0], stream.size(), 0, libconsensus_flags, nullptr) == expect,message);
+            BOOST_CHECK_MESSAGE(bitsendconsensus_verify_script_with_amount(scriptPubKey.data(), scriptPubKey.size(), 0, (const unsigned char*)&stream[0], stream.size(), 0, libconsensus_flags, nullptr) == expect, message);
+            BOOST_CHECK_MESSAGE(bitsendconsensus_verify_script(scriptPubKey.data(), scriptPubKey.size(), (const unsigned char*)&stream[0], stream.size(), 0, libconsensus_flags, nullptr) == expect,message);
         }
     }
 #endif

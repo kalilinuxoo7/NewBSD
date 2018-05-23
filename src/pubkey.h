@@ -1,10 +1,10 @@
 ﻿// Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2009-2018 The Machinecoin Core developers
+// Copyright (c) 2009-2018 The Bitsend Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef MACHINECOIN_PUBKEY_H
-#define MACHINECOIN_PUBKEY_H
+#ifndef BITSEND_PUBKEY_H
+#define BITSEND_PUBKEY_H
 
 #include <hash.h>
 #include <serialize.h>
@@ -253,4 +253,4 @@ public:
     ~ECCVerifyHandle();
 };
 
-#endif // MACHINECOIN_PUBKEY_H
+#endif // BITSEND_PUBKEY_H

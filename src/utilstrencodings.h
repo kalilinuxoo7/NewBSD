@@ -1,13 +1,13 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2009-2018 The Machinecoin Core developers
+// Copyright (c) 2009-2018 The Bitsend Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 /**
  * Utilities for converting data from/to strings.
  */
-#ifndef MACHINECOIN_UTILSTRENCODINGS_H
-#define MACHINECOIN_UTILSTRENCODINGS_H
+#ifndef BITSEND_UTILSTRENCODINGS_H
+#define BITSEND_UTILSTRENCODINGS_H
 
 #include <stdint.h>
 #include <string>
@@ -173,4 +173,4 @@ bool ConvertBits(O& out, I it, I end) {
     return true;
 }
 
-#endif // MACHINECOIN_UTILSTRENCODINGS_H
+#endif // BITSEND_UTILSTRENCODINGS_H

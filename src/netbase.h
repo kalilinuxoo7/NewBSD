@@ -1,12 +1,12 @@
-// Copyright (c) 2009-2018 The Machinecoin Core developers
+// Copyright (c) 2009-2018 The Bitsend Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef MACHINECOIN_NETBASE_H
-#define MACHINECOIN_NETBASE_H_NETBASE_H
+#ifndef BITSEND_NETBASE_H
+#define BITSEND_NETBASE_H_NETBASE_H
 
 #if defined(HAVE_CONFIG_H)
-#include <config/machinecoin-config.h>
+#include <config/bitsend-config.h>
 #endif
 
 #include <compat.h>
@@ -68,4 +68,4 @@ bool SetSocketNoDelay(const SOCKET& hSocket);
 struct timeval MillisToTimeval(int64_t nTimeout);
 void InterruptSocks5(bool interrupt);
 
-#endif // MACHINECOIN_NETBASE_H
+#endif // BITSEND_NETBASE_H

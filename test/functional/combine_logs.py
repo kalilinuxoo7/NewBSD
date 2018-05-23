@@ -1,5 +1,5 @@
 ﻿#!/usr/bin/env python3
-"""Combine logs from multiple machinecoin nodes as well as the test_framework log.
+"""Combine logs from multiple bitsend nodes as well as the test_framework log.
 
 This streams the combined log output to stdout. Use combine_logs.py > outputfile
 to write to an outputfile."""

@@ -1,9 +1,9 @@
-// Copyright (c) 2009-2017 The Machinecoin Core developers
+// Copyright (c) 2009-2017 The Bitsend Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #if defined(HAVE_CONFIG_H)
-#include <config/machinecoin-config.h>
+#include <config/bitsend-config.h>
 #endif
 
 #include <chainparams.h>
@@ -54,7 +54,7 @@ int main(int argc, char *argv[])
     SelectParams(CBaseChainParams::MAIN);
     noui_connect();
     ClearDatadirCache();
-    fs::path pathTemp = fs::temp_directory_path() / strprintf("test_machinecoin-qt_%lu_%i", (unsigned long)GetTime(), (int)GetRand(100000));
+    fs::path pathTemp = fs::temp_directory_path() / strprintf("test_bitsend-qt_%lu_%i", (unsigned long)GetTime(), (int)GetRand(100000));
     fs::create_directories(pathTemp);
     gArgs.ForceSetArg("-datadir", pathTemp.string());
 
@@ -72,7 +72,7 @@ int main(int argc, char *argv[])
     // Don't remove this, it's needed to access
     // QApplication:: and QCoreApplication:: in the tests
     QApplication app(argc, argv);
-    app.setApplicationName("Machinecoin-Qt-test");
+    app.setApplicationName("Bitsend-Qt-test");
 
     SSL_library_init();
 

@@ -1,13 +1,13 @@
 ﻿#!/usr/bin/env python3
-# Copyright (c) 2014-2017 The Machinecoin Core developers
+# Copyright (c) 2014-2017 The Bitsend Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 """Test gettxoutproof and verifytxoutproof RPCs."""
 
-from test_framework.test_framework import MachinecoinTestFramework
+from test_framework.test_framework import BitsendTestFramework
 from test_framework.util import *
 
-class MerkleBlockTest(MachinecoinTestFramework):
+class MerkleBlockTest(BitsendTestFramework):
     def set_test_params(self):
         self.num_nodes = 4
         self.setup_clean_chain = True

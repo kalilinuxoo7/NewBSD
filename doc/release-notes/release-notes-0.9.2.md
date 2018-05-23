@@ -1,6 +1,6 @@
-﻿Machinecoin Core version 0.9.2 is now available from:
+﻿Bitsend Core version 0.9.2 is now available from:
 
-  https://machinecoin.org/bin/0.9.2/
+  https://bitsend.org/bin/0.9.2/
 
 This is a new minor version release, bringing mostly bug fixes and some minor
 improvements. OpenSSL has been updated because of a security issue (CVE-2014-0224).
@@ -8,19 +8,19 @@ Upgrading to this release is recommended.
 
 Please report bugs using the issue tracker at github:
 
-  https://github.com/machinecoin/machinecoin/issues
+  https://github.com/bitsend/bitsend/issues
 
 How to Upgrade
 --------------
 
 If you are running an older version, shut it down. Wait until it has completely
 shut down (which might take a few minutes for older versions), then run the
-installer (on Windows) or just copy over /Applications/Machinecoin-Qt (on Mac) or
-machinecoind/machinecoin-qt (on Linux).
+installer (on Windows) or just copy over /Applications/Bitsend-Qt (on Mac) or
+bitsendd/bitsend-qt (on Linux).
 
 If you are upgrading from version 0.7.2 or earlier, the first time you run
 0.9.2 your blockchain files will be re-indexed, which will take anywhere from 
-30 minutes to several hours, depending on the speed of your machine.
+30 minutes to several hours, depending on the speed of your bitsend.
 
 Downgrading warnings
 --------------------
@@ -36,7 +36,7 @@ data structures and correct the problem.
 
 Also, the first time you run a 0.8.x release on a 0.9 wallet it will rescan
 the blockchain for missing spent coins, which will take a long time (tens
-of minutes on a typical machine).
+of minutes on a typical bitsend).
 
 Important changes
 ==================
@@ -93,7 +93,7 @@ Protocol and network code:
 Wallet:
 
 - Make GetAvailableCredit run GetHash() only once per transaction (performance improvement)
-- Lower paytxfee warning threshold from 0.25 MAC to 0.01 MAC
+- Lower paytxfee warning threshold from 0.25 BSD to 0.01 BSD
 - Fix importwallet nTimeFirstKey (trigger necessary rescans)
 - Log BerkeleyDB version at startup
 - CWallet init fix
@@ -130,7 +130,7 @@ GUI:
 - Catch Windows shutdown events while client is running
 - Optionally add third party links to transaction context menu
 - Check for !pixmap() before trying to export QR code (avoids crashes when no QR code could be generated)
-- Fix "Start machinecoin on system login"
+- Fix "Start bitsend on system login"
 
 Miscellaneous:
 

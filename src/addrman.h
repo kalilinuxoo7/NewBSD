@@ -1,10 +1,10 @@
 ﻿// Copyright (c) 2012 Pieter Wuille
-// Copyright (c) 2012-2018 The Machinecoin Core developers
+// Copyright (c) 2012-2018 The Bitsend Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef MACHINECOIN_ADDRMAN_H
-#define MACHINECOIN_ADDRMAN_H
+#ifndef BITSEND_ADDRMAN_H
+#define BITSEND_ADDRMAN_H
 
 #include <netaddress.h>
 #include <protocol.h>
@@ -601,4 +601,4 @@ public:
 
 };
 
-#endif // MACHINECOIN_ADDRMAN_H
+#endif // BITSEND_ADDRMAN_H

@@ -1,23 +1,23 @@
-﻿Machinecoin version 0.7.1 is now available from:
-  http://sourceforge.net/projects/machinecoin/files/Machinecoin/machinecoin-0.7.1/
+﻿Bitsend version 0.7.1 is now available from:
+  http://sourceforge.net/projects/bitsend/files/Bitsend/bitsend-0.7.1/
 
 This is a bug-fix minor release.
 
 Please report bugs using the issue tracker at github:
-  https://github.com/machinecoin/machinecoin/issues
+  https://github.com/bitsend/bitsend/issues
 
 Project source code is hosted at github; you can get
 source-only tarballs/zipballs directly from there:
-  https://github.com/machinecoin/machinecoin/tarball/v0.7.1  # .tar.gz
-  https://github.com/machinecoin/machinecoin/zipball/v0.7.1  # .zip
+  https://github.com/bitsend/bitsend/tarball/v0.7.1  # .tar.gz
+  https://github.com/bitsend/bitsend/zipball/v0.7.1  # .zip
 
 Ubuntu Linux users can use the "Personal Package Archive" (PPA)
 maintained by Matt Corallo to automatically keep 
 up-to-date.  Just type:
-  sudo apt-add-repository ppa:machinecoin/machinecoin
+  sudo apt-add-repository ppa:bitsend/bitsend
   sudo apt-get update
-in your terminal, then install the machinecoin-qt package:
-  sudo apt-get install machinecoin-qt
+in your terminal, then install the bitsend-qt package:
+  sudo apt-get install bitsend-qt
 
 KNOWN ISSUES
 ------------
@@ -30,7 +30,7 @@ How to Upgrade
 If you are running an older version, shut it down. Wait
 until it has completely shut down (which might take a few minutes for older
 versions), then run the installer (on Windows) or just copy over
-/Applications/Machinecoin-Qt (on Mac) or machinecoind/machinecoin-qt (on Linux).
+/Applications/Bitsend-Qt (on Mac) or bitsendd/bitsend-qt (on Linux).
 
 If you were running on Linux with a version that might have been compiled
 with a different version of Berkeley DB (for example, if you were using an
@@ -75,7 +75,7 @@ Dependency changes
 Bug fixes
 ---------
 
-* Clicking on a machinecoin: URI on Windows should now launch Machinecoin-Qt properly.
+* Clicking on a bitsend: URI on Windows should now launch Bitsend-Qt properly.
 
 * When running -testnet, use RPC port 18332 by default.
 

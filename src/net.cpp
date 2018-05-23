@@ -1,10 +1,10 @@
 ﻿// Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2009-2018 The Machinecoin Core developers
+// Copyright (c) 2009-2018 The Bitsend Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #if defined(HAVE_CONFIG_H)
-#include <config/machinecoin-config.h>
+#include <config/bitsend-config.h>
 #endif
 
 #include <net.h>
@@ -744,7 +744,7 @@ void CNode::copyStats(CNodeStats &stats)
         nPingUsecWait = GetTimeMicros() - nPingUsecStart;
     }
 
-    // Raw ping time is in microseconds, but show it to user as whole seconds (Machinecoin users should be well used to small numbers with many decimal places by now :)
+    // Raw ping time is in microseconds, but show it to user as whole seconds (Bitsend users should be well used to small numbers with many decimal places by now :)
     stats.dPingTime = (((double)nPingUsecTime) / 1e6);
     stats.dMinPing  = (((double)nMinPingUsecTime) / 1e6);
     stats.dPingWait = (((double)nPingUsecWait) / 1e6);
@@ -1527,7 +1527,7 @@ void ThreadMapPort()
             }
         }
 
-        std::string strDesc = "Machinecoin " + FormatFullVersion();
+        std::string strDesc = "Bitsend " + FormatFullVersion();
 
         try {
             while (true) {

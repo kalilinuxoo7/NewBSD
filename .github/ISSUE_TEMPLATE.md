@@ -15,7 +15,7 @@ If the node is "stuck" during sync or giving "block checksum mismatch" errors, p
 
 <!-- What version of Bitcoin Core are you using, where did you get it (website, self-compiled, etc)? -->
 
-<!-- What type of machine are you observing the error on (OS/CPU and disk type)? -->
+<!-- What type of bitsend are you observing the error on (OS/CPU and disk type)? -->
 
 <!-- Any extra information that might be useful in the debugging process. -->
 <!--- This is normally the contents of a `debug.log` or `config.log` file. Raw text or a link to a pastebin type site are preferred. -->

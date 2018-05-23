@@ -1,12 +1,12 @@
-﻿// Copyright (c) 2009-2018 The Machinecoin Core developers
+﻿// Copyright (c) 2009-2018 The Bitsend Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef MACHINECOIN_NETADDRESS_H
-#define MACHINECOIN_NETADDRESS_H
+#ifndef BITSEND_NETADDRESS_H
+#define BITSEND_NETADDRESS_H
 
 #if defined(HAVE_CONFIG_H)
-#include <config/machinecoin-config.h>
+#include <config/bitsend-config.h>
 #endif
 
 #include <compat.h>
@@ -174,4 +174,4 @@ class CService : public CNetAddr
         }
 };
 
-#endif // MACHINECOIN_NETADDRESS_H
+#endif // BITSEND_NETADDRESS_H

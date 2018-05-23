@@ -1,8 +1,8 @@
 ﻿#!/usr/bin/env python3
-# Copyright (c) 2015-2017 The Machinecoin Core developers
+# Copyright (c) 2015-2017 The Bitsend Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
-"""Compare two or more machinecoinds to each other.
+"""Compare two or more bitsendds to each other.
 
 To use, create a class that implements get_tests(), and pass it in
 as the test generator to TestManager.  get_tests() should be a python

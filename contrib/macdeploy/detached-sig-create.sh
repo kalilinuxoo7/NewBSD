@@ -1,12 +1,12 @@
 #!/bin/sh
-# Copyright (c) 2014-2015 The Machinecoin Core developers
+# Copyright (c) 2014-2015 The Bitsend Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 set -e
 
 ROOTDIR=dist
-BUNDLE="${ROOTDIR}/Machinecoin-Qt.app"
+BUNDLE="${ROOTDIR}/Bitsend-Qt.app"
 CODESIGN=codesign
 TEMPDIR=sign.temp
 TEMPLIST=${TEMPDIR}/signatures.txt

@@ -1,10 +1,10 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2009-2018 The Machinecoin Core developers
+// Copyright (c) 2009-2018 The Bitsend Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef MACHINECOIN_SCRIPT_SIGCACHE_H
-#define MACHINECOIN_SCRIPT_SIGCACHE_H
+#ifndef BITSEND_SCRIPT_SIGCACHE_H
+#define BITSEND_SCRIPT_SIGCACHE_H
 
 #include <script/interpreter.h>
 
@@ -53,4 +53,4 @@ public:
 
 void InitSignatureCache();
 
-#endif // MACHINECOIN_SCRIPT_SIGCACHE_H
+#endif // BITSEND_SCRIPT_SIGCACHE_H

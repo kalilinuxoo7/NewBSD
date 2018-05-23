@@ -1,10 +1,10 @@
 ﻿// Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2009-2018 The Machinecoin Core developers
+// Copyright (c) 2009-2018 The Bitsend Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #if defined(HAVE_CONFIG_H)
-#include <config/machinecoin-config.h>
+#include <config/bitsend-config.h>
 #endif
 
 #include <init.h>
@@ -149,7 +149,7 @@ bool ShutdownRequested()
 /**
  * This is a minimally invasive approach to shutdown on LevelDB read errors from the
  * chainstate, while keeping user interface out of the common library, which is shared
- * between machinecoind, and machinecoin-qt and non-server tools.
+ * between bitsendd, and bitsend-qt and non-server tools.
 */
 class CCoinsViewErrorCatcher final : public CCoinsViewBacked
 {
@@ -200,7 +200,7 @@ void Shutdown()
     /// for example if the data directory was found to be locked.
     /// Be sure that anything that writes files or flushes caches only does this if the respective
     /// module was initialized.
-    RenameThread("machinecoin-shutoff");
+    RenameThread("bitsend-shutoff");
     mempool.AddTransactionsUpdated(1);
 
     StopHTTPRPC();
@@ -369,8 +369,8 @@ std::string HelpMessage(HelpMessageMode mode)
     if (showDebug)
         strUsage += HelpMessageOpt("-blocksonly", strprintf(_("Whether to operate in a blocks only mode (default: %u)"), DEFAULT_BLOCKSONLY));
     strUsage +=HelpMessageOpt("-assumevalid=<hex>", strprintf(_("If this block is in the chain assume that it and its ancestors are valid and potentially skip their script verification (0 to verify all, default: %s, testnet: %s)"), defaultChainParams->GetConsensus().defaultAssumeValid.GetHex(), testnetChainParams->GetConsensus().defaultAssumeValid.GetHex()));
-    strUsage += HelpMessageOpt("-conf=<file>", strprintf(_("Specify configuration file (default: %s)"), MACHINECOIN_CONF_FILENAME));
-    if (mode == HMM_MACHINECOIND)
+    strUsage += HelpMessageOpt("-conf=<file>", strprintf(_("Specify configuration file (default: %s)"), BITSEND_CONF_FILENAME));
+    if (mode == HMM_BITSENDD)
     {
 #if HAVE_DECL_DAEMON
         strUsage += HelpMessageOpt("-daemon", _("Run in the background as a daemon and accept commands"));
@@ -396,7 +396,7 @@ std::string HelpMessage(HelpMessageMode mode)
     strUsage += HelpMessageOpt("-par=<n>", strprintf(_("Set the number of script verification threads (%u to %d, 0 = auto, <0 = leave that many cores free, default: %d)"),
         -GetNumCores(), MAX_SCRIPTCHECK_THREADS, DEFAULT_SCRIPTCHECK_THREADS));
 #ifndef WIN32
-    strUsage += HelpMessageOpt("-pid=<file>", strprintf(_("Specify pid file (default: %s)"), MACHINECOIN_PID_FILENAME));
+    strUsage += HelpMessageOpt("-pid=<file>", strprintf(_("Specify pid file (default: %s)"), BITSEND_PID_FILENAME));
 #endif
     strUsage += HelpMessageOpt("-prune=<n>", strprintf(_("Reduce storage requirements by enabling pruning (deleting) of old blocks. This allows the pruneblockchain RPC to be called to delete specific blocks, and enables automatic pruning of old blocks if a target size in MiB is provided. This mode is incompatible with -txindex and -rescan. "
             "Warning: Reverting this setting requires re-downloading the entire blockchain. "
@@ -506,7 +506,7 @@ std::string HelpMessage(HelpMessageMode mode)
     strUsage += HelpMessageOpt("-shrinkdebugfile", _("Shrink debug.log file on client startup (default: 1 when no -debug)"));
 
     AppendParamsHelpMessages(strUsage, showDebug);
-    strUsage += HelpMessageOpt("-litemode=<n>", strprintf(_("Disable all Machinecoin specific functionality (Masternodes, Governance) (0-1, default: %u)"), 0));
+    strUsage += HelpMessageOpt("-litemode=<n>", strprintf(_("Disable all Bitsend specific functionality (Masternodes, Governance) (0-1, default: %u)"), 0));
 
     strUsage += HelpMessageGroup(_("Masternode options:"));
     strUsage += HelpMessageOpt("-masternode=<n>", strprintf(_("Enable the client to act as a masternode (0-1, default: %u)"), 0));
@@ -558,8 +558,8 @@ std::string HelpMessage(HelpMessageMode mode)
 
 std::string LicenseInfo()
 {
-    const std::string URL_SOURCE_CODE = "<https://github.com/machinecoin-project/machinecoin>";
-    const std::string URL_WEBSITE = "<https://machinecoin.io>";
+    const std::string URL_SOURCE_CODE = "<https://github.com/bitsend-project/bitsend>";
+    const std::string URL_WEBSITE = "<https://bitsend.io>";
 
     return CopyrightHolders(strprintf(_("Copyright (C) %i-%i"), 2014, COPYRIGHT_YEAR) + " ") + "\n" +
            "\n" +
@@ -663,7 +663,7 @@ void CleanupBlockRevFiles()
 void ThreadImport(std::vector<fs::path> vImportFiles)
 {
     const CChainParams& chainparams = Params();
-    RenameThread("machinecoin-loadblk");
+    RenameThread("bitsend-loadblk");
 
     {
     CImportingNow imp;
@@ -735,7 +735,7 @@ void ThreadImport(std::vector<fs::path> vImportFiles)
 }
 
 /** Sanity checks
- *  Ensure that Machinecoin is running in a usable environment with all
+ *  Ensure that Bitsend is running in a usable environment with all
  *  necessary library support.
  */
 bool InitSanityCheck(void)
@@ -1206,7 +1206,7 @@ bool AppInitParameterInteraction()
 
 static bool LockDataDirectory(bool probeOnly)
 {
-    // Make sure only a single Machinecoin process is using the data directory.
+    // Make sure only a single Bitsend process is using the data directory.
     fs::path datadir = GetDataDir();
     if (!LockDirectory(datadir, ".lock", probeOnly)) {
         return InitError(strprintf(_("Cannot obtain a lock on data directory %s. %s is probably already running."), datadir.string(), _(PACKAGE_NAME)));
@@ -1270,15 +1270,15 @@ bool AppInitMain()
         LogPrintf("Startup time: %s\n", DateTimeStrFormat("%Y-%m-%d %H:%M:%S", GetTime()));
     LogPrintf("Default data directory %s\n", GetDefaultDataDir().string());
     LogPrintf("Using data directory %s\n", GetDataDir().string());
-    LogPrintf("Using config file %s\n", GetConfigFile(gArgs.GetArg("-conf", MACHINECOIN_CONF_FILENAME)).string());
+    LogPrintf("Using config file %s\n", GetConfigFile(gArgs.GetArg("-conf", BITSEND_CONF_FILENAME)).string());
     LogPrintf("Using at most %i automatic connections (%i file descriptors available)\n", nMaxConnections, nFD);
     
     // Warn about relative -datadir path.
     if (gArgs.IsArgSet("-datadir") && !fs::path(gArgs.GetArg("-datadir", "")).is_absolute()) {
         LogPrintf("Warning: relative datadir option '%s' specified, which will be interpreted relative to the "
-                  "current working directory '%s'. This is fragile, because if machinecoin is started in the future "
+                  "current working directory '%s'. This is fragile, because if bitsend is started in the future "
                   "from a different location, it will be unable to locate the current data files. There could "
-                  "also be data loss if machinecoin is started while in a temporary directory.\n",
+                  "also be data loss if bitsend is started while in a temporary directory.\n",
             gArgs.GetArg("-datadir", ""), fs::current_path().string());
     }
 
@@ -1807,7 +1807,7 @@ bool AppInitMain()
         return false;
     }
   
-    // ********************************************************* Step 11c: update block tip in Machinecoin modules
+    // ********************************************************* Step 11c: update block tip in Bitsend modules
 
     // force UpdatedBlockTip to initialize nCachedBlockHeight for MN payments and budgets
     // but don't call it directly to prevent triggering of other listeners like zmq etc.
@@ -1909,7 +1909,7 @@ bool AppInitMain()
 
 void ThreadCheckMasternode(CConnman* connman)
 {
-    if(fLiteMode) return; // disable all Machinecoin specific functionality
+    if(fLiteMode) return; // disable all Bitsend specific functionality
 
     static bool fOneThread;
     if(fOneThread) return;

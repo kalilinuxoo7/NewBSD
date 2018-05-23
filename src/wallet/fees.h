@@ -1,10 +1,10 @@
 ﻿// Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2009-2017 The Machinecoin Core developers
+// Copyright (c) 2009-2017 The Bitsend Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef MACHINECOIN_WALLET_FEES_H
-#define MACHINECOIN_WALLET_FEES_H
+#ifndef BITSEND_WALLET_FEES_H
+#define BITSEND_WALLET_FEES_H
 
 #include <amount.h>
 
@@ -31,4 +31,4 @@ CAmount GetMinimumFee(unsigned int nTxBytes, const CCoinControl& coin_control, c
  */
 CFeeRate GetDiscardRate(const CBlockPolicyEstimator& estimator);
 
-#endif // MACHINECOIN_WALLET_FEES_H
+#endif // BITSEND_WALLET_FEES_H

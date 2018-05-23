@@ -1,10 +1,10 @@
 ﻿// Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2009-2016 The Machinecoin Core developers
+// Copyright (c) 2009-2016 The Bitsend Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef MACHINECOIN_NET_PROCESSING_H
-#define MACHINECOIN_NET_PROCESSING_H
+#ifndef BITSEND_NET_PROCESSING_H
+#define BITSEND_NET_PROCESSING_H
 
 #include <net.h>
 #include <validationinterface.h>
@@ -81,4 +81,4 @@ bool GetNodeStateStats(NodeId nodeid, CNodeStateStats &stats);
 /** Increase a node's misbehavior score. */
 void Misbehaving(NodeId nodeid, int howmuch);
 
-#endif // MACHINECOIN_NET_PROCESSING_H
+#endif // BITSEND_NET_PROCESSING_H

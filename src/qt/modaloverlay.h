@@ -1,9 +1,9 @@
-// Copyright (c) 2016 The Machinecoin Core developers
+// Copyright (c) 2016 The Bitsend Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef MACHINECOIN_QT_MODALOVERLAY_H
-#define MACHINECOIN_QT_MODALOVERLAY_H
+#ifndef BITSEND_QT_MODALOVERLAY_H
+#define BITSEND_QT_MODALOVERLAY_H
 
 #include <QDateTime>
 #include <QWidget>
@@ -47,4 +47,4 @@ private:
     bool userClosed;
 };
 
-#endif // MACHINECOIN_QT_MODALOVERLAY_H
+#endif // BITSEND_QT_MODALOVERLAY_H

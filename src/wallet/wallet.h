@@ -1,10 +1,10 @@
 ﻿// Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2009-2017 The Machinecoin Core developers
+// Copyright (c) 2009-2017 The Bitsend Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef MACHINECOIN_WALLET_WALLET_H
-#define MACHINECOIN_WALLET_WALLET_H
+#ifndef BITSEND_WALLET_WALLET_H
+#define BITSEND_WALLET_WALLET_H
 
 #include <amount.h>
 #include <policy/feerate.h>
@@ -320,7 +320,7 @@ public:
     unsigned int nTimeSmart;
     /**
      * From me flag is set to 1 for transactions that were created by the wallet
-     * on this machinecoin node, and set to 0 for transactions that were created
+     * on this bitsend node, and set to 0 for transactions that were created
      * externally and came in through the network or sendrawtransaction RPC.
      */
     char fFromMe;
@@ -860,7 +860,7 @@ public:
     bool GetBudgetSystemCollateralTX(CWalletTx& tx, uint256 hash, CAmount amount);
     
     // Masternodes
-    // Get 25000 MAC output and keys which can be used for the Masternode
+    // Get 25000 BSD output and keys which can be used for the Masternode
     bool GetMasternodeOutpointAndKeys(COutPoint& outpointRet, CPubKey& pubKeyRet, CKey& keyRet, std::string strTxHash = "", std::string strOutputIndex = "");
     /// Extract txin information and keys from output
     bool GetOutpointAndKeysFromOutput(const COutput& out, COutPoint& outpointRet, CPubKey& pubKeyRet, CKey& keyRet);
@@ -1320,4 +1320,4 @@ public:
     }
 };
 
-#endif // MACHINECOIN_WALLET_WALLET_H
+#endif // BITSEND_WALLET_WALLET_H

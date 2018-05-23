@@ -1,5 +1,5 @@
 ﻿// Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2009-2018 The Machinecoin Core developers
+// Copyright (c) 2009-2018 The Bitsend Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -39,7 +39,7 @@
 #include <boost/thread.hpp>
 
 #if defined(NDEBUG)
-# error "Machinecoin cannot be compiled without assertions."
+# error "Bitsend cannot be compiled without assertions."
 #endif
 
 std::atomic<int64_t> nTimeBestReceived(0); // Used only to inform the wallet of when we last received a block
@@ -997,7 +997,7 @@ bool static AlreadyHave(const CInv& inv) EXCLUSIVE_LOCKS_REQUIRED(cs_main)
         return mapBlockIndex.count(inv.hash);
   
     /* 
-        Machinecoin Related Inventory Messages
+        Bitsend Related Inventory Messages
 
         --
 
@@ -2336,7 +2336,7 @@ bool static ProcessMessage(CNode* pfrom, const std::string& strCommand, CDataStr
                         if (!orphanTx.HasWitness() && !stateDummy.CorruptionPossible()) {
                             // Do not use rejection cache for witness transactions or
                             // witness-stripped transactions, as they can have been malleated.
-                            // See https://github.com/machinecoin-project/machinecoin-core/issues/8279 for details.
+                            // See https://github.com/bitsend-project/bitsend-core/issues/8279 for details.
                             assert(recentRejects);
                             recentRejects->insert(orphanHash);
                         }
@@ -2382,7 +2382,7 @@ bool static ProcessMessage(CNode* pfrom, const std::string& strCommand, CDataStr
             if (!tx.HasWitness() && !state.CorruptionPossible()) {
                 // Do not use rejection cache for witness transactions or
                 // witness-stripped transactions, as they can have been malleated.
-                // See https://github.com/machinecoin-project/machinecoin-core/issues/8279 for details.
+                // See https://github.com/bitsend-project/bitsend-core/issues/8279 for details.
                 assert(recentRejects);
                 recentRejects->insert(tx.GetHash());
                 if (RecursiveDynamicUsage(*ptx) < 100000) {

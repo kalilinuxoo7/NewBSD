@@ -1,36 +1,36 @@
 ﻿#!/bin/bash
 #
-#  machinecoind The machinecoin core server.
+#  bitsendd The bitsend core server.
 #
 #
 # chkconfig: 345 80 20
-# description: machinecoind
-# processname: machinecoind
+# description: bitsendd
+# processname: bitsendd
 #
 
 # Source function library.
 . /etc/init.d/functions
 
-# you can override defaults in /etc/sysconfig/machinecoind, see below
-if [ -f /etc/sysconfig/machinecoind ]; then
-        . /etc/sysconfig/machinecoind
+# you can override defaults in /etc/sysconfig/bitsendd, see below
+if [ -f /etc/sysconfig/bitsendd ]; then
+        . /etc/sysconfig/bitsendd
 fi
 
 RETVAL=0
 
-prog=machinecoind
-# you can override the lockfile via MACHINECOIND_LOCKFILE in /etc/sysconfig/machinecoind
-lockfile=${MACHINECOIND_LOCKFILE-/var/lock/subsys/machinecoind}
+prog=bitsendd
+# you can override the lockfile via BITSENDD_LOCKFILE in /etc/sysconfig/bitsendd
+lockfile=${BITSENDD_LOCKFILE-/var/lock/subsys/bitsendd}
 
-# machinecoind defaults to /usr/bin/machinecoind, override with MACHINECOIND_BIN
-machinecoind=${MACHINECOIND_BIN-/usr/bin/machinecoind}
+# bitsendd defaults to /usr/bin/bitsendd, override with BITSENDD_BIN
+bitsendd=${BITSENDD_BIN-/usr/bin/bitsendd}
 
-# machinecoind opts default to -disablewallet, override with MACHINECOIND_OPTS
-machinecoind_opts=${MACHINECOIND_OPTS--disablewallet}
+# bitsendd opts default to -disablewallet, override with BITSENDD_OPTS
+bitsendd_opts=${BITSENDD_OPTS--disablewallet}
 
 start() {
     echo -n $"Starting $prog: "
-    daemon $DAEMONOPTS $machinecoind $machinecoind_opts
+    daemon $DAEMONOPTS $bitsendd $bitsendd_opts
     RETVAL=$?
     echo
     [ $RETVAL -eq 0 ] && touch $lockfile

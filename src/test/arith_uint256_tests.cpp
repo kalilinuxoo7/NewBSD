@@ -1,4 +1,4 @@
-﻿// Copyright (c) 2011-2017 The Machinecoin Core developers
+﻿// Copyright (c) 2011-2017 The Bitsend Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -12,7 +12,7 @@
 #include <arith_uint256.h>
 #include <string>
 #include <version.h>
-#include <test/test_machinecoin.h>
+#include <test/test_bitsend.h>
 
 BOOST_FIXTURE_TEST_SUITE(arith_uint256_tests, BasicTestingSetup)
 

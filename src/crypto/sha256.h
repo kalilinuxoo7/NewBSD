@@ -1,9 +1,9 @@
-// Copyright (c) 2014-2018 The Machinecoin Core developers
+// Copyright (c) 2014-2018 The Bitsend Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef MACHINECOIN_CRYPTO_SHA256_H
-#define MACHINECOIN_CRYPTO_SHA256_H
+#ifndef BITSEND_CRYPTO_SHA256_H
+#define BITSEND_CRYPTO_SHA256_H
 
 #include <stdint.h>
 #include <stdlib.h>
@@ -31,4 +31,4 @@ public:
  */
 std::string SHA256AutoDetect();
 
-#endif // MACHINECOIN_CRYPTO_SHA256_H
+#endif // BITSEND_CRYPTO_SHA256_H

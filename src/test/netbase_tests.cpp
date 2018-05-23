@@ -1,9 +1,9 @@
-﻿// Copyright (c) 2012-2017 The Machinecoin Core developers
+﻿// Copyright (c) 2012-2017 The Bitsend Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include <netbase.h>
-#include <test/test_machinecoin.h>
+#include <test/test_bitsend.h>
 #include <utilstrencodings.h>
 
 #include <string>
@@ -82,10 +82,10 @@ bool static TestSplitHost(std::string test, std::string host, int port)
 
 BOOST_AUTO_TEST_CASE(netbase_splithost)
 {
-    BOOST_CHECK(TestSplitHost("www.machinecoin.io", "www.machinecoin.io", -1));
-    BOOST_CHECK(TestSplitHost("[www.machinecoin.io]", "www.machinecoin.io", -1));
-    BOOST_CHECK(TestSplitHost("www.machinecoin.io:80", "www.machinecoin.io", 80));
-    BOOST_CHECK(TestSplitHost("[www.machinecoin.io]:80", "www.machinecoin.io", 80));
+    BOOST_CHECK(TestSplitHost("www.bitsend.io", "www.bitsend.io", -1));
+    BOOST_CHECK(TestSplitHost("[www.bitsend.io]", "www.bitsend.io", -1));
+    BOOST_CHECK(TestSplitHost("www.bitsend.io:80", "www.bitsend.io", 80));
+    BOOST_CHECK(TestSplitHost("[www.bitsend.io]:80", "www.bitsend.io", 80));
     BOOST_CHECK(TestSplitHost("127.0.0.1", "127.0.0.1", -1));
     BOOST_CHECK(TestSplitHost("127.0.0.1:8333", "127.0.0.1", 8333));
     BOOST_CHECK(TestSplitHost("[127.0.0.1]", "127.0.0.1", -1));

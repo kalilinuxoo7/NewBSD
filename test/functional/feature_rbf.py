@@ -1,10 +1,10 @@
 ﻿#!/usr/bin/env python3
-# Copyright (c) 2014-2017 The Machinecoin Core developers
+# Copyright (c) 2014-2017 The Bitsend Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 """Test the RBF code."""
 
-from test_framework.test_framework import MachinecoinTestFramework
+from test_framework.test_framework import BitsendTestFramework
 from test_framework.util import *
 from test_framework.script import *
 from test_framework.mininode import *
@@ -59,7 +59,7 @@ def make_utxo(node, amount, confirmed=True, scriptPubKey=CScript([1])):
 
     return COutPoint(int(txid, 16), 0)
 
-class ReplaceByFeeTest(MachinecoinTestFramework):
+class ReplaceByFeeTest(BitsendTestFramework):
 
     def set_test_params(self):
         self.num_nodes = 2
@@ -140,7 +140,7 @@ class ReplaceByFeeTest(MachinecoinTestFramework):
         # This will raise an exception due to transaction replacement being disabled
         assert_raises_rpc_error(-26, "txn-mempool-conflict", self.nodes[1].sendrawtransaction, tx1b_hex, True)
 
-        # Extra 0.1 MAC fee
+        # Extra 0.1 BSD fee
         tx1b = CTransaction()
         tx1b.vin = [CTxIn(tx0_outpoint, nSequence=0)]
         tx1b.vout = [CTxOut(int(0.9*COIN), CScript([b'b']))]
@@ -182,7 +182,7 @@ class ReplaceByFeeTest(MachinecoinTestFramework):
             prevout = COutPoint(int(txid, 16), 0)
 
         # Whether the double-spend is allowed is evaluated by including all
-        # child fees - 40 MAC - so this attempt is rejected.
+        # child fees - 40 BSD - so this attempt is rejected.
         dbl_tx = CTransaction()
         dbl_tx.vin = [CTxIn(tx0_outpoint, nSequence=0)]
         dbl_tx.vout = [CTxOut(initial_nValue - 30*COIN, CScript([1]))]
@@ -252,7 +252,7 @@ class ReplaceByFeeTest(MachinecoinTestFramework):
         # This will raise an exception due to insufficient fee
         assert_raises_rpc_error(-26, "insufficient fee", self.nodes[0].sendrawtransaction, dbl_tx_hex, True)
 
-        # 1 MAC fee is enough
+        # 1 BSD fee is enough
         dbl_tx = CTransaction()
         dbl_tx.vin = [CTxIn(tx0_outpoint, nSequence=0)]
         dbl_tx.vout = [CTxOut(initial_nValue - fee*n - 1*COIN, CScript([1]))]

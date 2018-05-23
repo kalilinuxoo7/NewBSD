@@ -81,7 +81,7 @@ extern "C"{
  * -- exception: on 32-bit x86, use 32-bit code
  * -- when using 32-bit code, use interleaving
  * -- copy the state, except on x86
- * -- unroll 8 rounds on "big" machine, 2 rounds on "small" machines
+ * -- unroll 8 rounds on "big" bitsend, 2 rounds on "small" bitsends
  */
 
 #if SPH_SMALL_FOOTPRINT && !defined SPH_SMALL_FOOTPRINT_KECCAK

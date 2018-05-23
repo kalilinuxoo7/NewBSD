@@ -1,19 +1,19 @@
 ﻿#!/usr/bin/env python3
-# Copyright (c) 2014-2017 The Machinecoin Core developers
+# Copyright (c) 2014-2017 The Bitsend Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
-"""Test running machinecoind with -reindex and -reindex-chainstate options.
+"""Test running bitsendd with -reindex and -reindex-chainstate options.
 
 - Start a single node and generate 3 blocks.
 - Stop the node and restart it with -reindex. Verify that the node has reindexed up to block 3.
 - Stop the node and restart it with -reindex-chainstate. Verify that the node has reindexed up to block 3.
 """
 
-from test_framework.test_framework import MachinecoinTestFramework
+from test_framework.test_framework import BitsendTestFramework
 from test_framework.util import assert_equal
 import time
 
-class ReindexTest(MachinecoinTestFramework):
+class ReindexTest(BitsendTestFramework):
 
     def set_test_params(self):
         self.setup_clean_chain = True

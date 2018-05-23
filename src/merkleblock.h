@@ -1,10 +1,10 @@
 ﻿// Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2009-2018 The Machinecoin Core developers
+// Copyright (c) 2009-2018 The Bitsend Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef MACHINECOIN_MERKLEBLOCK_H
-#define MACHINECOIN_MERKLEBLOCK_H
+#ifndef BITSEND_MERKLEBLOCK_H
+#define BITSEND_MERKLEBLOCK_H
 
 #include <serialize.h>
 #include <uint256.h>
@@ -164,4 +164,4 @@ private:
     CMerkleBlock(const CBlock& block, CBloomFilter* filter, const std::set<uint256>* txids);
 };
 
-#endif // MACHINECOIN_MERKLEBLOCK_H
+#endif // BITSEND_MERKLEBLOCK_H

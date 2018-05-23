@@ -1,9 +1,9 @@
-// Copyright (c) 2015-2018 The Machinecoin Core developers
+// Copyright (c) 2015-2018 The Bitsend Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef MACHINECOIN_REVERSELOCK_H
-#define MACHINECOIN_REVERSELOCK_H
+#ifndef BITSEND_REVERSELOCK_H
+#define BITSEND_REVERSELOCK_H
 
 /**
  * An RAII-style reverse lock. Unlocks on construction and locks on destruction.
@@ -31,4 +31,4 @@ private:
     Lock templock;
 };
 
-#endif // MACHINECOIN_REVERSELOCK_H
+#endif // BITSEND_REVERSELOCK_H

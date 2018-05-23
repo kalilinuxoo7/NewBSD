@@ -1,11 +1,11 @@
-// Copyright (c) 2011-2017 The Machinecoin Core developers
+// Copyright (c) 2011-2017 The Bitsend Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef MACHINECOIN_QT_TRANSACTIONTABLEMODEL_H
-#define MACHINECOIN_QT_TRANSACTIONTABLEMODEL_H
+#ifndef BITSEND_QT_TRANSACTIONTABLEMODEL_H
+#define BITSEND_QT_TRANSACTIONTABLEMODEL_H
 
-#include <qt/machinecoinunits.h>
+#include <qt/bitsendunits.h>
 
 #include <QAbstractTableModel>
 #include <QStringList>
@@ -98,7 +98,7 @@ private:
     QString formatTxDate(const TransactionRecord *wtx) const;
     QString formatTxType(const TransactionRecord *wtx) const;
     QString formatTxToAddress(const TransactionRecord *wtx, bool tooltip) const;
-    QString formatTxAmount(const TransactionRecord *wtx, bool showUnconfirmed=true, MachinecoinUnits::SeparatorStyle separators=MachinecoinUnits::separatorStandard) const;
+    QString formatTxAmount(const TransactionRecord *wtx, bool showUnconfirmed=true, BitsendUnits::SeparatorStyle separators=BitsendUnits::separatorStandard) const;
     QString formatTooltip(const TransactionRecord *rec) const;
     QVariant txStatusDecoration(const TransactionRecord *wtx) const;
     QVariant txWatchonlyDecoration(const TransactionRecord *wtx) const;
@@ -117,4 +117,4 @@ public Q_SLOTS:
     friend class TransactionTablePriv;
 };
 
-#endif // MACHINECOIN_QT_TRANSACTIONTABLEMODEL_H
+#endif // BITSEND_QT_TRANSACTIONTABLEMODEL_H

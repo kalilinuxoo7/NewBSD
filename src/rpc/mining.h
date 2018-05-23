@@ -1,9 +1,9 @@
-// Copyright (c) 2017-2018 The Machinecoin Core developers
+// Copyright (c) 2017-2018 The Bitsend Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef MACHINECOIN_RPC_MINING_H
-#define MACHINECOIN_RPC_MINING_H
+#ifndef BITSEND_RPC_MINING_H
+#define BITSEND_RPC_MINING_H
 
 #include <script/script.h>
 

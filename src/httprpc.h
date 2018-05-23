@@ -1,9 +1,9 @@
-// Copyright (c) 2015 The Machinecoin Core developers
+// Copyright (c) 2015 The Bitsend Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef MACHINECOIN_HTTPRPC_H
-#define MACHINECOIN_HTTPRPC_H
+#ifndef BITSEND_HTTPRPC_H
+#define BITSEND_HTTPRPC_H
 
 #include <string>
 #include <map>

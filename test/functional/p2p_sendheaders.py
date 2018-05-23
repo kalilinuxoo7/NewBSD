@@ -1,5 +1,5 @@
 ﻿#!/usr/bin/env python3
-# Copyright (c) 2014-2017 The Machinecoin Core developers
+# Copyright (c) 2014-2017 The Bitsend Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 """Test behavior of headers messages to announce blocks.
@@ -101,7 +101,7 @@ from test_framework.mininode import (
     msg_inv,
     msg_sendheaders,
 )
-from test_framework.test_framework import MachinecoinTestFramework
+from test_framework.test_framework import BitsendTestFramework
 from test_framework.util import (
     assert_equal,
     sync_blocks,
@@ -198,7 +198,7 @@ class BaseNode(P2PInterface):
             self.last_message.pop("inv", None)
             self.last_message.pop("headers", None)
 
-class SendHeadersTest(MachinecoinTestFramework):
+class SendHeadersTest(BitsendTestFramework):
     def set_test_params(self):
         self.setup_clean_chain = True
         self.num_nodes = 2

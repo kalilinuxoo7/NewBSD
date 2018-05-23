@@ -1,4 +1,4 @@
-﻿// Copyright (c) 2015-2018 The Machinecoin Core developers
+﻿// Copyright (c) 2015-2018 The Bitsend Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -111,7 +111,7 @@ static bool multiUserAuthorized(std::string strUserPass)
         static const unsigned int KEY_SIZE = 32;
         unsigned char out[KEY_SIZE];
 
-        CHMAC_SHA256(reinterpret_cast<const unsigned char*>(strSalt.c_str()), strSalt.size()).Write(reinterpret_cast<const unsigned char*>(strPass.c_str()), strPass.size()).Finalize(out);
+        CHBSD_SHA256(reinterpret_cast<const unsigned char*>(strSalt.c_str()), strSalt.size()).Write(reinterpret_cast<const unsigned char*>(strPass.c_str()), strPass.size()).Finalize(out);
         std::vector<unsigned char> hexvec(out, out+KEY_SIZE);
         std::string strHashFromPass = HexStr(hexvec);
 

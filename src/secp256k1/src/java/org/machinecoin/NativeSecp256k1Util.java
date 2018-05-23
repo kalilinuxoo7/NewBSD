@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.machinecoin;
+package org.bitsend;
 
 public class NativeSecp256k1Util{
 
