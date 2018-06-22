@@ -294,35 +294,7 @@ libbitsend_wallet_a_SOURCES = \
   wallet/walletutil.cpp \
   $(BITSEND_CORE_H)
 
-# timetravel related libraries
-BITSEND_TIMETRAVEL = \
-  crypto/aes_helper.c \
-  crypto/blake.c \
-  crypto/bmw.c \
-  crypto/groestl.c \
-  crypto/skein.c \
-  crypto/jh.c \
-  crypto/keccak.c \
-  crypto/luffa.c \
-  crypto/cubehash.c \
-  crypto/shavite.c \
-  crypto/simd.c \
-  crypto/echo.c
 
-BITSEND_TIMETRAVEL_H = \
-  crypto/sph_types.h \
-  crypto/sph_blake.h \
-  crypto/sph_bmw.h \
-  crypto/sph_groestl.h \
-  crypto/sph_skein.h \
-  crypto/sph_jh.h \
-  crypto/sph_keccak.h \
-  crypto/sph_luffa.h \
-  crypto/sph_cubehash.h \
-  crypto/sph_shavite.h \
-  crypto/sph_simd.h \
-  crypto/sph_echo.h \
-  crypto/hashblock.h
 
 # crypto primitives library
 crypto_libbitsend_crypto_a_CPPFLAGS = $(AM_CPPFLAGS) $(SSL_CFLAGS)
@@ -344,7 +316,43 @@ crypto_libbitsend_crypto_a_SOURCES = \
   crypto/sha256.cpp \
   crypto/sha256.h \
   crypto/sha512.cpp \
-  crypto/sha512.h
+  crypto/sha512.h \
+  crypto/aes_helper.c \
+  crypto/luffa.c \
+  crypto/groestl.c \
+  crypto/jh.c \
+  crypto/echo.c \
+  crypto/shavite.c \
+  crypto/keccak.c \
+  crypto/skein.c \
+  crypto/fugue.c \
+  crypto/hamsi.c \
+  crypto/haval.c \
+  crypto/shabal.c \
+  crypto/whirlpool.c \
+  crypto/sph_sha2big.c \
+  crypto/bmw.c \
+  crypto/simd.c \
+  crypto/cubehash.c \
+  crypto/blake.c \
+  crypto/sph_blake.h \
+  crypto/sph_bmw.h \
+  crypto/sph_cubehash.h \
+  crypto/sph_echo.h \
+  crypto/sph_groestl.h \
+  crypto/sph_jh.h \
+  crypto/sph_keccak.h \
+  crypto/sph_luffa.h \
+  crypto/sph_shavite.h \
+  crypto/sph_simd.h \
+  crypto/sph_skein.h \
+  crypto/sph_types.h \
+  crypto/sph_fugue.h \
+  crypto/sph_hamsi.h \
+  crypto/sph_haval.h \
+  crypto/sph_shabal.h \
+  crypto/sph_sha2.h \
+  crypto/sph_whirlpool.h
 
 if USE_ASM
 crypto_libbitsend_crypto_a_SOURCES += crypto/sha256_sse4.cpp
@@ -386,9 +394,7 @@ libbitsend_consensus_a_SOURCES = \
   version.h \
   crypto/scrypt.cpp \
   crypto/scrypt-sse2.cpp \
-  crypto/scrypt.h \
-  $(BITSEND_TIMETRAVEL) \
-  $(BITSEND_TIMETRAVEL_H)
+  crypto/scrypt.h
 
 # common: shared between bitsendd, and bitsend-qt and non-server tools
 libbitsend_common_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITSEND_INCLUDES)

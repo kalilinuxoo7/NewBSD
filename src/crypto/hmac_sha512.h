@@ -2,16 +2,16 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITSEND_CRYPTO_HBSD_SHA512_H
-#define BITSEND_CRYPTO_HBSD_SHA512_H
+#ifndef BITSEND_CRYPTO_HMAC_SHA512_H
+#define BITSEND_CRYPTO_HMAC_SHA512_H
 
-#include <crypto/sha512.h>
+#include "crypto/sha512.h"
 
 #include <stdint.h>
 #include <stdlib.h>
 
-/** A hasher class for HBSD-SHA-512. */
-class CHBSD_SHA512
+/** A hasher class for HMAC-SHA-512. */
+class CHMAC_SHA512
 {
 private:
     CSHA512 outer;
@@ -20,8 +20,8 @@ private:
 public:
     static const size_t OUTPUT_SIZE = 64;
 
-    CHBSD_SHA512(const unsigned char* key, size_t keylen);
-    CHBSD_SHA512& Write(const unsigned char* data, size_t len)
+    CHMAC_SHA512(const unsigned char* key, size_t keylen);
+    CHMAC_SHA512& Write(const unsigned char* data, size_t len)
     {
         inner.Write(data, len);
         return *this;
@@ -29,4 +29,4 @@ public:
     void Finalize(unsigned char hash[OUTPUT_SIZE]);
 };
 
-#endif // BITSEND_CRYPTO_HBSD_SHA512_H
+#endif // BITSEND_CRYPTO_HMAC_SHA512_H

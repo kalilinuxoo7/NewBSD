@@ -2,11 +2,11 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include <crypto/hmac_sha512.h>
+#include "crypto/hmac_sha512.h"
 
 #include <string.h>
 
-CHBSD_SHA512::CHBSD_SHA512(const unsigned char* key, size_t keylen)
+CHMAC_SHA512::CHMAC_SHA512(const unsigned char* key, size_t keylen)
 {
     unsigned char rkey[128];
     if (keylen <= 128) {
@@ -26,7 +26,7 @@ CHBSD_SHA512::CHBSD_SHA512(const unsigned char* key, size_t keylen)
     inner.Write(rkey, 128);
 }
 
-void CHBSD_SHA512::Finalize(unsigned char hash[OUTPUT_SIZE])
+void CHMAC_SHA512::Finalize(unsigned char hash[OUTPUT_SIZE])
 {
     unsigned char temp[64];
     inner.Finalize(temp);

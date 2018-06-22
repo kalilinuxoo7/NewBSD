@@ -58,12 +58,12 @@ void TestRIPEMD160(const std::string &in, const std::string &hexout) { TestVecto
 
 void TestHBSDSHA256(const std::string &hexkey, const std::string &hexin, const std::string &hexout) {
     std::vector<unsigned char> key = ParseHex(hexkey);
-    TestVector(CHBSD_SHA256(key.data(), key.size()), ParseHex(hexin), ParseHex(hexout));
+    TestVector(CHMAC_SHA256(key.data(), key.size()), ParseHex(hexin), ParseHex(hexout));
 }
 
 void TestHBSDSHA512(const std::string &hexkey, const std::string &hexin, const std::string &hexout) {
     std::vector<unsigned char> key = ParseHex(hexkey);
-    TestVector(CHBSD_SHA512(key.data(), key.size()), ParseHex(hexin), ParseHex(hexout));
+    TestVector(CHMAC_SHA512(key.data(), key.size()), ParseHex(hexin), ParseHex(hexout));
 }
 
 void TestAES128(const std::string &hexkey, const std::string &hexin, const std::string &hexout)

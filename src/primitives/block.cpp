@@ -4,7 +4,7 @@
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include <primitives/block.h>
-
+#include "chain.h"
 #include <hash.h>
 #include <tinyformat.h>
 #include <utilstrencodings.h>
@@ -14,20 +14,29 @@
 
 uint256 CBlockHeader::GetHash() const
 {
-    return SerializeHash(*this);
+    if(GetBlockTime() >= 1477958400) // Bitsend PoW Hardfork, Friday, 09-Sep-16 18:00:00 UTC
+		{
+		return XEVAN(BEGIN(nVersion), END(nNonce));
+		strprintf("XEVAN_Hash is on.");
+		}
+		else
+		{
+			return HashX11(BEGIN(nVersion), END(nNonce));
+			strprintf("X11_Hash is on.");
+		}
 }
 
 uint256 CBlockHeader::GetPoWHash() const
 {
-		if(GetBlockTime() >= 1473444000) // Bitsend PoW Hardfork, Friday, 09-Sep-16 18:00:00 UTC
+		if(GetBlockTime() >= 1477958400) // Bitsend PoW Hardfork, Friday, 09-Sep-16 18:00:00 UTC
 		{
-				return HashTimeTravel(BEGIN(nVersion), END(nNonce), GetBlockTime()); // Bitsend TimeTravel
+		return XEVAN(BEGIN(nVersion), END(nNonce));
+		strprintf("XEVAN_Hash is on.");
 		}
 		else
 		{
-				uint256 thash;
-				scrypt_1024_1_1_256(BEGIN(nVersion), BEGIN(thash)); // Bitsend Scrypt
-				return thash;
+			return HashX11(BEGIN(nVersion), END(nNonce));
+			strprintf("X11_Hash is on.");
 		}
 }
 

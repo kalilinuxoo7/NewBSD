@@ -563,8 +563,8 @@ void TorController::auth_cb(TorControlConnection& _conn, const TorControlReply& 
  */
 static std::vector<uint8_t> ComputeResponse(const std::string &key, const std::vector<uint8_t> &cookie,  const std::vector<uint8_t> &clientNonce, const std::vector<uint8_t> &serverNonce)
 {
-    CHBSD_SHA256 computeHash((const uint8_t*)key.data(), key.size());
-    std::vector<uint8_t> computedHash(CHBSD_SHA256::OUTPUT_SIZE, 0);
+    CHMAC_SHA256 computeHash((const uint8_t*)key.data(), key.size());
+    std::vector<uint8_t> computedHash(CHMAC_SHA256::OUTPUT_SIZE, 0);
     computeHash.Write(cookie.data(), cookie.size());
     computeHash.Write(clientNonce.data(), clientNonce.size());
     computeHash.Write(serverNonce.data(), serverNonce.size());
