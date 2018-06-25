@@ -92,7 +92,7 @@ static void RDRandInit() {}
 
 static bool GetHWRand(unsigned char* ent32) {
 #if defined(__x86_64__) || defined(__amd64__) || defined(__i386__)
-    assert(hwrand_initialized.load(std::memory_order_relaxed));
+    //assert(hwrand_initialized.load(std::memory_order_relaxed));
     if (rdrand_supported) {
         uint8_t ok;
         // Not all assemblers support the rdrand instruction, write it in hex.

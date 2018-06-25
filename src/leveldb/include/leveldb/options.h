@@ -190,9 +190,9 @@ struct WriteOptions {
   // is considered complete.  If this flag is true, writes will be
   // slower.
   //
-  // If this flag is false, and the bitsend crashes, some recent
+  // If this flag is false, and the machine crashes, some recent
   // writes may be lost.  Note that if it is just the process that
-  // crashes (i.e., the bitsend does not reboot), no writes will be
+  // crashes (i.e., the machine does not reboot), no writes will be
   // lost even if sync==false.
   //
   // In other words, a DB write with sync==false has similar

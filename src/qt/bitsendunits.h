@@ -56,9 +56,9 @@ public:
      */
     enum Unit
     {
-        BSD,
-        mBSD,
-        uBSD
+        BsD,
+        mBsD,
+        uBsD
     };
 
     enum SeparatorStyle

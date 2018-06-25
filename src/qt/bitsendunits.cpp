@@ -17,9 +17,9 @@ BitsendUnits::BitsendUnits(QObject *parent):
 QList<BitsendUnits::Unit> BitsendUnits::availableUnits()
 {
     QList<BitsendUnits::Unit> unitlist;
-    unitlist.append(BSD);
-    unitlist.append(mBSD);
-    unitlist.append(uBSD);
+    unitlist.append(BsD);
+    unitlist.append(mBsD);
+    unitlist.append(uBsD);
     return unitlist;
 }
 
@@ -27,9 +27,9 @@ bool BitsendUnits::valid(int unit)
 {
     switch(unit)
     {
-    case BSD:
-    case mBSD:
-    case uBSD:
+    case BsD:
+    case mBsD:
+    case uBsD:
         return true;
     default:
         return false;
@@ -40,9 +40,9 @@ QString BitsendUnits::longName(int unit)
 {
     switch(unit)
     {
-    case BSD: return QString("BSD");
-    case mBSD: return QString("mBSD");
-    case uBSD: return QString::fromUtf8("µBSD");
+    case BsD: return QString("BSD");
+    case mBsD: return QString("mBSD");
+    case uBsD: return QString::fromUtf8("µBSD");
     default: return QString("???");
     }
 }
@@ -51,7 +51,7 @@ QString BitsendUnits::shortName(int unit)
 {
     switch(unit)
     {
-    case uBSD: return QString::fromUtf8("bits");
+    case uBsD: return QString::fromUtf8("bits");
     default:   return longName(unit);
     }
 }
@@ -60,9 +60,9 @@ QString BitsendUnits::description(int unit)
 {
     switch(unit)
     {
-    case BSD: return QString("Bitsends");
-    case mBSD: return QString("Milli-Bitsends (1 / 1" THIN_SP_UTF8 "000)");
-    case uBSD: return QString("Micro-Bitsends (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
+    case BsD: return QString("Bitsends");
+    case mBsD: return QString("Milli-Bitsends (1 / 1" THIN_SP_UTF8 "000)");
+    case uBsD: return QString("Micro-Bitsends (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
     default: return QString("???");
     }
 }
@@ -71,9 +71,9 @@ qint64 BitsendUnits::factor(int unit)
 {
     switch(unit)
     {
-    case BSD:  return 100000000;
-    case mBSD: return 100000;
-    case uBSD: return 100;
+    case BsD:  return 100000000;
+    case mBsD: return 100000;
+    case uBsD: return 100;
     default:   return 100000000;
     }
 }
@@ -82,9 +82,9 @@ int BitsendUnits::decimals(int unit)
 {
     switch(unit)
     {
-    case BSD: return 8;
-    case mBSD: return 5;
-    case uBSD: return 2;
+    case BsD: return 8;
+    case mBsD: return 5;
+    case uBsD: return 2;
     default: return 0;
     }
 }

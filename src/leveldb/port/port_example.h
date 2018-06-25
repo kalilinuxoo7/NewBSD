@@ -16,7 +16,7 @@ namespace port {
 // TODO(jorlow): Many of these belong more in the environment class rather than
 //               here. We should try moving them and see if it affects perf.
 
-// The following boolean constant must be true on a little-endian bitsend
+// The following boolean constant must be true on a little-endian machine
 // and false otherwise.
 static const bool kLittleEndian = true /* or some other expression */;
 

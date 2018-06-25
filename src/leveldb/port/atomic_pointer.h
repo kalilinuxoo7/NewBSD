@@ -25,7 +25,7 @@
 #ifdef OS_WIN
 #include <windows.h>
 #endif
-#ifdef OS_BSDOSX
+#ifdef OS_MACOSX
 #include <libkern/OSAtomic.h>
 #endif
 
@@ -78,7 +78,7 @@ class AtomicPointer {
 #define LEVELDB_HAVE_MEMORY_BARRIER
 
 // Mac OS
-#elif defined(OS_BSDOSX)
+#elif defined(OS_MACOSX)
 inline void MemoryBarrier() {
   OSMemoryBarrier();
 }
